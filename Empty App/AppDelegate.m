@@ -7,63 +7,100 @@
 //
 
 #import "AppDelegate.h"
+#import <CouchCocoa/CouchCocoa.h>
+
+
+/** This is the name of the database the app will use -- customize it as you like,
+    but the name must contain only *lowercase* letters, digits, and "-". */
+#define kDatabaseName @"data"
+
 
 @implementation AppDelegate
 
 @synthesize window = _window;
+@synthesize database = _database;
 
 - (void)dealloc
 {
     [_window release];
+    [_database release];
     [super dealloc];
 }
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+- (BOOL)application:(UIApplication *)application
+        didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    NSLog(@"------ application:didFinishLaunchingWithOptions:");
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
-    // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+
+    // Create & configure a CouchbaseMobile instance:
+    CouchbaseMobile* cb = [[CouchbaseMobile alloc] init];
+    cb.delegate = self;
+    
+/* Uncomment this block if you want to override CouchDB settings in a custom .ini file
+    NSString* iniPath = [[NSBundle mainBundle] pathForResource: @"couchdb" ofType: @"ini"];
+    NSAssert(iniPath, @"Couldn't find couchdb.ini resource");
+    NSLog(@"Registering custom .ini file %@", iniPath);
+    cb.iniFilePath = iniPath;
+*/
+    
+    // Now tell the database to start:
+    if (![cb start])
+        [self couchbaseMobile:cb failedToStart:cb.error];
+
     return YES;
 }
 
-- (void)applicationWillResignActive:(UIApplication *)application
+-(void)couchbaseMobile:(CouchbaseMobile*)couchbase didStart:(NSURL*)serverURL
 {
-    /*
-     Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-     Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-     */
+	NSLog(@"Couchbase is Ready, go!");
+
+    gCouchLogLevel = 2;
+    gRESTLogLevel = 1;
+    
+    if (!self.database) {
+        // Do this on launch, but not when returning to the foreground:
+        CouchServer* server = [[CouchServer alloc] initWithURL:serverURL];
+        // Track active operations so we can wait for their completion in didEnterBackground, below
+        server.tracksActiveOperations = YES;
+        CouchDatabase* database = [server databaseNamed: kDatabaseName];
+        self.database = database;
+        [server release];
+
+        // Create the database on the first run of the app.
+        if (![[database GET] wait]) {
+            [[database create] wait];
+        }
+    }
+    
+    // For most purposes you will want to track changes.
+    self.database.tracksChanges = YES;
+    
+}
+
+-(void)couchbaseMobile:(CouchbaseMobile*)couchbase failedToStart:(NSError*)error
+{
+    NSAssert(NO, @"Couchbase failed to initialize: %@", error);
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    /*
-     Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
-     If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-     */
+    NSLog(@"------ applicationDidEnterBackground");
+    // Turn off the _changes watcher:
+    self.database.tracksChanges = NO;
+    
+	// Make sure all transactions complete, because going into the background will
+    // close down the CouchDB server:
+    [RESTOperation wait: self.database.server.activeOperations];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
-    /*
-     Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-     */
-}
-
-- (void)applicationDidBecomeActive:(UIApplication *)application
-{
-    /*
-     Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-     */
-}
-
-- (void)applicationWillTerminate:(UIApplication *)application
-{
-    /*
-     Called when the application is about to terminate.
-     Save data if appropriate.
-     See also applicationDidEnterBackground:.
-     */
+    NSLog(@"------ applicationWillEnterForeground");
+    // Don't reconnect to the server yet ... wait for it to tell us it's back up,
+    // by calling couchbaseMobile:didStart: again.
 }
 
 @end

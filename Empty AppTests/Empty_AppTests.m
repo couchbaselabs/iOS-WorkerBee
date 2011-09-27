@@ -6,7 +6,13 @@
 //  Copyright (c) 2011 Couchbase, Inc. All rights reserved.
 //
 
-#import "Empty_AppTests.h"
+#import "CouchTestCase.h"
+#import <CouchCocoa/CouchCocoa.h>
+
+
+@interface Empty_AppTests : CouchTestCase
+@end
+
 
 @implementation Empty_AppTests
 
@@ -26,7 +32,10 @@
 
 - (void)testExample
 {
-    STFail(@"Unit tests are not implemented yet in Empty AppTests");
+    // As a simple example, test that a basic GET of the database works.
+    RESTOperation* op = AssertWait([self.db GET]);
+    NSDictionary* info = op.responseBody.fromJSON;
+    NSLog(@"Database info = %@", info);
 }
 
 @end
