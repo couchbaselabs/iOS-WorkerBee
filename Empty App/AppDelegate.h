@@ -15,7 +15,8 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
-/** The database this app is using. (The unit tests access this property; see CouchTestCase.m.) */
-@property (strong, nonatomic) CouchDatabase* database;
+/** The database this app is using; observable.
+    (The unit tests access this property; see CouchTestCase.m.) */
+@property (readonly, retain, nonatomic) CouchDatabase* database;
 
 @end

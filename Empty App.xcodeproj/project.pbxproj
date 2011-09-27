@@ -63,6 +63,7 @@
 		27B28FEA1431552800B86F18 /* CouchbaseResources */ = {isa = PBXFileReference; lastKnownFileType = folder; name = CouchbaseResources; path = Frameworks/Couchbase.framework/CouchbaseResources; sourceTree = SOURCE_ROOT; };
 		27B28FFB14315D7600B86F18 /* CouchTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouchTestCase.h; sourceTree = "<group>"; };
 		27B28FFC14315D7600B86F18 /* CouchTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouchTestCase.m; sourceTree = "<group>"; };
+		27B290061432368E00B86F18 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +100,7 @@
 		27B28F9614314FB800B86F18 = {
 			isa = PBXGroup;
 			children = (
+				27B290061432368E00B86F18 /* README.md */,
 				27B28FAB14314FB800B86F18 /* Empty App */,
 				27B28FC314314FB900B86F18 /* Empty AppTests */,
 				27B28FA414314FB800B86F18 /* Frameworks */,
@@ -456,6 +458,7 @@
 				27B28FD014314FB900B86F18 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		27B28FD114314FB900B86F18 /* Build configuration list for PBXNativeTarget "Empty AppTests" */ = {
 			isa = XCConfigurationList;
@@ -464,6 +467,7 @@
 				27B28FD314314FB900B86F18 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

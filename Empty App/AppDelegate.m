@@ -15,6 +15,11 @@
 #define kDatabaseName @"data"
 
 
+@interface AppDelegate ()
+@property (readwrite, retain, nonatomic) CouchDatabase* database; // settable internally
+@end
+
+
 @implementation AppDelegate
 
 @synthesize window = _window;
@@ -31,6 +36,8 @@
         didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     NSLog(@"------ application:didFinishLaunchingWithOptions:");
+    // TODO: You'll probably want to put up some initial UI here.
+    // It has to be something that doesn't access the database yet, though.
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
@@ -42,46 +49,49 @@
 /* Uncomment this block if you want to override CouchDB settings in a custom .ini file
     NSString* iniPath = [[NSBundle mainBundle] pathForResource: @"couchdb" ofType: @"ini"];
     NSAssert(iniPath, @"Couldn't find couchdb.ini resource");
-    NSLog(@"Registering custom .ini file %@", iniPath);
     cb.iniFilePath = iniPath;
 */
     
     // Now tell the database to start:
-    if (![cb start])
+    if (![cb start]) {
         [self couchbaseMobile:cb failedToStart:cb.error];
+        return NO;
+    }
 
     return YES;
 }
 
 -(void)couchbaseMobile:(CouchbaseMobile*)couchbase didStart:(NSURL*)serverURL
 {
-	NSLog(@"Couchbase is Ready, go!");
-
-    gCouchLogLevel = 2;
-    gRESTLogLevel = 1;
+    gCouchLogLevel = 1;                // You can increase this to 2 (or even 3, which is overkill)
+    gRESTLogLevel = kRESTLogNothing;   // You can increase this to kRESTLogRequestURLs or higher
     
     if (!self.database) {
         // Do this on launch, but not when returning to the foreground:
         CouchServer* server = [[CouchServer alloc] initWithURL:serverURL];
         // Track active operations so we can wait for their completion in didEnterBackground, below
         server.tracksActiveOperations = YES;
-        CouchDatabase* database = [server databaseNamed: kDatabaseName];
-        self.database = database;
-        [server release];
+        CouchDatabase* database = [server databaseNamed:kDatabaseName];
 
         // Create the database on the first run of the app.
         if (![[database GET] wait]) {
             [[database create] wait];
         }
+
+        self.database = database;
+        [server release];
     }
     
     // For most purposes you will want to track changes.
     self.database.tracksChanges = YES;
     
+	NSLog(@"Couchbase is ready, go!");
+    // TODO: Now that the database is ready, add your setup code here.
 }
 
 -(void)couchbaseMobile:(CouchbaseMobile*)couchbase failedToStart:(NSError*)error
 {
+    // TODO: You will probably want to improve this to at least display an alert box and quit!
     NSAssert(NO, @"Couchbase failed to initialize: %@", error);
 }
 
