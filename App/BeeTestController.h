@@ -15,6 +15,7 @@
 
 @property (readonly) BeeTest* test;
 @property (readonly) IBOutlet UISwitch* onOffSwitch;
+@property (readonly) IBOutlet UILabel* statusLabel;
 @property (readonly) IBOutlet UIActivityIndicatorView* activityIndicator;
 @property (readonly) IBOutlet UITextView* transcript;
 

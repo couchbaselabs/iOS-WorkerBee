@@ -16,8 +16,10 @@
 @property (strong, nonatomic) IBOutlet UIWindow *window;
 @property (strong, nonatomic) IBOutlet UINavigationController *navController;
 
-/** The database this app is using; observable.
-    (The unit tests access this property; see CouchTestCase.m.) */
-@property (readonly, retain, nonatomic) CouchDatabase* database;
+/** The URL of the Couchbase server. */
+@property (readonly, retain, nonatomic) NSURL* serverURL;
 
 @end
+
+
+extern NSString* const AppDelegateCouchRestartedNotification;

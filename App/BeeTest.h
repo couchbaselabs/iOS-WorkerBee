@@ -28,12 +28,28 @@
 @property (assign) id<BeeTestDelegate> delegate;
 
 @property BOOL running;
-@property (readonly) NSError* error;
+@property (copy) NSString* status;
+@property (copy) NSError* error;
+@property (copy) NSString* errorMessage;
 @property (readonly) NSArray* messages;
+
+@property (readonly, retain) NSDate* startTime;
+@property (readonly, retain) NSDate* endTime;
+
+- (void) clearMessages;
+
+#pragma mark For subclasses to override:
+
+- (void) setUp;
+- (void) tearDown;
+
+- (void)applicationDidEnterBackground: (NSNotification*)notification;
+- (void)applicationWillEnterForeground: (NSNotification*)notification;
+
+#pragma mark For subclasses to call:
 
 - (void) logMessage: (NSString*)message;
 - (void) logFormat: (NSString*)format, ... NS_FORMAT_FUNCTION(1,2);
 - (BOOL) addTimestamp: (NSString*)message;
-- (void) clearMessages;
 
 @end

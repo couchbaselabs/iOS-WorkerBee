@@ -105,9 +105,9 @@ static UIColor* kBGColor;
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    return YES;
 }
+
 
 #pragma mark - Table view data source
 
@@ -128,12 +128,20 @@ static UIColor* kBGColor;
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                       reuseIdentifier:CellIdentifier] autorelease];
+        UISwitch* sw = [[UISwitch alloc] init];
+        cell.accessoryView = sw;
+        [sw addTarget: self action: @selector(startStopTest:) forControlEvents: UIControlEventValueChanged];
+        [sw release];
     }
     
     Class testClass = [_testList objectAtIndex: indexPath.row];
+    BeeTest* existingTest = [self testForClass: testClass];
     cell.textLabel.text = [testClass displayName];
-    
+    UISwitch* sw = (UISwitch*)cell.accessoryView;
+    sw.on = existingTest.running;
+    sw.tag = indexPath.row;
     return cell;
 }
 
@@ -141,12 +149,17 @@ static UIColor* kBGColor;
 #pragma mark - Table view delegate
 
 - (BeeTest*) testForClass: (Class)testClass {
-    NSString* key = NSStringFromClass(testClass);
-    BeeTest* test = [_activeTestByClass objectForKey: key];
+    return [_activeTestByClass objectForKey: NSStringFromClass(testClass)];
+}
+
+- (BeeTest*) makeTestForClass: (Class)testClass {
+    BeeTest* test = [self testForClass: testClass];
     if (!test) {
         test = [[testClass alloc] init];
-        if (test)
-            [_activeTestByClass setObject: test forKey: key];
+        if (test) {
+            [_activeTestByClass setObject: test forKey: NSStringFromClass(testClass)];
+            [test addObserver: self forKeyPath: @"running" options: 0 context: NULL];
+        }
     }
     return test;
 }
@@ -154,12 +167,35 @@ static UIColor* kBGColor;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     Class testClass = [_testList objectAtIndex: indexPath.row];
-    BeeTest* test = [self testForClass: testClass];
+    BeeTest* test = [self makeTestForClass: testClass];
     if (!test)
         return; // TODO: Show an alert
     BeeTestController *testController = [[BeeTestController alloc] initWithTest: test];
     [self.navigationController pushViewController:testController animated:YES];
     [testController release];
+}
+
+- (void) observeValueForKeyPath:(NSString *)keyPath
+                       ofObject:(id)object 
+                         change:(NSDictionary *)change
+                        context:(void *)context
+{
+    if ([object isKindOfClass: [BeeTest class]]) {
+        Class testClass = [object class];
+        NSUInteger index = [_testList indexOfObjectIdenticalTo: testClass];
+        NSAssert(index != NSNotFound, @"Can't find %@", object);
+        NSIndexPath* path = [NSIndexPath indexPathForRow: index inSection: 0];
+        UITableViewCell* cell = [self.tableView cellForRowAtIndexPath: path];
+        UISwitch* sw = (UISwitch*)cell.accessoryView;
+        [sw setOn: [object running] animated: YES];
+    }
+}
+
+- (IBAction) startStopTest:(id)sender {
+    Class testClass = [_testList objectAtIndex: [sender tag]];
+    BeeTest* test = [self makeTestForClass: testClass];
+    NSLog(@"Setting %@ running=%i", test, [sender isOn]);
+    test.running = [sender isOn];
 }
 
 @end

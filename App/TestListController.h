@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+@class BeeTest;
 
 @interface TestListController : UITableViewController
 
 @property (readonly) NSArray* testList;
+- (BeeTest*) testForClass: (Class)testClass;
+- (BeeTest*) makeTestForClass: (Class)testClass;
 
 @end

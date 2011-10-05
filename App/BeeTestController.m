@@ -13,23 +13,28 @@
 @interface BeeTestController () <BeeTestDelegate>
 - (void) displayMessages;
 - (void) scrollToEnd;
+- (void) showStatus;
 @end
 
 
 @implementation BeeTestController
 
-@synthesize test = _test, onOffSwitch = _onOffSwitch, activityIndicator = _activityIndicator, transcript = _transcript;
+@synthesize test = _test, onOffSwitch = _onOffSwitch, activityIndicator = _activityIndicator, transcript = _transcript, statusLabel = _statusLabel;
 
 - (id) initWithTest: (BeeTest*)test {
     self = [super initWithNibName: @"BeeTestController" bundle: nil];
     if (self) {
         _test = [test retain];
         _test.delegate = self;
+        [_test addObserver: self forKeyPath: @"status" options: 0 context: NULL];
+        [_test addObserver: self forKeyPath: @"error" options: 0 context: NULL];
     }
     return self;
 }
 
 - (void)dealloc {
+    [_test removeObserver: self forKeyPath: @"status"];
+    [_test removeObserver: self forKeyPath: @"error"];
     _test.delegate = nil;
     [_test release];
     [super dealloc];
@@ -51,14 +56,21 @@
     }
     self.view.backgroundColor = sBackground;
     
+    [_onOffSwitch retain];
+    [_onOffSwitch removeFromSuperview];
+    UIBarButtonItem* rightItem = [[UIBarButtonItem alloc] initWithCustomView: _onOffSwitch];
+    self.navigationItem.rightBarButtonItem = rightItem;
+    [rightItem release];
+    [_onOffSwitch release];
+    
     [self beeTest: _test isRunning: _test.running];
     [self scrollToEnd];
+    [self showStatus];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    return YES;
 }
 
 
@@ -70,7 +82,6 @@
 
 - (void) scrollToEnd {
     [_transcript scrollRangeToVisible: NSMakeRange(_transcript.text.length-1, 1)];
-    NSLog(@"scrollToEnd: length=%u", _transcript.text.length);
 }
 
 - (void) beeTest: (BeeTest*)test loggedMessage: (NSString*)message {
@@ -98,6 +109,30 @@
 
 - (IBAction) startStopTest:(id)sender {
     _test.running = [sender isOn];
+}
+
+- (void) showStatus {
+    NSString* status;
+    UIColor* color;
+    if (_test.error) {
+        status = _test.errorMessage;
+        color = [UIColor redColor];
+    } else {
+        status = _test.status;
+        color = [UIColor blackColor];
+    }
+    _statusLabel.text = status;
+    _statusLabel.textColor = color;
+    
+}
+
+- (void) observeValueForKeyPath:(NSString *)keyPath
+                       ofObject:(id)object
+                         change:(NSDictionary *)change
+                        context:(void *)context
+{
+    if ([keyPath isEqualToString: @"status"] || [keyPath isEqualToString: @"error"])
+        [self showStatus];
 }
 
 @end

@@ -18,11 +18,19 @@
     BOOL _running;
     NSMutableArray* _messages;
 }
+@property (readwrite, retain) NSDate* startTime;
+@property (readwrite, retain) NSDate* endTime;
 @property (retain) NSString* lastTimestamp;
 @end
 
 
 @implementation BeeTest
+
+
++ (BOOL) isAbstractTest {
+    return self == [BeeTest class];
+}
+
 
 + (NSArray*) allTestClasses {
     static NSArray* sAllTestClasses;
@@ -36,24 +44,30 @@
             Class c = classes[i];
             if (class_getClassMethod(c, @selector(isSubclassOfClass:)) 
                     && [c isSubclassOfClass: self]
-                    && c != self) {
+                    && ![c isAbstractTest]) {
                 NSLog(@"BeeTets: Found test class %@", classes[i]);
                 [testClasses addObject: classes[i]];
             }
         }
         free(classes);
-        
+        [testClasses sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+            return [NSStringFromClass(obj1) caseInsensitiveCompare: NSStringFromClass(obj2)];
+        }];
         sAllTestClasses = [testClasses copy];
     }
     return sAllTestClasses;
 }
 
 + (NSString*) displayName {
-    return NSStringFromClass(self);
+    NSString* name = NSStringFromClass(self);
+    if ([name hasSuffix: @"Test"])
+        name = [name substringToIndex: name.length - 4];
+    return name;
 }
 
 
-@synthesize delegate=_delegate, error = _error, messages = _messages, lastTimestamp = _lastTimestamp;
+@synthesize delegate=_delegate, status = _status, startTime = _startTime, endTime = _endTime, error = _error, messages = _messages, lastTimestamp = _lastTimestamp;
+
 
 - (id)init {
     self = [super init];
@@ -66,9 +80,46 @@
 - (void)dealloc {
     [_messages release];
     [_lastTimestamp release];
+    [_startTime release];
+    [_endTime release];
     [_error release];
     [super dealloc];
 }
+
+
+- (NSError*) error {
+    return _error;
+}
+
+- (void) setError: (NSError*)error {
+    if (error != _error) {
+        [_error release];
+        _error = [error retain];
+        if (error) {
+            // Log the error and stop the test:
+            NSString* message = [error.domain isEqualToString: @"BeeTest"] ? self.errorMessage
+                                                                           : error.description;
+            [self logFormat: @"ERROR: %@", message];
+            self.running = NO;
+        }
+    }
+}
+
+
+- (void) setErrorMessage:(NSString *)errorMessage {
+    if (errorMessage) {
+        NSDictionary* info = [NSDictionary dictionaryWithObjectsAndKeys:
+                              errorMessage, NSLocalizedDescriptionKey, nil];
+        self.error = [NSError errorWithDomain: @"BeeTest" code: 1 userInfo: info];
+    } else {
+        self.error = nil;
+    }
+}
+
+- (NSString*) errorMessage {
+    return self.error.localizedDescription;
+}
+
 
 - (BOOL) running {
     return _running;
@@ -77,10 +128,23 @@
 - (void) setRunning:(BOOL)run {
     if (run != _running) {
         _running = run;
-        if (run)
+        if (run) {
+            self.startTime = [NSDate date];
+            self.endTime = nil;
+            self.error = nil;
+            self.status = nil;
             [self clearMessages];
+        } else {
+            self.endTime = [NSDate date];
+            self.status = nil;
+        }
         [self addTimestamp: (run ? @"STARTED" : @"STOPPED")];
         [_delegate beeTest: self isRunning: _running];
+        
+        if (run)
+            [self setUp];
+        else
+            [self tearDown];
     }
 }
 
@@ -139,5 +203,41 @@
     [_messages removeAllObjects];
     self.lastTimestamp = nil;
 }
+
+
+- (void) setUp {
+    NSNotificationCenter* nctr = [NSNotificationCenter defaultCenter];
+    [nctr addObserver: self
+             selector: @selector(applicationDidEnterBackground:)
+                 name: UIApplicationDidEnterBackgroundNotification
+               object: nil];
+    [nctr addObserver: self
+             selector: @selector(applicationWillEnterForeground:)
+                 name: UIApplicationWillEnterForegroundNotification
+               object: nil];
+}
+
+- (void) tearDown {
+    NSNotificationCenter* nctr = [NSNotificationCenter defaultCenter];
+    [nctr removeObserver: self
+                    name:UIApplicationDidEnterBackgroundNotification
+                  object: nil];
+    [nctr removeObserver: self
+                    name:UIApplicationWillEnterForegroundNotification
+                  object: nil];
+}
+
+
+- (void)applicationDidEnterBackground: (NSNotification*)notification
+{
+    [self addTimestamp: @"BACKGROUND"];
+}
+
+
+- (void)applicationWillEnterForeground: (NSNotification*)notification
+{
+    [self addTimestamp: @"FOREGROUND"];
+}
+
 
 @end
