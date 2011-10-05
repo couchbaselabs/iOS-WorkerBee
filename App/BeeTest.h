@@ -52,4 +52,8 @@
 - (void) logFormat: (NSString*)format, ... NS_FORMAT_FUNCTION(1,2);
 - (BOOL) addTimestamp: (NSString*)message;
 
+@property NSTimeInterval heartbeatInterval;
+
+- (void) heartbeat;
+
 @end

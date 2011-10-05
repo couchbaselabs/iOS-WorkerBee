@@ -12,17 +12,11 @@
 
 @synthesize count = _count, limit = _limit;
 
-- (void) logSoon {
-    [self performSelector: @selector(logSomething) withObject: nil afterDelay: 1.0];
-}
-
-- (void) logSomething {
+- (void) heartbeat {
     [self logFormat: @"Hi there! %i", ++_count, 45];
     if (_count % 5 == 0)
         self.status = [NSString stringWithFormat: @"Reached %i", _count];
-    if (_limit == 0 || _count < _limit)
-        [self logSoon];
-    else {
+    if (_limit > 0 && _count >= _limit) {
         self.errorMessage = @"O noes, count overflowed!!!";
         self.running = NO;
     }
@@ -31,12 +25,7 @@
 - (void) setUp {
     [super setUp];
     _count = 0;
-    [self logSoon];
-}
-
-- (void) tearDown {
-    [NSObject cancelPreviousPerformRequestsWithTarget: self];
-    [super tearDown];
+    self.heartbeatInterval = 1.0;
 }
 
 @end

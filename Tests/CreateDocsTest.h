@@ -1,5 +1,5 @@
 //
-//  CircleOfLifeTest.h
+//  CreateDocsTest.h
 //  Worker Bee
 //
 //  Created by Jens Alfke on 10/5/11.
@@ -8,6 +8,6 @@
 
 #import "BeeCouchTest.h"
 
-@interface CircleOfLifeTest : BeeCouchTest
+@interface CreateDocsTest : BeeCouchTest
 
 @end

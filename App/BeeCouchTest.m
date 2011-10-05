@@ -35,7 +35,16 @@
 
 
 - (NSURL*) serverURL {
-    return ((AppDelegate*)[[UIApplication sharedApplication] delegate]).serverURL;
+    NSURL* url;
+    do {
+        url = ((AppDelegate*)[[UIApplication sharedApplication] delegate]).serverURL;
+        if (!url) {
+            NSLog(@"Waiting for server to start...");
+            [[NSRunLoop currentRunLoop] runMode: NSDefaultRunLoopMode
+                                     beforeDate: [NSDate dateWithTimeIntervalSinceNow: 1.0]];
+        }
+    } while (!url);
+    return url;
 }
 
 
@@ -47,7 +56,7 @@
 - (CouchServer*) server {
     if (!_server) {
         _server = [[CouchServer alloc] initWithURL: self.serverURL];
-        // Track active operations so we can wait for their completion in didEnterBackground, below
+        // Track active operations so we can wait for their completion in serverWillSuspend, below
         _server.tracksActiveOperations = YES;
     }
     return _server;

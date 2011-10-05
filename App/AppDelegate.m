@@ -12,11 +12,6 @@
 NSString* const AppDelegateCouchRestartedNotification = @"AppDelegateCouchRestarted";
 
 
-/** This is the name of the database the app will use -- customize it as you like,
-    but the name must contain only *lowercase* letters, digits, and "-". */
-#define kDatabaseName @"data"
-
-
 @interface AppDelegate ()
 @property (readwrite, retain, nonatomic) NSURL* serverURL; // settable internally
 @end
@@ -62,8 +57,8 @@ NSString* const AppDelegateCouchRestartedNotification = @"AppDelegateCouchRestar
 
 -(void)couchbaseMobile:(CouchbaseMobile*)couchbase didStart:(NSURL*)serverURL
 {
-    gCouchLogLevel = 1;                // You can increase this to 2 (or even 3, which is overkill)
-    gRESTLogLevel = kRESTLogRequestURLs;   // You can increase this to kRESTLogRequestURLs or higher
+    //gCouchLogLevel = 1;
+    //gRESTLogLevel = kRESTLogRequestURLs;
     
     if (!self.serverURL)
         self.serverURL = serverURL;

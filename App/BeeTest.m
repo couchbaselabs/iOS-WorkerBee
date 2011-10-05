@@ -17,6 +17,7 @@
 {
     BOOL _running;
     NSMutableArray* _messages;
+    NSTimer* _heartbeat;
 }
 @property (readwrite, retain) NSDate* startTime;
 @property (readwrite, retain) NSDate* endTime;
@@ -218,6 +219,7 @@
 }
 
 - (void) tearDown {
+    self.heartbeatInterval = 0.0;
     NSNotificationCenter* nctr = [NSNotificationCenter defaultCenter];
     [nctr removeObserver: self
                     name:UIApplicationDidEnterBackgroundNotification
@@ -237,6 +239,29 @@
 - (void)applicationWillEnterForeground: (NSNotification*)notification
 {
     [self addTimestamp: @"FOREGROUND"];
+}
+
+
+- (NSTimeInterval) heartbeatInterval {
+    return _heartbeat ? [_heartbeat timeInterval] : 0.0;
+}
+
+- (void) setHeartbeatInterval: (NSTimeInterval)interval {
+    [_heartbeat invalidate];
+    [_heartbeat release];
+    if (interval > 0) {
+        _heartbeat = [[NSTimer scheduledTimerWithTimeInterval: interval
+                                               target: self
+                                             selector: @selector(heartbeat)
+                                             userInfo: NULL
+                                              repeats: YES] retain];
+    } else {
+        _heartbeat = nil;
+    }
+}
+
+
+- (void) heartbeat {
 }
 
 

@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		27A07488143CCDCD0043BEB6 /* BeeCouchTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A07487143CCDCD0043BEB6 /* BeeCouchTest.m */; };
-		27A0748C143CDE6B0043BEB6 /* CircleOfLifeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A0748B143CDE6B0043BEB6 /* CircleOfLifeTest.m */; };
+		27A0748C143CDE6B0043BEB6 /* CreateDocsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A0748B143CDE6B0043BEB6 /* CreateDocsTest.m */; };
 		27B28FA614314FB800B86F18 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27B28FA514314FB800B86F18 /* UIKit.framework */; };
 		27B28FA814314FB800B86F18 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27B28FA714314FB800B86F18 /* Foundation.framework */; };
 		27B28FAA14314FB800B86F18 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27B28FA914314FB800B86F18 /* CoreGraphics.framework */; };
@@ -35,8 +35,8 @@
 /* Begin PBXFileReference section */
 		27A07486143CCDCD0043BEB6 /* BeeCouchTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeeCouchTest.h; sourceTree = "<group>"; };
 		27A07487143CCDCD0043BEB6 /* BeeCouchTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeeCouchTest.m; sourceTree = "<group>"; };
-		27A0748A143CDE6B0043BEB6 /* CircleOfLifeTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleOfLifeTest.h; sourceTree = "<group>"; };
-		27A0748B143CDE6B0043BEB6 /* CircleOfLifeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleOfLifeTest.m; sourceTree = "<group>"; };
+		27A0748A143CDE6B0043BEB6 /* CreateDocsTest.h */ = {isa = PBXFileReference; fileEncoding = 4; path = CreateDocsTest.h; sourceTree = "<group>"; };
+		27A0748B143CDE6B0043BEB6 /* CreateDocsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateDocsTest.m; sourceTree = "<group>"; };
 		27B28FA114314FB800B86F18 /* Worker Bee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Worker Bee.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27B28FA514314FB800B86F18 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		27B28FA714314FB800B86F18 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -164,8 +164,8 @@
 			children = (
 				27CB656B143B9EB800EEA1F2 /* CountTest.h */,
 				27CB656C143B9EB800EEA1F2 /* CountTest.m */,
-				27A0748A143CDE6B0043BEB6 /* CircleOfLifeTest.h */,
-				27A0748B143CDE6B0043BEB6 /* CircleOfLifeTest.m */,
+				27A0748A143CDE6B0043BEB6 /* CreateDocsTest.h */,
+				27A0748B143CDE6B0043BEB6 /* CreateDocsTest.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -245,7 +245,7 @@
 				27CB656D143B9EB900EEA1F2 /* CountTest.m in Sources */,
 				27CB6576143BAA2F00EEA1F2 /* BeeTestController.m in Sources */,
 				27A07488143CCDCD0043BEB6 /* BeeCouchTest.m in Sources */,
-				27A0748C143CDE6B0043BEB6 /* CircleOfLifeTest.m in Sources */,
+				27A0748C143CDE6B0043BEB6 /* CreateDocsTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,54 +1,49 @@
 //
-//  CircleOfLifeTest.m
+//  CreateDocsTest.m
 //  Worker Bee
 //
 //  Created by Jens Alfke on 10/5/11.
 //  Copyright (c) 2011 Couchbase, Inc. All rights reserved.
 //
 
-#import "CircleOfLifeTest.h"
+#import "CreateDocsTest.h"
 
-@implementation CircleOfLifeTest
+#define kDocumentBatchSize 100
+
+
+@implementation CreateDocsTest
 {
     int _sequence;
 }
 
+- (void) heartbeat {
+    if (self.suspended)
+        return;
 
-- (void) doSomethingSoon {
-    if (self.running)
-        [self performSelector: @selector(doSomething) withObject: nil afterDelay: 1.0];
-}
-
-- (void) doSomething {
-    if (!self.suspended) {
+    [self logFormat: @"Adding docs %i--%i ...",
+                     _sequence+1, _sequence+kDocumentBatchSize];
+    for (int i = 0; i < kDocumentBatchSize; i++) {
         ++_sequence;
         NSString* dateStr = [RESTBody JSONObjectWithDate: [NSDate date]];
         NSDictionary* props = [NSDictionary dictionaryWithObjectsAndKeys:
                                [NSNumber numberWithInt: _sequence], @"sequence",
                                dateStr, @"date", nil];
-        [self logFormat: @"Adding doc: %@", props];
         CouchDocument* doc = [self.database untitledDocument];
         RESTOperation* op = [doc putProperties: props];
         [op onCompletion: ^{
-            if (op.error)
+            if (op.error) {
+                [self logFormat: @"!!! Failed to create doc %@", props];
                 self.error = op.error;
-            else
-                [self logFormat: @"..._id = %@", doc.documentID];
+            }
         }];
     }
-    [self doSomethingSoon];
+    self.status = [NSString stringWithFormat: @"Created %i docs", _sequence];
 }
 
 - (void) setUp {
     [super setUp];
     _sequence = 0;
-    [self doSomething];
+    self.heartbeatInterval = 1.0;
 }
-
-- (void) tearDown {
-    [NSObject cancelPreviousPerformRequestsWithTarget: self];
-    [super tearDown];
-}
-
 
 @end

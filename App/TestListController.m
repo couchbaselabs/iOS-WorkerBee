@@ -155,7 +155,7 @@ static UIColor* kBGColor;
 - (BeeTest*) makeTestForClass: (Class)testClass {
     BeeTest* test = [self testForClass: testClass];
     if (!test) {
-        test = [[testClass alloc] init];
+        test = [[[testClass alloc] init] autorelease];
         if (test) {
             [_activeTestByClass setObject: test forKey: NSStringFromClass(testClass)];
             [test addObserver: self forKeyPath: @"running" options: 0 context: NULL];
