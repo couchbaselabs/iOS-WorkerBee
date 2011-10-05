@@ -22,7 +22,7 @@
 
 @implementation AppDelegate
 
-@synthesize window = _window;
+@synthesize window = _window, navController = _navController;
 @synthesize database = _database;
 
 - (void)dealloc
@@ -36,11 +36,8 @@
         didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     NSLog(@"------ application:didFinishLaunchingWithOptions:");
-    // TODO: You'll probably want to put up some initial UI here.
-    // It has to be something that doesn't access the database yet, though.
-    self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
-    self.window.backgroundColor = [UIColor whiteColor];
-    [self.window makeKeyAndVisible];
+    [_window addSubview:_navController.view];
+    [_window makeKeyAndVisible];
 
     // Create & configure a CouchbaseMobile instance:
     CouchbaseMobile* cb = [[CouchbaseMobile alloc] init];

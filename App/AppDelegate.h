@@ -13,7 +13,8 @@
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, CouchbaseDelegate>
 
-@property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) IBOutlet UIWindow *window;
+@property (strong, nonatomic) IBOutlet UINavigationController *navController;
 
 /** The database this app is using; observable.
     (The unit tests access this property; see CouchTestCase.m.) */

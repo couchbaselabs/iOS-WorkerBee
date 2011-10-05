@@ -19,6 +19,15 @@
 		27B28FE11431549E00B86F18 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 27B28FE01431549E00B86F18 /* libz.dylib */; };
 		27B28FE3143154B700B86F18 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 27B28FE2143154B700B86F18 /* libstdc++.dylib */; };
 		27B28FEB1431552800B86F18 /* CouchbaseResources in Resources */ = {isa = PBXBuildFile; fileRef = 27B28FEA1431552800B86F18 /* CouchbaseResources */; };
+		27CB6560143B91DD00EEA1F2 /* Application.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27CB655F143B91DD00EEA1F2 /* Application.xib */; };
+		27CB6566143B997A00EEA1F2 /* TestListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CB6564143B997900EEA1F2 /* TestListController.m */; };
+		27CB6567143B997A00EEA1F2 /* TestListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27CB6565143B997900EEA1F2 /* TestListController.xib */; };
+		27CB656A143B9B7E00EEA1F2 /* BeeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CB6569143B9B7E00EEA1F2 /* BeeTest.m */; };
+		27CB656D143B9EB900EEA1F2 /* NullTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CB656C143B9EB800EEA1F2 /* NullTest.m */; };
+		27CB6576143BAA2F00EEA1F2 /* BeeTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CB6574143BAA2E00EEA1F2 /* BeeTestController.m */; };
+		27CB6577143BAA2F00EEA1F2 /* BeeTestController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27CB6575143BAA2F00EEA1F2 /* BeeTestController.xib */; };
+		27DB17F2143BB3A800EBA619 /* little_pluses.png in Resources */ = {isa = PBXBuildFile; fileRef = 27DB17F1143BB3A800EBA619 /* little_pluses.png */; };
+		27DB17F5143BD36A00EBA619 /* double_lined.png in Resources */ = {isa = PBXBuildFile; fileRef = 27DB17F4143BD36A00EBA619 /* double_lined.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +49,19 @@
 		27B28FE2143154B700B86F18 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		27B28FEA1431552800B86F18 /* CouchbaseResources */ = {isa = PBXFileReference; lastKnownFileType = folder; name = CouchbaseResources; path = Frameworks/Couchbase.framework/CouchbaseResources; sourceTree = SOURCE_ROOT; };
 		27B290061432368E00B86F18 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		27CB655F143B91DD00EEA1F2 /* Application.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Application.xib; sourceTree = "<group>"; };
+		27CB6563143B997900EEA1F2 /* TestListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestListController.h; sourceTree = "<group>"; };
+		27CB6564143B997900EEA1F2 /* TestListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestListController.m; sourceTree = "<group>"; };
+		27CB6565143B997900EEA1F2 /* TestListController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestListController.xib; sourceTree = "<group>"; };
+		27CB6568143B9B7E00EEA1F2 /* BeeTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeeTest.h; sourceTree = "<group>"; };
+		27CB6569143B9B7E00EEA1F2 /* BeeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeeTest.m; sourceTree = "<group>"; };
+		27CB656B143B9EB800EEA1F2 /* NullTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NullTest.h; sourceTree = "<group>"; };
+		27CB656C143B9EB800EEA1F2 /* NullTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NullTest.m; sourceTree = "<group>"; };
+		27CB6573143BAA2E00EEA1F2 /* BeeTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeeTestController.h; sourceTree = "<group>"; };
+		27CB6574143BAA2E00EEA1F2 /* BeeTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeeTestController.m; sourceTree = "<group>"; };
+		27CB6575143BAA2F00EEA1F2 /* BeeTestController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BeeTestController.xib; sourceTree = "<group>"; };
+		27DB17F1143BB3A800EBA619 /* little_pluses.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = little_pluses.png; sourceTree = "<group>"; };
+		27DB17F4143BD36A00EBA619 /* double_lined.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = double_lined.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +88,7 @@
 			children = (
 				27B290061432368E00B86F18 /* README.md */,
 				27B28FAB14314FB800B86F18 /* App */,
+				27CB656E143B9EC500EEA1F2 /* Tests */,
 				27B28FA414314FB800B86F18 /* Frameworks */,
 				27B28FA214314FB800B86F18 /* Products */,
 			);
@@ -100,6 +123,17 @@
 			children = (
 				27B28FB414314FB800B86F18 /* AppDelegate.h */,
 				27B28FB514314FB800B86F18 /* AppDelegate.m */,
+				27CB655F143B91DD00EEA1F2 /* Application.xib */,
+				27CB6563143B997900EEA1F2 /* TestListController.h */,
+				27CB6564143B997900EEA1F2 /* TestListController.m */,
+				27CB6565143B997900EEA1F2 /* TestListController.xib */,
+				27CB6573143BAA2E00EEA1F2 /* BeeTestController.h */,
+				27CB6574143BAA2E00EEA1F2 /* BeeTestController.m */,
+				27CB6575143BAA2F00EEA1F2 /* BeeTestController.xib */,
+				27CB6568143B9B7E00EEA1F2 /* BeeTest.h */,
+				27CB6569143B9B7E00EEA1F2 /* BeeTest.m */,
+				27DB17F4143BD36A00EBA619 /* double_lined.png */,
+				27DB17F1143BB3A800EBA619 /* little_pluses.png */,
 				27B28FAC14314FB800B86F18 /* Supporting Files */,
 			);
 			path = App;
@@ -115,6 +149,15 @@
 				27B28FEA1431552800B86F18 /* CouchbaseResources */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		27CB656E143B9EC500EEA1F2 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				27CB656B143B9EB800EEA1F2 /* NullTest.h */,
+				27CB656C143B9EB800EEA1F2 /* NullTest.m */,
+			);
+			path = Tests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -170,6 +213,11 @@
 			files = (
 				27B28FEB1431552800B86F18 /* CouchbaseResources in Resources */,
 				27B28FB014314FB800B86F18 /* InfoPlist.strings in Resources */,
+				27CB6560143B91DD00EEA1F2 /* Application.xib in Resources */,
+				27CB6567143B997A00EEA1F2 /* TestListController.xib in Resources */,
+				27CB6577143BAA2F00EEA1F2 /* BeeTestController.xib in Resources */,
+				27DB17F2143BB3A800EBA619 /* little_pluses.png in Resources */,
+				27DB17F5143BD36A00EBA619 /* double_lined.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -182,6 +230,10 @@
 			files = (
 				27B28FB214314FB800B86F18 /* main.m in Sources */,
 				27B28FB614314FB800B86F18 /* AppDelegate.m in Sources */,
+				27CB6566143B997A00EEA1F2 /* TestListController.m in Sources */,
+				27CB656A143B9B7E00EEA1F2 /* BeeTest.m in Sources */,
+				27CB656D143B9EB900EEA1F2 /* NullTest.m in Sources */,
+				27CB6576143BAA2F00EEA1F2 /* BeeTestController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
