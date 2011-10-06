@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		27A07488143CCDCD0043BEB6 /* BeeCouchTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A07487143CCDCD0043BEB6 /* BeeCouchTest.m */; };
 		27A0748C143CDE6B0043BEB6 /* CreateDocsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A0748B143CDE6B0043BEB6 /* CreateDocsTest.m */; };
+		27A37423143E5E85005A577D /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 27A37421143E5E85005A577D /* Icon.png */; };
+		27A37424143E5E85005A577D /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 27A37422143E5E85005A577D /* Icon@2x.png */; };
 		27B28FA614314FB800B86F18 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27B28FA514314FB800B86F18 /* UIKit.framework */; };
 		27B28FA814314FB800B86F18 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27B28FA714314FB800B86F18 /* Foundation.framework */; };
 		27B28FAA14314FB800B86F18 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27B28FA914314FB800B86F18 /* CoreGraphics.framework */; };
@@ -37,6 +39,8 @@
 		27A07487143CCDCD0043BEB6 /* BeeCouchTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeeCouchTest.m; sourceTree = "<group>"; };
 		27A0748A143CDE6B0043BEB6 /* CreateDocsTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateDocsTest.h; sourceTree = "<group>"; };
 		27A0748B143CDE6B0043BEB6 /* CreateDocsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateDocsTest.m; sourceTree = "<group>"; };
+		27A37421143E5E85005A577D /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		27A37422143E5E85005A577D /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		27B28FA114314FB800B86F18 /* Worker Bee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Worker Bee.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27B28FA514314FB800B86F18 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		27B28FA714314FB800B86F18 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -66,8 +70,8 @@
 		27CB6573143BAA2E00EEA1F2 /* BeeTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeeTestController.h; sourceTree = "<group>"; };
 		27CB6574143BAA2E00EEA1F2 /* BeeTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeeTestController.m; sourceTree = "<group>"; };
 		27CB6575143BAA2F00EEA1F2 /* BeeTestController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BeeTestController.xib; sourceTree = "<group>"; };
-		27DB17F1143BB3A800EBA619 /* little_pluses.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = little_pluses.png; sourceTree = "<group>"; };
-		27DB17F4143BD36A00EBA619 /* double_lined.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = double_lined.png; sourceTree = "<group>"; };
+		27DB17F1143BB3A800EBA619 /* little_pluses.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = little_pluses.png; path = ../App/little_pluses.png; sourceTree = "<group>"; };
+		27DB17F4143BD36A00EBA619 /* double_lined.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = double_lined.png; path = ../App/double_lined.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,12 +93,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		27A37420143E5E85005A577D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				27A37421143E5E85005A577D /* Icon.png */,
+				27A37422143E5E85005A577D /* Icon@2x.png */,
+				27DB17F4143BD36A00EBA619 /* double_lined.png */,
+				27DB17F1143BB3A800EBA619 /* little_pluses.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		27B28F9614314FB800B86F18 = {
 			isa = PBXGroup;
 			children = (
 				27B290061432368E00B86F18 /* README.md */,
 				27B28FAB14314FB800B86F18 /* App */,
 				27CB656E143B9EC500EEA1F2 /* Tests */,
+				27A37420143E5E85005A577D /* Resources */,
 				27B28FA414314FB800B86F18 /* Frameworks */,
 				27B28FA214314FB800B86F18 /* Products */,
 			);
@@ -140,8 +156,6 @@
 				27CB6569143B9B7E00EEA1F2 /* BeeTest.m */,
 				27A07486143CCDCD0043BEB6 /* BeeCouchTest.h */,
 				27A07487143CCDCD0043BEB6 /* BeeCouchTest.m */,
-				27DB17F4143BD36A00EBA619 /* double_lined.png */,
-				27DB17F1143BB3A800EBA619 /* little_pluses.png */,
 				27B28FAC14314FB800B86F18 /* Supporting Files */,
 			);
 			path = App;
@@ -228,6 +242,8 @@
 				27CB6577143BAA2F00EEA1F2 /* BeeTestController.xib in Resources */,
 				27DB17F2143BB3A800EBA619 /* little_pluses.png in Resources */,
 				27DB17F5143BD36A00EBA619 /* double_lined.png in Resources */,
+				27A37423143E5E85005A577D /* Icon.png in Resources */,
+				27A37424143E5E85005A577D /* Icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
