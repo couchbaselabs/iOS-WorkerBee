@@ -10,18 +10,22 @@
 #import <objc/runtime.h>
 
 
+/** Number of most-recent messages to keep in the messages property */
 #define kMaxMessageCount 100
 
 
 @interface BeeTest ()
 {
     BOOL _running;
+    NSOutputStream* _output;
     NSMutableArray* _messages;
     NSTimer* _heartbeat;
 }
 @property (readwrite, retain) NSDate* startTime;
 @property (readwrite, retain) NSDate* endTime;
 @property (retain) NSString* lastTimestamp;
+- (void) openOutput;
+- (void) closeOutput;
 @end
 
 
@@ -67,7 +71,8 @@
 }
 
 
-@synthesize delegate=_delegate, status = _status, startTime = _startTime, endTime = _endTime, error = _error, messages = _messages, lastTimestamp = _lastTimestamp;
+@synthesize delegate=_delegate, status = _status, startTime = _startTime, endTime = _endTime,
+            error = _error, messages = _messages, lastTimestamp = _lastTimestamp;
 
 
 - (id)init {
@@ -79,6 +84,8 @@
 }
 
 - (void)dealloc {
+    [_output close];
+    [_output release];
     [_messages release];
     [_lastTimestamp release];
     [_startTime release];
@@ -122,6 +129,9 @@
 }
 
 
+#pragma mark - START / STOP:
+
+
 - (BOOL) running {
     return _running;
 }
@@ -135,6 +145,7 @@
             self.error = nil;
             self.status = nil;
             [self clearMessages];
+            [self openOutput];
         } else {
             self.endTime = [NSDate date];
             self.status = nil;
@@ -144,65 +155,11 @@
         
         if (run)
             [self setUp];
-        else
+        else {
             [self tearDown];
+            [self closeOutput];
+        }
     }
-}
-
-- (NSString*) shortTimestamp {
-    static NSDateFormatter* sFormat;
-    if (!sFormat) {
-        sFormat = [[NSDateFormatter alloc] init];
-        sFormat.dateStyle = NSDateFormatterShortStyle;
-        sFormat.timeStyle = NSDateFormatterShortStyle;
-    }
-    return [sFormat stringFromDate: [NSDate date]];
-}
-
-- (NSString*) fullTimestamp {
-    static NSDateFormatter* sFormat;
-    if (!sFormat) {
-        sFormat = [[NSDateFormatter alloc] init];
-        sFormat.dateStyle = NSDateFormatterShortStyle;
-        sFormat.timeStyle = NSDateFormatterMediumStyle;
-    }
-    return [sFormat stringFromDate: [NSDate date]];
-}
-
-- (BOOL) addTimestamp: (NSString*)message {
-    // Check whether short timestamp has changed (it only shows the minute):
-    NSString* shortTimestamp = self.shortTimestamp;
-    if (!message && [shortTimestamp isEqualToString: _lastTimestamp])
-        return NO;
-    self.lastTimestamp = shortTimestamp;
-    
-    // But display the full timestamp, which shows seconds:
-    message = [NSString stringWithFormat: @"---- %@ %@",
-               self.fullTimestamp, (message ? message : @"")];
-    [_messages addObject: message];
-    return YES;
-}
-
-- (void) logMessage:(NSString *)message {
-    [self addTimestamp: nil];
-    [_messages addObject: message];
-    if (_messages.count > kMaxMessageCount)
-        [_messages removeObjectAtIndex: 0];
-    [_delegate beeTest: self loggedMessage: message];
-}
-
-- (void) logFormat: (NSString*)format, ... {
-    va_list args;
-    va_start(args, format);
-    NSString* message = [[NSString alloc] initWithFormat: format arguments: args];
-    va_end(args);
-    [self logMessage: message];
-    [message release];
-}
-
-- (void) clearMessages {
-    [_messages removeAllObjects];
-    self.lastTimestamp = nil;
 }
 
 
@@ -242,6 +199,8 @@
 }
 
 
+#pragma - HEARTBEAT:
+
 - (NSTimeInterval) heartbeatInterval {
     return _heartbeat ? [_heartbeat timeInterval] : 0.0;
 }
@@ -251,10 +210,10 @@
     [_heartbeat release];
     if (interval > 0) {
         _heartbeat = [[NSTimer scheduledTimerWithTimeInterval: interval
-                                               target: self
-                                             selector: @selector(heartbeat)
-                                             userInfo: NULL
-                                              repeats: YES] retain];
+                                                       target: self
+                                                     selector: @selector(heartbeat)
+                                                     userInfo: NULL
+                                                      repeats: YES] retain];
     } else {
         _heartbeat = nil;
     }
@@ -262,6 +221,100 @@
 
 
 - (void) heartbeat {
+}
+
+
+#pragma mark - LOGGING:
+
+- (void) openOutput {
+    NSAssert(!_output, @"_output was left open");
+    NSString* filename = [NSString stringWithFormat: @"%@ %@.txt",
+                          [self class], [RESTBody JSONObjectWithDate: [NSDate date]]];
+    NSString* docsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                             NSUserDomainMask, YES)
+                            objectAtIndex: 0];
+    NSString* logPath = [docsDir stringByAppendingPathComponent: filename];
+    NSLog(@"**OPENING %@", logPath);
+    _output = [[NSOutputStream alloc] initToFileAtPath: logPath append: NO];
+    [_output open];
+}
+
+- (void) closeOutput {
+    NSLog(@"** CLOSING %@", [self class]);
+    [_output close];
+    [_output release];
+    _output = nil;
+}
+
+- (void) writeToOutput: (NSString*)message {
+    NSAssert(_output, @"Output isn't open");
+    NSData* data = [message dataUsingEncoding: NSUTF8StringEncoding];
+    NSInteger written = [_output write: data.bytes maxLength: data.length];
+    if (written < 0)
+        NSLog(@"ERROR: Can't write to log: %@", _output.streamError);
+    else
+        NSAssert(written == data.length, @"Only wrote %i bytes of %u", written, data.length);
+    [_output write: (const uint8_t*)"\n" maxLength: 1];
+}
+
+
+- (NSString*) shortTimestamp {
+    static NSDateFormatter* sFormat;
+    if (!sFormat) {
+        sFormat = [[NSDateFormatter alloc] init];
+        sFormat.dateStyle = NSDateFormatterShortStyle;
+        sFormat.timeStyle = NSDateFormatterShortStyle;
+    }
+    return [sFormat stringFromDate: [NSDate date]];
+}
+
+- (NSString*) fullTimestamp {
+    static NSDateFormatter* sFormat;
+    if (!sFormat) {
+        sFormat = [[NSDateFormatter alloc] init];
+        sFormat.dateStyle = NSDateFormatterShortStyle;
+        sFormat.timeStyle = NSDateFormatterMediumStyle;
+    }
+    return [sFormat stringFromDate: [NSDate date]];
+}
+
+- (BOOL) addTimestamp: (NSString*)message {
+    // Check whether short timestamp has changed (it only shows the minute):
+    NSString* shortTimestamp = self.shortTimestamp;
+    if (!message && [shortTimestamp isEqualToString: _lastTimestamp])
+        return NO;
+    self.lastTimestamp = shortTimestamp;
+    
+    // But display the full timestamp, which shows seconds:
+    message = [NSString stringWithFormat: @"---- %@ %@",
+               self.fullTimestamp, (message ? message : @"")];
+    [_messages addObject: message];
+    [self writeToOutput: message];
+    return YES;
+}
+
+
+- (void) logMessage:(NSString *)message {
+    [self addTimestamp: nil];
+    [_messages addObject: message];
+    if (_messages.count > kMaxMessageCount)
+        [_messages removeObjectAtIndex: 0];
+    [self writeToOutput: message];
+    [_delegate beeTest: self loggedMessage: message];
+}
+
+- (void) logFormat: (NSString*)format, ... {
+    va_list args;
+    va_start(args, format);
+    NSString* message = [[NSString alloc] initWithFormat: format arguments: args];
+    va_end(args);
+    [self logMessage: message];
+    [message release];
+}
+
+- (void) clearMessages {
+    [_messages removeAllObjects];
+    self.lastTimestamp = nil;
 }
 
 

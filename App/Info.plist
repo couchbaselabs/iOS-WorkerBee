@@ -28,6 +28,8 @@
 	<true/>
 	<key>NSMainNibFile</key>
 	<string>Application</string>
+	<key>UIFileSharingEnabled</key>
+	<true/>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
