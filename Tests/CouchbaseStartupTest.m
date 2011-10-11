@@ -10,4 +10,9 @@
 
 @implementation CouchbaseStartupTest
 
++ (BOOL) isAbstractTest {
+    return self == [CouchbaseStartupTest class];
+    // It's not actually abstract, but we don't want it to show up in the UI.
+}
+
 @end
