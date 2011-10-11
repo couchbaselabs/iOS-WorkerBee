@@ -7,8 +7,18 @@
 //
 
 #import "TestListController.h"
+#import "AppDelegate.h"
 #import "BeeTest.h"
 #import "BeeTestController.h"
+#import "SavedTestRun.h"
+
+
+static NSString* const kUpstreamSavedTestDatabaseURL = @"http://snej.iriscouch.com/workerbee-tests";
+
+
+@interface TestListController ()
+- (void) updateSavedTestUI;
+@end
 
 
 @implementation TestListController
@@ -26,15 +36,8 @@ static UIColor* kBGColor;
     }
 }
 
-@synthesize testList = _testList;
-
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-    }
-    return self;
-}
+@synthesize testList = _testList, tableView = _tableView,
+            savedRunCountLabel = _savedRunCountLabel, uploadButton = _uploadButton;
 
 - (void)dealloc {
     [_testList release];
@@ -67,7 +70,14 @@ static UIColor* kBGColor;
     [backItem release];
 
     [self.tableView setBackgroundView:nil];
-    [self.tableView setBackgroundColor:kBGColor];
+    [self.tableView setBackgroundColor: [UIColor clearColor]];
+    [self.view setBackgroundColor:kBGColor];
+    
+    [_savedRunCountLabel setHidden: YES];
+    [_uploadButton setHidden: YES];
+    [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(serverStarted)
+                                                 name: AppDelegateCouchStartedNotification
+                                               object: nil];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -86,6 +96,7 @@ static UIColor* kBGColor;
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self updateSavedTestUI];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -106,6 +117,32 @@ static UIColor* kBGColor;
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return YES;
+}
+
+
+- (void) serverStarted {
+    AppDelegate* appDelegate = (AppDelegate*) [[UIApplication sharedApplication] delegate];
+    [[SavedTestRun forTest: appDelegate.startupTest] save];
+    [self updateSavedTestUI];
+}
+
+
+- (void) updateSavedTestUI {
+    NSString* text;
+    int nSaved = [SavedTestRun savedTestCount];
+    switch (nSaved) {
+        case 0:
+            text = @"no saved test runs";
+            break;
+        case 1:
+            text = @"one saved test run";
+            break;
+        default:
+            text = [NSString stringWithFormat: @"%u saved test runs", nSaved];
+            break;
+    }
+    _savedRunCountLabel.text = text;
+    _savedRunCountLabel.hidden = _uploadButton.hidden = (nSaved == 0);
 }
 
 
@@ -181,13 +218,17 @@ static UIColor* kBGColor;
                         context:(void *)context
 {
     if ([object isKindOfClass: [BeeTest class]]) {
+        // Test "running" state changed:
+        BOOL running = [object running];
         Class testClass = [object class];
         NSUInteger index = [_testList indexOfObjectIdenticalTo: testClass];
         NSAssert(index != NSNotFound, @"Can't find %@", object);
         NSIndexPath* path = [NSIndexPath indexPathForRow: index inSection: 0];
         UITableViewCell* cell = [self.tableView cellForRowAtIndexPath: path];
         UISwitch* sw = (UISwitch*)cell.accessoryView;
-        [sw setOn: [object running] animated: YES];
+        [sw setOn: running animated: YES];
+        if (!running)
+            [self updateSavedTestUI];
     }
 }
 
@@ -199,6 +240,26 @@ static UIColor* kBGColor;
     if (!running)
         test.stoppedByUser = YES;
     test.running = running;
+}
+
+- (IBAction) uploadSavedRuns:(id)sender {
+    NSURL* url = [NSURL URLWithString: kUpstreamSavedTestDatabaseURL];
+    NSError* error;
+    if ([SavedTestRun uploadAllTo: url error: &error])
+        [self updateSavedTestUI];
+    else {
+        NSLog(@"ERROR: Upload failed: %@", error);
+        NSString* message = [NSString stringWithFormat: @"Couldn't upload saved test results: %@."
+                                                         "\n\nPlease try again later.",
+                                                        error.localizedDescription];
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle: @"Upload Failed"
+                                                        message: message
+                                                       delegate: nil
+                                              cancelButtonTitle: @"Sorry"
+                                              otherButtonTitles: nil];
+        [alert show];
+        [alert release];
+    }
 }
 
 @end

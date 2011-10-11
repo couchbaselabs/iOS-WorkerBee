@@ -13,11 +13,16 @@
 @interface SavedTestRun : CouchModel
 
 + (SavedTestRun*) forTest: (BeeTest*)test;
+
++ (NSString*) serverVersion;
++ (NSUInteger) savedTestCount;
 + (BOOL) uploadAllTo: (NSURL*)upstreamURL error: (NSError**)outError;
 
 @property (copy) NSDictionary* device;
+@property (copy) NSString* serverVersion;
 @property (copy) NSString* testName;
 @property (retain) NSDate* startTime, *endTime;
+@property NSTimeInterval duration;
 @property BOOL stoppedByUser;
 @property (copy) NSString* status;
 @property (copy) NSString* error;

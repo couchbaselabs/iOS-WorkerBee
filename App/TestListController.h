@@ -9,9 +9,16 @@
 #import <UIKit/UIKit.h>
 @class BeeTest;
 
-@interface TestListController : UITableViewController
+@interface TestListController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+
+@property(nonatomic, retain) IBOutlet UITableView *tableView;
+@property(nonatomic, retain) IBOutlet UILabel *savedRunCountLabel;
+@property(nonatomic, retain) IBOutlet UIButton *uploadButton;
+
+- (IBAction) uploadSavedRuns:(id)sender;
 
 @property (readonly) NSArray* testList;
+
 - (BeeTest*) testForClass: (Class)testClass;
 - (BeeTest*) makeTestForClass: (Class)testClass;
 

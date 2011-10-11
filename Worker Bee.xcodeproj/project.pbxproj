@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		270EA1ED1443C1AD0000AEA9 /* SavedTestRun.m in Sources */ = {isa = PBXBuildFile; fileRef = 270EA1EC1443C1AD0000AEA9 /* SavedTestRun.m */; };
+		27170A4B1444E4020049E6E4 /* CouchbaseStartupTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 27170A4A1444E4020049E6E4 /* CouchbaseStartupTest.m */; };
 		27A07488143CCDCD0043BEB6 /* BeeCouchTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A07487143CCDCD0043BEB6 /* BeeCouchTest.m */; };
 		27A0748C143CDE6B0043BEB6 /* CreateDocsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A0748B143CDE6B0043BEB6 /* CreateDocsTest.m */; };
 		27A37423143E5E85005A577D /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 27A37421143E5E85005A577D /* Icon.png */; };
@@ -38,6 +39,8 @@
 /* Begin PBXFileReference section */
 		270EA1EB1443C1AD0000AEA9 /* SavedTestRun.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavedTestRun.h; sourceTree = "<group>"; };
 		270EA1EC1443C1AD0000AEA9 /* SavedTestRun.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SavedTestRun.m; sourceTree = "<group>"; };
+		27170A491444E4020049E6E4 /* CouchbaseStartupTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouchbaseStartupTest.h; sourceTree = "<group>"; };
+		27170A4A1444E4020049E6E4 /* CouchbaseStartupTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouchbaseStartupTest.m; sourceTree = "<group>"; };
 		27A07486143CCDCD0043BEB6 /* BeeCouchTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeeCouchTest.h; sourceTree = "<group>"; };
 		27A07487143CCDCD0043BEB6 /* BeeCouchTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeeCouchTest.m; sourceTree = "<group>"; };
 		27A0748A143CDE6B0043BEB6 /* CreateDocsTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateDocsTest.h; sourceTree = "<group>"; };
@@ -185,6 +188,8 @@
 				27CB656C143B9EB800EEA1F2 /* CountTest.m */,
 				27A0748A143CDE6B0043BEB6 /* CreateDocsTest.h */,
 				27A0748B143CDE6B0043BEB6 /* CreateDocsTest.m */,
+				27170A491444E4020049E6E4 /* CouchbaseStartupTest.h */,
+				27170A4A1444E4020049E6E4 /* CouchbaseStartupTest.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -268,6 +273,7 @@
 				27A07488143CCDCD0043BEB6 /* BeeCouchTest.m in Sources */,
 				27A0748C143CDE6B0043BEB6 /* CreateDocsTest.m in Sources */,
 				270EA1ED1443C1AD0000AEA9 /* SavedTestRun.m in Sources */,
+				27170A4B1444E4020049E6E4 /* CouchbaseStartupTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

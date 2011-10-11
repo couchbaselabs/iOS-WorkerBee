@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <Couchbase/CouchbaseMobile.h>
-@class CouchDatabase;
+@class CouchDatabase, BeeTest;
 
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, CouchbaseDelegate>
@@ -18,8 +18,10 @@
 
 /** The URL of the Couchbase server. */
 @property (readonly, retain, nonatomic) NSURL* serverURL;
+@property (readonly, retain, nonatomic) BeeTest* startupTest;
 
 @end
 
 
+extern NSString* const AppDelegateCouchStartedNotification;
 extern NSString* const AppDelegateCouchRestartedNotification;

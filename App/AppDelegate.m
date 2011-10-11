@@ -7,8 +7,10 @@
 //
 
 #import "AppDelegate.h"
+#import "CouchbaseStartupTest.h"
 
 
+NSString* const AppDelegateCouchStartedNotification = @"AppDelegateCouchStarted";
 NSString* const AppDelegateCouchRestartedNotification = @"AppDelegateCouchRestarted";
 
 
@@ -18,14 +20,18 @@ NSString* const AppDelegateCouchRestartedNotification = @"AppDelegateCouchRestar
 
 
 @implementation AppDelegate
+{
+    BeeTest* _startupTest;
+}
 
 @synthesize window = _window, navController = _navController;
-@synthesize serverURL = _serverURL;
+@synthesize serverURL = _serverURL, startupTest = _startupTest;
 
 - (void)dealloc
 {
     [_window release];
     [_serverURL release];
+    [_startupTest release];
     [super dealloc];
 }
 
@@ -48,6 +54,9 @@ NSString* const AppDelegateCouchRestartedNotification = @"AppDelegateCouchRestar
     cb.iniFilePath = iniPath;
 */
     
+    _startupTest = [[CouchbaseStartupTest alloc] init];
+    _startupTest.running = YES;
+
     // Now tell the database to start:
     if (![cb start]) {
         [self couchbaseMobile:cb failedToStart:cb.error];
@@ -59,15 +68,17 @@ NSString* const AppDelegateCouchRestartedNotification = @"AppDelegateCouchRestar
 
 -(void)couchbaseMobile:(CouchbaseMobile*)couchbase didStart:(NSURL*)serverURL
 {
-    //gCouchLogLevel = 1;
-    //gRESTLogLevel = kRESTLogRequestURLs;
-    
-    if (!self.serverURL)
+    gCouchLogLevel = 1;
+    gRESTLogLevel = kRESTLogRequestURLs;
+    NSString* notName;
+    if (!self.serverURL) {
         self.serverURL = serverURL;
-    else
-        [[NSNotificationCenter defaultCenter] 
-                                        postNotificationName: AppDelegateCouchRestartedNotification
-                                                      object: self];
+        _startupTest.running = NO;
+        notName = AppDelegateCouchStartedNotification;
+    } else {
+        notName = AppDelegateCouchRestartedNotification;
+    }
+    [[NSNotificationCenter defaultCenter]  postNotificationName: notName object: self];
 }
 
 -(void)couchbaseMobile:(CouchbaseMobile*)couchbase failedToStart:(NSError*)error
