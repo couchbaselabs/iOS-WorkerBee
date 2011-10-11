@@ -8,6 +8,7 @@
 
 #import "BeeTestController.h"
 #import "BeeTest.h"
+#import "SavedTestRun.h"
 
 
 @interface BeeTestController () <BeeTestDelegate>
@@ -108,6 +109,8 @@
 }
 
 - (IBAction) startStopTest:(id)sender {
+    if (![sender isOn])
+        _test.stoppedByUser = YES;
     _test.running = [sender isOn];
 }
 

@@ -35,6 +35,8 @@ NSString* const AppDelegateCouchRestartedNotification = @"AppDelegateCouchRestar
     NSLog(@"------ application:didFinishLaunchingWithOptions:");
     [_window addSubview:_navController.view];
     [_window makeKeyAndVisible];
+    
+    [UIDevice currentDevice].batteryMonitoringEnabled = YES;
 
     // Create & configure a CouchbaseMobile instance:
     CouchbaseMobile* cb = [[CouchbaseMobile alloc] init];

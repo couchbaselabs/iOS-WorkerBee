@@ -17,7 +17,11 @@
 /** Returns an array of Class objects for each available BeeTest subclass. */
 + (NSArray*) allTestClasses;
 
-/** The name to display for a test class. Defaults to the class's name. */
+/** Name of this test. Equal to the class name. Needs to be unique. */
++ (NSString*) testName;
+
+/** The name to display for a test class.
+    Defaults to the class's name with any "Test" suffix removed. */
 + (NSString*) displayName;
 
 #pragma mark Instance properties
@@ -28,6 +32,9 @@
 /** On/off switch for the test.
     Set to YES to start it, NO to stop it. Observable. */
 @property BOOL running;
+
+/** Set to YES if the test was stopped by the user (instead of finishing on its own.) */
+@property BOOL stoppedByUser;
 
 /** Current user-visible status message set by the test.
     Subclasses can set this. Observable. */

@@ -7,6 +7,7 @@
 //
 
 #import "BeeTest.h"
+#import "SavedTestRun.h"
 #import <objc/runtime.h>
 
 
@@ -56,15 +57,19 @@
         }
         free(classes);
         [testClasses sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-            return [NSStringFromClass(obj1) caseInsensitiveCompare: NSStringFromClass(obj2)];
+            return [[obj1 displayName] caseInsensitiveCompare: [obj2 displayName]];
         }];
         sAllTestClasses = [testClasses copy];
     }
     return sAllTestClasses;
 }
 
++ (NSString*) testName {
+    return NSStringFromClass(self);
+}
+
 + (NSString*) displayName {
-    NSString* name = NSStringFromClass(self);
+    NSString* name = [self testName];
     if ([name hasSuffix: @"Test"])
         name = [name substringToIndex: name.length - 4];
     return name;
@@ -72,7 +77,8 @@
 
 
 @synthesize delegate=_delegate, status = _status, startTime = _startTime, endTime = _endTime,
-            error = _error, messages = _messages, lastTimestamp = _lastTimestamp;
+            stoppedByUser = _stoppedByUser, error = _error, messages = _messages,
+            lastTimestamp = _lastTimestamp;
 
 
 - (id)init {
@@ -184,6 +190,9 @@
     [nctr removeObserver: self
                     name:UIApplicationWillEnterForegroundNotification
                   object: nil];
+    
+    // Save test results to local database:
+    [[SavedTestRun forTest: self] save];
 }
 
 

@@ -13,6 +13,8 @@
 /** Subclass of BeeTest for exercising CouchCocoa. */
 @interface BeeCouchTest : BeeTest
 
+#pragma mark For subclasses to call:
+
 /** The embedded Couchbase server. */
 @property (readonly) CouchServer* server;
 
@@ -33,6 +35,8 @@
 /** Is the database server currently suspended (i.e. is the app in the background)?
     If this is YES you should not access the server. (Observable.) */
 @property (readonly) BOOL suspended;
+
+#pragma mark For subclasses to override:
 
 /** Called when the application enters the background.
     You can override this to do extra work, but call the inherited method *at the end*. */

@@ -49,7 +49,7 @@
 
 
 - (NSString*) databaseName {
-    return [[NSStringFromClass([self class]) lowercaseString] stringByAppendingString: @"-db"];
+    return [[[[self class] testName] lowercaseString] stringByAppendingString: @"-db"];
 }
 
 
@@ -108,7 +108,7 @@
     [_server release];
     _server = nil;
     self.suspended = NO;
-    
+
     [super tearDown];
 }
 

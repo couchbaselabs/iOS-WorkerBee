@@ -149,7 +149,7 @@ static UIColor* kBGColor;
 #pragma mark - Table view delegate
 
 - (BeeTest*) testForClass: (Class)testClass {
-    return [_activeTestByClass objectForKey: NSStringFromClass(testClass)];
+    return [_activeTestByClass objectForKey: [testClass testName]];
 }
 
 - (BeeTest*) makeTestForClass: (Class)testClass {
@@ -157,7 +157,7 @@ static UIColor* kBGColor;
     if (!test) {
         test = [[[testClass alloc] init] autorelease];
         if (test) {
-            [_activeTestByClass setObject: test forKey: NSStringFromClass(testClass)];
+            [_activeTestByClass setObject: test forKey: [testClass testName]];
             [test addObserver: self forKeyPath: @"running" options: 0 context: NULL];
         }
     }
@@ -194,8 +194,11 @@ static UIColor* kBGColor;
 - (IBAction) startStopTest:(id)sender {
     Class testClass = [_testList objectAtIndex: [sender tag]];
     BeeTest* test = [self makeTestForClass: testClass];
-    NSLog(@"Setting %@ running=%i", test, [sender isOn]);
-    test.running = [sender isOn];
+    BOOL running = [sender isOn];
+    NSLog(@"Setting %@ running=%i", test, running);
+    if (!running)
+        test.stoppedByUser = YES;
+    test.running = running;
 }
 
 @end
