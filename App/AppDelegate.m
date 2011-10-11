@@ -83,8 +83,19 @@ NSString* const AppDelegateCouchRestartedNotification = @"AppDelegateCouchRestar
 
 -(void)couchbaseMobile:(CouchbaseMobile*)couchbase failedToStart:(NSError*)error
 {
-    // TODO: You will probably want to improve this to at least display an alert box and quit!
-    NSAssert(NO, @"Couchbase failed to initialize: %@", error);
+    NSString* message = [NSString stringWithFormat: @"Couchbase failed to initialize:\n\n%@.",
+                         error.localizedDescription];
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle: @"Fatal Error"
+                                                    message: message
+                                                   delegate: self
+                                          cancelButtonTitle: @"Quit"
+                                          otherButtonTitles: nil];
+    [alert show];
+    [alert release];
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    exit(0);
 }
 
 @end
