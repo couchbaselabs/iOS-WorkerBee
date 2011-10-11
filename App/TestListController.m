@@ -121,11 +121,8 @@ static UIColor* kBGColor;
 
 
 - (void) serverStarted {
-    AppDelegate* appDelegate = (AppDelegate*) [[UIApplication sharedApplication] delegate];
-    [[SavedTestRun forTest: appDelegate.startupTest] save];
     [self updateSavedTestUI];
 }
-
 
 - (void) updateSavedTestUI {
     NSString* text;
