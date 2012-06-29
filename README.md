@@ -1,6 +1,6 @@
-## Couchbase Mobile Workflow Test App
+## TouchDB Workflow Test App
 
-This iOS app is a shell for long-running workflow tests of the [Couchbase Mobile][1] framework.
+This iOS app is a shell for long-running workflow tests of the [TouchDB][1] framework.
 
 ## Getting Started
 
@@ -8,7 +8,7 @@ These instructions assume you are familiar with how to make an iOS app. Please f
 
 If you have questions or get stuck or just want to say hi, please visit the [Mobile Couchbase group][4] on Google Groups.
 
-Prerequisite: Xcode 4.0.2 or later with the SDK for iOS 4 or later. (It's possible the project might still work with Xcode 3, but we're not testing or supporting this anymore.)
+Prerequisite: Xcode 4.3 or later with the SDK for iOS 5 or later.
 
 ## Building The App
 
@@ -20,13 +20,9 @@ Or you can clone the repo with git:
 
     git clone git://github.com/couchbaselabs/WorkerBee.git
 
-### Get the frameworks (Couchbase and CouchCocoa)
+### Get the frameworks (TouchDB and CouchCocoa)
 
-This project isn't quite standalone; it links against the Couchbase Mobile and CouchCocoa, which it expects to find in the "Frameworks" subfolder. If you've already got those, you can just copy or symlink them in. If not, here's how to get them:
-
-1. Go to the [Couchbase Mobile for iOS home page][1] and download the release (see the Download button in the right column.) This will get you "Couchbase.framework".
-2. Either [download and unzip the latest][5] compiled CouchCocoa.framework, or [check out the source code][6] and build it yourself. (Build the "iOS Framework" scheme, then find CouchCocoa.framework in the build output directory.)
-3. Copy both Couchbase.framework and CouchCocoa.framework into the Frameworks directory of this project. (You don't need to drag them into Xcode; the project already has references to them.)
+This project isn't quite standalone; it links against the [TouchDB][1] and [CouchCocoa][6] frameworks, which it expects to find in the `Frameworks` subfolder. Build those frameworks, or download precompiled versions, and copy or symlink the iOS versions of `TouchDB.framework` and `CouchCocoa.framework` into `Frameworks`.
 
 ### Open the Xcode project
 
@@ -41,7 +37,7 @@ Once in the app, you'll see a list of available tests. Tap the on/off switch nex
 
 To see more info about a test, tap its name to navigate to its page. This will show the test's log output. You can also start and stop the test from this page. The test will keep running whether you're on its page or not.
 
-Test output is saved to the app's Documents directory. If you're running on a real device, you can access this directory by tethering the device, selecting it in iTunes, going to the Apps tab, scrolling down to the File Sharing list, then selecting "Worker Bee" in the list. In the simulator, you can look in the Xcode console output for lines starting with "** OPENING" to see the paths to the log files.
+Test output is saved to the app's Documents directory. If you're running on a real device, you can access this directory by tethering the device, selecting it in iTunes, going to the Apps tab, scrolling down to the File Sharing list, then selecting "Worker Bee" in the list. In the simulator, you can look in the Xcode console output for lines starting with `** OPENING` to see the paths to the log files.
 
 ## Adding Your Own Tests
 
@@ -49,20 +45,24 @@ Just create a new subclass of BeeCouchTest. Read API docs for that class and its
 
 Generally you'll override -setUp, set a heartbeatInterval, and override -heartbeat to perform periodic activity. The framework takes care of creating a fresh database for you to work with.
 
+## Uploading Test Results
+
+Test results are saved into a local TouchDB database and can be replicated to a remote database server. This is very useful for collecting and analyzing data from multiple devices.
+
+To enable replication, open TestListController.m, uncomment the definition of `kUpstreamSavedTestDatabaseURL`, and set its value to the URL of the database to upload to. This can be any CouchDB-compatible database. (It does need to allow anonymous push replication, unless you want to extend SavedTestRun.m to support authentication.)
+
 ## License
 
-Portions under Apache, Erlang, and other licenses.
+Released under the Apache license, 2.0.
 
-Background pattern images are from [subtlepatterns.com][9], released under a Creative Commons Attribution 3.0 Unported License.
+Background pattern images are from [subtlepatterns.com][9], released under a Creative Commons Attribution 3.0 Unported License.  
+Bee icon is 19th-century clip art, public domain.
 
-The overall package is released under the Apache license, 2.0.
-
-Copyright 2011, Couchbase, Inc.
+Copyright 2011-2012, Couchbase, Inc.
 
 
-[1]: http://www.couchbase.org/get/couchbase-mobile-for-ios/current
+[1]: https://github.com/couchbaselabs/TouchDB
 [4]: https://groups.google.com/group/mobile-couchbase
-[5]: https://github.com/couchbaselabs/CouchCocoa/downloads
 [6]: https://github.com/couchbaselabs/CouchCocoa/
 [8]: https://github.com/couchbaselabs/WorkerBee/zipball/master
 [9]: http://subtlepatterns.com/
