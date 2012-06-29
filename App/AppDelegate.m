@@ -31,8 +31,8 @@
     
     [UIDevice currentDevice].batteryMonitoringEnabled = YES;
 
-    gCouchLogLevel = 1;
-    gRESTLogLevel = kRESTLogRequestURLs;
+    //gCouchLogLevel = 1;
+    //gRESTLogLevel = kRESTLogRequestURLs;
     
     NSError* error = [[CouchTouchDBServer sharedInstance] error];
     if (error) {
