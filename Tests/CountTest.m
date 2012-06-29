@@ -13,7 +13,7 @@
 @synthesize count = _count, limit = _limit;
 
 - (void) heartbeat {
-    [self logFormat: @"Hi there! %i", ++_count, 45];
+    [self logFormat: @"Hi there! %i", ++_count];
     if (_count % 5 == 0)
         self.status = [NSString stringWithFormat: @"Reached %i", _count];
     if (_limit > 0 && _count >= _limit) {

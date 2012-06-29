@@ -13,7 +13,8 @@
 #import "SavedTestRun.h"
 
 
-static NSString* const kUpstreamSavedTestDatabaseURL = @"http://snej.iriscouch.com/workerbee-tests";
+// Set this to a URL to a database to which saved tests should be uploaded.
+//#define kUpstreamSavedTestDatabaseURL @"http://example.com/workerbee-tests"
 
 
 @interface TestListController ()
@@ -118,6 +119,7 @@ static UIColor* kBGColor;
 
 
 - (void) updateSavedTestUI {
+#ifdef kUpstreamSavedTestDatabaseURL
     NSString* text;
     int nSaved = [SavedTestRun savedTestCount];
     switch (nSaved) {
@@ -133,6 +135,7 @@ static UIColor* kBGColor;
     }
     _savedRunCountLabel.text = text;
     _savedRunCountLabel.hidden = _uploadButton.hidden = (nSaved == 0);
+#endif
 }
 
 
@@ -233,6 +236,7 @@ static UIColor* kBGColor;
 }
 
 - (IBAction) uploadSavedRuns:(id)sender {
+#ifdef kUpstreamSavedTestDatabaseURL
     NSURL* url = [NSURL URLWithString: kUpstreamSavedTestDatabaseURL];
     NSError* error;
     if ([SavedTestRun uploadAllTo: url error: &error])
@@ -250,6 +254,7 @@ static UIColor* kBGColor;
         [alert show];
         [alert release];
     }
+#endif
 }
 
 @end
