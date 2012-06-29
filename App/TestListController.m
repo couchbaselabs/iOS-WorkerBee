@@ -75,9 +75,6 @@ static UIColor* kBGColor;
     
     [_savedRunCountLabel setHidden: YES];
     [_uploadButton setHidden: YES];
-    [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(serverStarted)
-                                                 name: AppDelegateCouchStartedNotification
-                                               object: nil];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -119,10 +116,6 @@ static UIColor* kBGColor;
     return YES;
 }
 
-
-- (void) serverStarted {
-    [self updateSavedTestUI];
-}
 
 - (void) updateSavedTestUI {
     NSString* text;

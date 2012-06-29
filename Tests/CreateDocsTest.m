@@ -17,9 +17,6 @@
 }
 
 - (void) heartbeat {
-    if (self.suspended)
-        return;
-
     [self logFormat: @"Adding docs %i--%i ...",
                      _sequence+1, _sequence+kDocumentBatchSize];
     for (int i = 0; i < kDocumentBatchSize; i++) {

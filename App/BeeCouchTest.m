@@ -10,11 +10,6 @@
 #import "AppDelegate.h"
 
 
-@interface BeeCouchTest ()
-@property (readwrite) BOOL suspended;
-@end
-
-
 @implementation BeeCouchTest
 {
     CouchServer* _server;
@@ -34,20 +29,6 @@
 }
 
 
-- (NSURL*) serverURL {
-    NSURL* url;
-    do {
-        url = ((AppDelegate*)[[UIApplication sharedApplication] delegate]).serverURL;
-        if (!url) {
-            NSLog(@"Waiting for server to start...");
-            [[NSRunLoop currentRunLoop] runMode: NSDefaultRunLoopMode
-                                     beforeDate: [NSDate dateWithTimeIntervalSinceNow: 1.0]];
-        }
-    } while (!url);
-    return url;
-}
-
-
 - (NSString*) databaseName {
     return [[[[self class] testName] lowercaseString] stringByAppendingString: @"-db"];
 }
@@ -55,7 +36,7 @@
 
 - (CouchServer*) server {
     if (!_server) {
-        _server = [[CouchServer alloc] initWithURL: self.serverURL];
+        _server = [[CouchTouchDBServer alloc] init];
         // Track active operations so we can wait for their completion in serverWillSuspend, below
         _server.tracksActiveOperations = YES;
     }
@@ -64,8 +45,6 @@
 
 
 - (CouchDatabase*) database {
-    if (self.suspended)
-        [self logMessage: @"WARNING: Accessing database while suspended"];
     if (!_createdDatabase) {
         _createdDatabase = YES;
         CouchDatabase* database = [self.server databaseNamed: self.databaseName];
@@ -91,66 +70,15 @@
     [super setUp];
     
     _createdDatabase = NO;
-    NSNotificationCenter* nctr = [NSNotificationCenter defaultCenter];
-    [nctr addObserver: self
-             selector: @selector(serverDidResume)
-                 name: AppDelegateCouchRestartedNotification
-               object: nil];
 }
 
 - (void) tearDown {
-    NSNotificationCenter* nctr = [NSNotificationCenter defaultCenter];
-    [nctr removeObserver: self
-                    name:AppDelegateCouchRestartedNotification
-                  object: nil];
     [_database release];
     _database = nil;
     [_server release];
     _server = nil;
-    self.suspended = NO;
 
     [super tearDown];
-}
-
-
-@synthesize suspended = _suspended;
-
-
-- (void)applicationDidEnterBackground: (NSNotification*)notification
-{
-    [self serverWillSuspend];
-}
-
-
-- (void)applicationWillEnterForeground: (NSNotification*)notification
-{
-    [super applicationWillEnterForeground: notification];
-    // Wait for notification that Couchbase server has restarted
-    self.status = @"Waiting for server to resume...";
-}
-
-
-- (void)serverWillSuspend
-{
-    [self logMessage: @"Suspending"];
-    
-    self.suspended = YES;
-    self.status = @"Server suspended";
-    
-    // Turn off the _changes watcher:
-    _database.tracksChanges = NO;
-    
-	// Make sure all transactions complete, because going into the background will
-    // close down the CouchDB server:
-    [RESTOperation wait: _server.activeOperations];
-}
-
-
-- (void) serverDidResume {
-    [self logMessage: @"Server resumed"];
-    _database.tracksChanges = YES;
-    self.suspended = NO;
-    self.status = @"Resumed";
 }
 
 

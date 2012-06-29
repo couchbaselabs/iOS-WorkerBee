@@ -19,17 +19,9 @@ NSString* sVersion;
 NSUInteger sCount;
 
 
-+ (NSURL*) serverURL {
-    return ((AppDelegate*)[[UIApplication sharedApplication] delegate]).serverURL;
-}
-
 + (CouchDatabase*) database {
     if (!sDatabase) {
-        NSURL* serverURL = [self serverURL];
-        NSAssert(serverURL, @"No server URL");
-        CouchServer* server = [[CouchServer alloc] initWithURL: serverURL];
-        sDatabase = [[server databaseNamed: @"workerbee-tests"] retain];
-        [server release];
+        sDatabase = [[[CouchTouchDBServer sharedInstance] databaseNamed: @"workerbee-tests"] retain];
 
         RESTOperation* op = [sDatabase create];
         if (![op wait]) {
@@ -37,7 +29,7 @@ NSUInteger sCount;
                 NSAssert(NO, @"Error creating db: %@", op.error);   // TODO: Real alert
         }
         sCount = [sDatabase getDocumentCount];
-        sVersion = [[server getVersion: NULL] copy];
+        sVersion = [[sDatabase.server getVersion: NULL] copy];
         
     }
     return sDatabase;
@@ -80,13 +72,13 @@ NSUInteger sCount;
 }
 
 + (NSUInteger) savedTestCount {
-    if (!sDatabase && [self serverURL])
+    if (!sDatabase)
         [self database];    // trigger connection
     return sCount;
 }
 
 + (BOOL) uploadAllTo: (NSURL*)upstreamURL error: (NSError**)outError {
-    CouchReplication* repl = [[self database] pushToDatabaseAtURL: upstreamURL options: 0];
+    CouchReplication* repl = [[self database] pushToDatabaseAtURL: upstreamURL];
     while (repl.running) {
         NSLog(@"Waiting for replication to finish...");
         [[NSRunLoop currentRunLoop] runMode: NSDefaultRunLoopMode
