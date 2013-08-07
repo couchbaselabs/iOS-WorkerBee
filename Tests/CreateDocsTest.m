@@ -7,6 +7,8 @@
 //
 
 #import "CreateDocsTest.h"
+#import <CouchbaseLite/CBLJSON.h>
+
 
 #define kDocumentBatchSize 100
 
@@ -21,18 +23,16 @@
                      _sequence+1, _sequence+kDocumentBatchSize];
     for (int i = 0; i < kDocumentBatchSize; i++) {
         ++_sequence;
-        NSString* dateStr = [RESTBody JSONObjectWithDate: [NSDate date]];
+        NSString* dateStr = [CBLJSON JSONObjectWithDate: [NSDate date]];
         NSDictionary* props = [NSDictionary dictionaryWithObjectsAndKeys:
                                [NSNumber numberWithInt: _sequence], @"sequence",
                                dateStr, @"date", nil];
-        CouchDocument* doc = [self.database untitledDocument];
-        RESTOperation* op = [doc putProperties: props];
-        [op onCompletion: ^{
-            if (op.error) {
-                [self logFormat: @"!!! Failed to create doc %@", props];
-                self.error = op.error;
-            }
-        }];
+        CBLDocument* doc = [self.database untitledDocument];
+        NSError* error;
+        if (![doc putProperties: props error: &error]) {
+            [self logFormat: @"!!! Failed to create doc %@", props];
+            self.error = error;
+        }
     }
     self.status = [NSString stringWithFormat: @"Created %i docs", _sequence];
 }

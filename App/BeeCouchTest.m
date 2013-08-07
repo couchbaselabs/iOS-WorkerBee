@@ -12,8 +12,8 @@
 
 @implementation BeeCouchTest
 {
-    CouchServer* _server;
-    CouchDatabase* _database;
+    CBLManager* _manager;
+    CBLDatabase* _database;
     BOOL _createdDatabase;
 }
 
@@ -24,7 +24,7 @@
 
 
 - (void)dealloc {
-    [_server release];
+    [_manager release];
     [super dealloc];
 }
 
@@ -34,32 +34,23 @@
 }
 
 
-- (CouchServer*) server {
-    if (!_server) {
-        _server = [[CouchTouchDBServer alloc] init];
-        // Track active operations so we can wait for their completion in serverWillSuspend, below
-        _server.tracksActiveOperations = YES;
+- (CBLManager*) manager {
+    if (!_manager) {
+        _manager = [[CBLManager alloc] init];
     }
-    return _server;
+    return _manager;
 }
 
 
-- (CouchDatabase*) database {
+- (CBLDatabase*) database {
     if (!_createdDatabase) {
         _createdDatabase = YES;
-        CouchDatabase* database = [self.server databaseNamed: self.databaseName];
-        NSAssert(database, @"Failed to create CouchDatabase object");
-        // Delete and re-create the database:
-        RESTOperation* op = [database DELETE];
-        if ([op wait] || op.httpStatus == 404) {
-            op = [database create];
-            [op wait];
+        NSError* error = nil;
+        CBLDatabase* database = [self.manager databaseNamed: self.databaseName error: NULL];
+        if (database) {
+            [database deleteDatabase: &error];
         }
-        if (op.error) {
-            self.error = op.error;
-            return nil;
-        }
-        database.tracksChanges = YES;
+        database = [_manager createDatabaseNamed: self.databaseName error: &error];
         _database = [database retain];
     }
     return _database;
@@ -75,8 +66,8 @@
 - (void) tearDown {
     [_database release];
     _database = nil;
-    [_server release];
-    _server = nil;
+    [_manager release];
+    _manager = nil;
 
     [super tearDown];
 }

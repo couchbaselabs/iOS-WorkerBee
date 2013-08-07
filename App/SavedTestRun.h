@@ -6,15 +6,14 @@
 //  Copyright (c) 2011 Couchbase, Inc. All rights reserved.
 //
 
-#import <CouchCocoa/CouchCocoa.h>
+#import <CouchbaseLite/CouchbaseLite.h>
 @class BeeTest;
 
 
-@interface SavedTestRun : CouchModel
+@interface SavedTestRun : CBLModel
 
 + (SavedTestRun*) forTest: (BeeTest*)test;
 
-+ (NSString*) serverVersion;
 + (NSUInteger) savedTestCount;
 + (BOOL) uploadAllTo: (NSURL*)upstreamURL error: (NSError**)outError;
 

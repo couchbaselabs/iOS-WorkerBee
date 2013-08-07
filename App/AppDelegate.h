@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-@class CouchDatabase, BeeTest;
+@class CBLDatabase, BeeTest;
 
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>

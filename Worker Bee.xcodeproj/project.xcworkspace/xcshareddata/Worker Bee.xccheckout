@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>6172E026-C04B-45C5-92A8-610D4A82B539</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Worker Bee</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>0595015F-FE0C-48E7-B55C-B7F73C71451D</key>
+		<string>git://github.com/couchbaselabs/iOS-WorkerBee.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Worker Bee.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>0595015F-FE0C-48E7-B55C-B7F73C71451D</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>git://github.com/couchbaselabs/iOS-WorkerBee.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>0595015F-FE0C-48E7-B55C-B7F73C71451D</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>0595015F-FE0C-48E7-B55C-B7F73C71451D</string>
+			<key>IDESourceControlWCCName</key>
+			<string>WorkerBee</string>
+		</dict>
+	</array>
+</dict>
+</plist>

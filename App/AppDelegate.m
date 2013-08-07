@@ -30,22 +30,6 @@
     [_window makeKeyAndVisible];
     
     [UIDevice currentDevice].batteryMonitoringEnabled = YES;
-
-    //gCouchLogLevel = 1;
-    //gRESTLogLevel = kRESTLogRequestURLs;
-    
-    NSError* error = [[CouchTouchDBServer sharedInstance] error];
-    if (error) {
-        NSString* message = [NSString stringWithFormat: @"TouchDB failed to initialize:\n\n%@.",
-                             error.localizedDescription];
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle: @"Fatal Error"
-                                                        message: message
-                                                       delegate: self
-                                              cancelButtonTitle: @"Quit"
-                                              otherButtonTitles: nil];
-        [alert show];
-        [alert release];
-    }
     return YES;
 }
 

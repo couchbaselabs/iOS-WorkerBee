@@ -8,6 +8,7 @@
 
 #import "BeeTest.h"
 #import "SavedTestRun.h"
+#import <CouchbaseLite/CBLJSON.h>
 #import <objc/runtime.h>
 
 
@@ -192,7 +193,7 @@
                   object: nil];
     
     // Save test results to local database:
-    [[SavedTestRun forTest: self] save];
+    [[SavedTestRun forTest: self] save: NULL];
 }
 
 
@@ -238,7 +239,7 @@
 - (void) openOutput {
     NSAssert(!_output, @"_output was left open");
     NSString* filename = [NSString stringWithFormat: @"%@ %@.txt",
-                          [self class], [RESTBody JSONObjectWithDate: [NSDate date]]];
+                          [self class], [CBLJSON JSONObjectWithDate: [NSDate date]]];
     NSString* docsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
                                                              NSUserDomainMask, YES)
                             objectAtIndex: 0];

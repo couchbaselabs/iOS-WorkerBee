@@ -14,23 +14,14 @@
 @implementation SavedTestRun
 
 
-CouchDatabase* sDatabase;
-NSString* sVersion;
+CBLDatabase* sDatabase;
 NSUInteger sCount;
 
 
-+ (CouchDatabase*) database {
++ (CBLDatabase*) database {
     if (!sDatabase) {
-        sDatabase = [[[CouchTouchDBServer sharedInstance] databaseNamed: @"workerbee-tests"] retain];
-
-        RESTOperation* op = [sDatabase create];
-        if (![op wait]) {
-            if(op.httpStatus != 412)
-                NSAssert(NO, @"Error creating db: %@", op.error);   // TODO: Real alert
-        }
-        sCount = [sDatabase getDocumentCount];
-        sVersion = [[sDatabase.server getVersion: NULL] copy];
-        
+        sDatabase = [[[CBLManager sharedInstance] createDatabaseNamed: @"workerbee-tests" error: NULL] retain];
+        sCount = [sDatabase documentCount];
     }
     return sDatabase;
 }
@@ -44,11 +35,11 @@ NSUInteger sCount;
                    deviceInfo.name, @"name",
                    deviceInfo.model, @"model",
                    deviceInfo.systemVersion, @"system",
-                   deviceInfo.uniqueIdentifier, @"UDID",
+                   deviceInfo.identifierForVendor.UUIDString, @"identifier",
                    [NSNumber numberWithInt: deviceInfo.batteryState], @"batteryState",
                    [NSNumber numberWithFloat: deviceInfo.batteryLevel], @"batteryLevel",
                    nil];
-    self.serverVersion = sVersion;
+    self.serverVersion = CBLVersionString();
     self.testName = [[test class] testName];
     self.startTime = test.startTime;
     self.endTime = test.endTime;
@@ -67,10 +58,6 @@ NSUInteger sCount;
     return [instance autorelease];
 }
 
-+ (NSString*) serverVersion {
-    return sVersion;
-}
-
 + (NSUInteger) savedTestCount {
     if (!sDatabase)
         [self database];    // trigger connection
@@ -78,7 +65,7 @@ NSUInteger sCount;
 }
 
 + (BOOL) uploadAllTo: (NSURL*)upstreamURL error: (NSError**)outError {
-    CouchReplication* repl = [[self database] pushToDatabaseAtURL: upstreamURL];
+    CBLReplication* repl = [[self database] pushToURL: upstreamURL];
     while (repl.running) {
         NSLog(@"Waiting for replication to finish...");
         [[NSRunLoop currentRunLoop] runMode: NSDefaultRunLoopMode
@@ -93,7 +80,7 @@ NSUInteger sCount;
     // After a successful push, delete the database because we don't need to keep the test
     // results around anymore. (Just deleting the documents would leave tombstones behind,
     // which would propagate to the server on the next push and delete them there too. Bad.)
-    [[sDatabase DELETE] wait];
+    [sDatabase deleteDatabase: NULL];
     [sDatabase release];
     sDatabase = nil;
     sCount = 0;

@@ -1,6 +1,6 @@
-## TouchDB Workflow Test App
+## Couchbase Lite Workflow Test App
 
-This iOS app is a shell for long-running workflow tests of the [TouchDB][1] framework.
+This iOS app is a shell for long-running workflow tests of the [Couchbase Lite][1] framework.
 
 ## Getting Started
 
@@ -8,21 +8,19 @@ These instructions assume you are familiar with how to make an iOS app. Please f
 
 If you have questions or get stuck or just want to say hi, please visit the [Mobile Couchbase group][4] on Google Groups.
 
-Prerequisite: Xcode 4.3 or later with the SDK for iOS 5 or later.
+Prerequisite: Xcode 4.3 or later with the SDK for iOS 6 or later.
 
 ## Building The App
 
 ### Download or clone the repository
 
-You can [download a Zip archive of the current source code][8].
-
-Or you can clone the repo with git:
+Clone the repo with git:
 
     git clone git://github.com/couchbaselabs/WorkerBee.git
 
-### Get the frameworks (TouchDB and CouchCocoa)
+### Get the framework
 
-This project isn't quite standalone; it links against the [TouchDB][1] and [CouchCocoa][6] frameworks, which it expects to find in the `Frameworks` subfolder. Build those frameworks, or download precompiled versions, and copy or symlink the iOS versions of `TouchDB.framework` and `CouchCocoa.framework` into `Frameworks`.
+This project isn't quite standalone; it links against the [Couchbase Lite][1] framework, which it expects to find in the `Frameworks` subfolder. Build that framework, or download a precompiled build, and copy or symlink the iOS version of `CouchbaseLite.framework` into `Frameworks`.
 
 ### Open the Xcode project
 
@@ -47,9 +45,9 @@ Generally you'll override -setUp, set a heartbeatInterval, and override -heartbe
 
 ## Uploading Test Results
 
-Test results are saved into a local TouchDB database and can be replicated to a remote database server. This is very useful for collecting and analyzing data from multiple devices.
+Test results are saved into a local Couchbase Lite database and can be replicated to a remote database server. This is very useful for collecting and analyzing data from multiple devices.
 
-To enable replication, open TestListController.m, uncomment the definition of `kUpstreamSavedTestDatabaseURL`, and set its value to the URL of the database to upload to. This can be any CouchDB-compatible database. (It does need to allow anonymous push replication, unless you want to extend SavedTestRun.m to support authentication.)
+To enable replication, open TestListController.m, uncomment the definition of `kUpstreamSavedTestDatabaseURL`, and set its value to the URL of the database to upload to. This can be the Couchbase Sync Gateway, or any CouchDB-compatible database. (It does need to allow anonymous push replication, unless you want to extend SavedTestRun.m to support authentication.)
 
 ## License
 
@@ -58,11 +56,9 @@ Released under the Apache license, 2.0.
 Background pattern images are from [subtlepatterns.com][9], released under a Creative Commons Attribution 3.0 Unported License.  
 Bee icon is 19th-century clip art, public domain.
 
-Copyright 2011-2012, Couchbase, Inc.
+Copyright 2011-2013, Couchbase, Inc.
 
 
-[1]: https://github.com/couchbaselabs/TouchDB
+[1]: https://github.com/couchbase/Couchbase-Lite-iOS
 [4]: https://groups.google.com/group/mobile-couchbase
-[6]: https://github.com/couchbaselabs/CouchCocoa/
-[8]: https://github.com/couchbaselabs/WorkerBee/zipball/master
 [9]: http://subtlepatterns.com/
