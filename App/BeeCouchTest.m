@@ -23,12 +23,6 @@
 }
 
 
-- (void)dealloc {
-    [_manager release];
-    [super dealloc];
-}
-
-
 - (NSString*) databaseName {
     return [[[[self class] testName] lowercaseString] stringByAppendingString: @"-db"];
 }
@@ -50,8 +44,7 @@
         if (database) {
             [database deleteDatabase: &error];
         }
-        database = [_manager createDatabaseNamed: self.databaseName error: &error];
-        _database = [database retain];
+        _database = [_manager createDatabaseNamed: self.databaseName error: &error];
     }
     return _database;
 }
@@ -64,9 +57,7 @@
 }
 
 - (void) tearDown {
-    [_database release];
     _database = nil;
-    [_manager release];
     _manager = nil;
 
     [super tearDown];

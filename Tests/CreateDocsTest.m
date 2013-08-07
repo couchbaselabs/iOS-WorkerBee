@@ -24,9 +24,8 @@
     for (int i = 0; i < kDocumentBatchSize; i++) {
         ++_sequence;
         NSString* dateStr = [CBLJSON JSONObjectWithDate: [NSDate date]];
-        NSDictionary* props = [NSDictionary dictionaryWithObjectsAndKeys:
-                               [NSNumber numberWithInt: _sequence], @"sequence",
-                               dateStr, @"date", nil];
+        NSDictionary* props = @{@"sequence": @(_sequence),
+                                @"date": dateStr};
         CBLDocument* doc = [self.database untitledDocument];
         NSError* error;
         if (![doc putProperties: props error: &error]) {

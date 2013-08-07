@@ -23,9 +23,9 @@
     NSMutableArray* _messages;
     NSTimer* _heartbeat;
 }
-@property (readwrite, retain) NSDate* startTime;
-@property (readwrite, retain) NSDate* endTime;
-@property (retain) NSString* lastTimestamp;
+@property (readwrite, strong) NSDate* startTime;
+@property (readwrite, strong) NSDate* endTime;
+@property (strong) NSString* lastTimestamp;
 - (void) openOutput;
 - (void) closeOutput;
 @end
@@ -45,7 +45,7 @@
         NSMutableArray* testClasses = [NSMutableArray array];
         
         int numClasses = objc_getClassList(NULL, 0);
-        Class* classes = malloc(sizeof(Class) * numClasses);
+        Class* classes = (Class*)malloc(sizeof(Class) * numClasses);
         numClasses = objc_getClassList(classes, numClasses);
         for (int i = 0; i< numClasses; i++) {
             Class c = classes[i];
@@ -92,13 +92,6 @@
 
 - (void)dealloc {
     [_output close];
-    [_output release];
-    [_messages release];
-    [_lastTimestamp release];
-    [_startTime release];
-    [_endTime release];
-    [_error release];
-    [super dealloc];
 }
 
 
@@ -108,8 +101,7 @@
 
 - (void) setError: (NSError*)error {
     if (error != _error) {
-        [_error release];
-        _error = [error retain];
+        _error = error;
         if (error) {
             // Log the error and stop the test:
             NSString* message = [error.domain isEqualToString: @"BeeTest"] ? self.errorMessage
@@ -123,8 +115,7 @@
 
 - (void) setErrorMessage:(NSString *)errorMessage {
     if (errorMessage) {
-        NSDictionary* info = [NSDictionary dictionaryWithObjectsAndKeys:
-                              errorMessage, NSLocalizedDescriptionKey, nil];
+        NSDictionary* info = @{NSLocalizedDescriptionKey: errorMessage};
         self.error = [NSError errorWithDomain: @"BeeTest" code: 1 userInfo: info];
     } else {
         self.error = nil;
@@ -217,13 +208,12 @@
 
 - (void) setHeartbeatInterval: (NSTimeInterval)interval {
     [_heartbeat invalidate];
-    [_heartbeat release];
     if (interval > 0) {
-        _heartbeat = [[NSTimer scheduledTimerWithTimeInterval: interval
+        _heartbeat = [NSTimer scheduledTimerWithTimeInterval: interval
                                                        target: self
                                                      selector: @selector(heartbeat)
                                                      userInfo: NULL
-                                                      repeats: YES] retain];
+                                                      repeats: YES];
     } else {
         _heartbeat = nil;
     }
@@ -240,9 +230,8 @@
     NSAssert(!_output, @"_output was left open");
     NSString* filename = [NSString stringWithFormat: @"%@ %@.txt",
                           [self class], [CBLJSON JSONObjectWithDate: [NSDate date]]];
-    NSString* docsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
-                                                             NSUserDomainMask, YES)
-                            objectAtIndex: 0];
+    NSString* docsDir = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                             NSUserDomainMask, YES)[0];
     NSString* logPath = [docsDir stringByAppendingPathComponent: filename];
     NSLog(@"**OPENING %@", logPath);
     _output = [[NSOutputStream alloc] initToFileAtPath: logPath append: NO];
@@ -252,7 +241,6 @@
 - (void) closeOutput {
     NSLog(@"** CLOSING %@", [self class]);
     [_output close];
-    [_output release];
     _output = nil;
 }
 
@@ -319,7 +307,6 @@
     NSString* message = [[NSString alloc] initWithFormat: format arguments: args];
     va_end(args);
     [self logMessage: message];
-    [message release];
 }
 
 - (void) clearMessages {

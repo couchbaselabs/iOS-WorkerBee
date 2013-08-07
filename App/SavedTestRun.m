@@ -20,7 +20,7 @@ NSUInteger sCount;
 
 + (CBLDatabase*) database {
     if (!sDatabase) {
-        sDatabase = [[[CBLManager sharedInstance] createDatabaseNamed: @"workerbee-tests" error: NULL] retain];
+        sDatabase = [[CBLManager sharedInstance] createDatabaseNamed: @"workerbee-tests" error: NULL];
         sCount = [sDatabase documentCount];
     }
     return sDatabase;
@@ -31,14 +31,12 @@ NSUInteger sCount;
 
 - (void) recordTest: (BeeTest*)test {
     UIDevice* deviceInfo = [UIDevice currentDevice];
-    self.device = [NSDictionary dictionaryWithObjectsAndKeys:
-                   deviceInfo.name, @"name",
-                   deviceInfo.model, @"model",
-                   deviceInfo.systemVersion, @"system",
-                   deviceInfo.identifierForVendor.UUIDString, @"identifier",
-                   [NSNumber numberWithInt: deviceInfo.batteryState], @"batteryState",
-                   [NSNumber numberWithFloat: deviceInfo.batteryLevel], @"batteryLevel",
-                   nil];
+    self.device = @{@"name": deviceInfo.name,
+                    @"model": deviceInfo.model,
+                    @"system": deviceInfo.systemVersion,
+                    @"identifier": deviceInfo.identifierForVendor.UUIDString,
+                    @"batteryState": [NSNumber numberWithInt: deviceInfo.batteryState],
+                    @"batteryLevel": @(deviceInfo.batteryLevel)};
     self.serverVersion = CBLVersionString();
     self.testName = [[test class] testName];
     self.startTime = test.startTime;
@@ -55,7 +53,7 @@ NSUInteger sCount;
     SavedTestRun* instance = [[self alloc] initWithNewDocumentInDatabase: [self database]];
     [instance recordTest: test];
     ++sCount;
-    return [instance autorelease];
+    return instance;
 }
 
 + (NSUInteger) savedTestCount {
@@ -81,7 +79,6 @@ NSUInteger sCount;
     // results around anymore. (Just deleting the documents would leave tombstones behind,
     // which would propagate to the server on the next push and delete them there too. Bad.)
     [sDatabase deleteDatabase: NULL];
-    [sDatabase release];
     sDatabase = nil;
     sCount = 0;
     return YES;

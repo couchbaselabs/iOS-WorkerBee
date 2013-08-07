@@ -32,18 +32,12 @@ static UIColor* kBGColor;
 + (void) initialize {
     if (self == [TestListController class]) {
         if (!kBGColor)
-            kBGColor = [[UIColor colorWithPatternImage: [UIImage imageNamed:@"double_lined.png"]] 
-                        retain];
+            kBGColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"double_lined.png"]];
     }
 }
 
 @synthesize testList = _testList, tableView = _tableView,
             savedRunCountLabel = _savedRunCountLabel, uploadButton = _uploadButton;
-
-- (void)dealloc {
-    [_testList release];
-    [super dealloc];
-}
 
 - (void)didReceiveMemoryWarning
 {
@@ -68,7 +62,6 @@ static UIColor* kBGColor;
     UIBarButtonItem* backItem = [[UIBarButtonItem alloc] init];
     backItem.title = @"Tests";
     self.navigationItem.backBarButtonItem = backItem;
-    [backItem release];
 
     [self.tableView setBackgroundView:nil];
     [self.tableView setBackgroundColor: [UIColor clearColor]];
@@ -158,15 +151,14 @@ static UIColor* kBGColor;
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
-                                       reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                       reuseIdentifier:CellIdentifier];
         UISwitch* sw = [[UISwitch alloc] init];
         cell.accessoryView = sw;
         [sw addTarget: self action: @selector(startStopTest:) forControlEvents: UIControlEventValueChanged];
-        [sw release];
     }
     
-    Class testClass = [_testList objectAtIndex: indexPath.row];
+    Class testClass = _testList[indexPath.row];
     BeeTest* existingTest = [self testForClass: testClass];
     cell.textLabel.text = [testClass displayName];
     UISwitch* sw = (UISwitch*)cell.accessoryView;
@@ -179,15 +171,15 @@ static UIColor* kBGColor;
 #pragma mark - Table view delegate
 
 - (BeeTest*) testForClass: (Class)testClass {
-    return [_activeTestByClass objectForKey: [testClass testName]];
+    return _activeTestByClass[[testClass testName]];
 }
 
 - (BeeTest*) makeTestForClass: (Class)testClass {
     BeeTest* test = [self testForClass: testClass];
     if (!test) {
-        test = [[[testClass alloc] init] autorelease];
+        test = [[testClass alloc] init];
         if (test) {
-            [_activeTestByClass setObject: test forKey: [testClass testName]];
+            _activeTestByClass[[testClass testName]] = test;
             [test addObserver: self forKeyPath: @"running" options: 0 context: NULL];
         }
     }
@@ -196,13 +188,12 @@ static UIColor* kBGColor;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Class testClass = [_testList objectAtIndex: indexPath.row];
+    Class testClass = _testList[indexPath.row];
     BeeTest* test = [self makeTestForClass: testClass];
     if (!test)
         return; // TODO: Show an alert
     BeeTestController *testController = [[BeeTestController alloc] initWithTest: test];
     [self.navigationController pushViewController:testController animated:YES];
-    [testController release];
 }
 
 - (void) observeValueForKeyPath:(NSString *)keyPath
@@ -226,7 +217,7 @@ static UIColor* kBGColor;
 }
 
 - (IBAction) startStopTest:(id)sender {
-    Class testClass = [_testList objectAtIndex: [sender tag]];
+    Class testClass = _testList[[sender tag]];
     BeeTest* test = [self makeTestForClass: testClass];
     BOOL running = [sender isOn];
     NSLog(@"Setting %@ running=%i", test, running);

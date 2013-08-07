@@ -27,7 +27,7 @@
 #pragma mark Instance properties
 
 /** The test's delegate; this will be the associated BeeTestController. */
-@property (assign) id<BeeTestDelegate> delegate;
+@property (weak) id<BeeTestDelegate> delegate;
 
 /** On/off switch for the test.
     Set to YES to start it, NO to stop it. Observable. */
@@ -48,10 +48,10 @@
 @property (copy) NSString* errorMessage;
 
 /** The time the test started running (observable). */
-@property (readonly, retain) NSDate* startTime;
+@property (readonly, strong) NSDate* startTime;
 
 /** The time the test stopped running (observable). */
-@property (readonly, retain) NSDate* endTime;
+@property (readonly, strong) NSDate* endTime;
 
 /** The latest log messages from the test, in chronological order (observable). */
 @property (readonly) NSArray* messages;

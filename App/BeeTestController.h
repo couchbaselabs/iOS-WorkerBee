@@ -14,9 +14,9 @@
 - (id) initWithTest: (BeeTest*)test;
 
 @property (readonly) BeeTest* test;
-@property (readonly) IBOutlet UISwitch* onOffSwitch;
-@property (readonly) IBOutlet UILabel* statusLabel;
-@property (readonly) IBOutlet UIActivityIndicatorView* activityIndicator;
-@property (readonly) IBOutlet UITextView* transcript;
+@property (weak, readonly) IBOutlet UISwitch* onOffSwitch;
+@property (weak, readonly) IBOutlet UILabel* statusLabel;
+@property (weak, readonly) IBOutlet UIActivityIndicatorView* activityIndicator;
+@property (weak, readonly) IBOutlet UITextView* transcript;
 
 @end

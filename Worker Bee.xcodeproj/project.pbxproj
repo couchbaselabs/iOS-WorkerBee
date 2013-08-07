@@ -228,6 +228,11 @@
 			attributes = {
 				LastUpgradeCheck = 0420;
 				ORGANIZATIONNAME = "Couchbase, Inc.";
+				TargetAttributes = {
+					27B28FA014314FB800B86F18 = {
+						DevelopmentTeam = KAZWMGZL2X;
+					};
+				};
 			};
 			buildConfigurationList = 27B28F9B14314FB800B86F18 /* Build configuration list for PBXProject "Worker Bee" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -348,6 +353,8 @@
 		27B28FCF14314FB900B86F18 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 200;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -358,6 +365,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = App/Prefix.pch;
 				INFOPLIST_FILE = App/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -368,6 +376,8 @@
 		27B28FD014314FB900B86F18 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 200;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -378,6 +388,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = App/Prefix.pch;
 				INFOPLIST_FILE = App/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VERSIONING_SYSTEM = "apple-generic";

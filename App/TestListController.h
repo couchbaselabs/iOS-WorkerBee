@@ -11,9 +11,9 @@
 
 @interface TestListController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
-@property(nonatomic, retain) IBOutlet UITableView *tableView;
-@property(nonatomic, retain) IBOutlet UILabel *savedRunCountLabel;
-@property(nonatomic, retain) IBOutlet UIButton *uploadButton;
+@property(nonatomic, strong) IBOutlet UITableView *tableView;
+@property(nonatomic, strong) IBOutlet UILabel *savedRunCountLabel;
+@property(nonatomic, strong) IBOutlet UIButton *uploadButton;
 
 - (IBAction) uploadSavedRuns:(id)sender;
 

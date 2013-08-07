@@ -25,7 +25,7 @@
 - (id) initWithTest: (BeeTest*)test {
     self = [super initWithNibName: @"BeeTestController" bundle: nil];
     if (self) {
-        _test = [test retain];
+        _test = test;
         _test.delegate = self;
         [_test addObserver: self forKeyPath: @"status" options: 0 context: NULL];
         [_test addObserver: self forKeyPath: @"error" options: 0 context: NULL];
@@ -37,8 +37,6 @@
     [_test removeObserver: self forKeyPath: @"status"];
     [_test removeObserver: self forKeyPath: @"error"];
     _test.delegate = nil;
-    [_test release];
-    [super dealloc];
 }
 
 
@@ -53,16 +51,13 @@
     static UIColor* sBackground;
     if (!sBackground) {
         UIImage* tile = [UIImage imageNamed: @"little_pluses.png"];
-        sBackground = [[UIColor colorWithPatternImage: tile] retain];
+        sBackground = [UIColor colorWithPatternImage: tile];
     }
     self.view.backgroundColor = sBackground;
     
-    [_onOffSwitch retain];
     [_onOffSwitch removeFromSuperview];
     UIBarButtonItem* rightItem = [[UIBarButtonItem alloc] initWithCustomView: _onOffSwitch];
     self.navigationItem.rightBarButtonItem = rightItem;
-    [rightItem release];
-    [_onOffSwitch release];
     
     [self beeTest: _test isRunning: _test.running];
     [self scrollToEnd];

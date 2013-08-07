@@ -20,7 +20,7 @@
 @property (copy) NSDictionary* device;
 @property (copy) NSString* serverVersion;
 @property (copy) NSString* testName;
-@property (retain) NSDate* startTime, *endTime;
+@property (strong) NSDate* startTime, *endTime;
 @property NSTimeInterval duration;
 @property BOOL stoppedByUser;
 @property (copy) NSString* status;
