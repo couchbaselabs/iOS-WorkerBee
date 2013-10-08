@@ -14,6 +14,7 @@
 @property(nonatomic, strong) IBOutlet UITableView *tableView;
 @property(nonatomic, strong) IBOutlet UILabel *savedRunCountLabel;
 @property(nonatomic, strong) IBOutlet UIButton *uploadButton;
+@property(nonatomic, strong) IBOutlet UILabel* listenerInfo;
 
 - (IBAction) uploadSavedRuns:(id)sender;
 

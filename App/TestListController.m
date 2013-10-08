@@ -11,10 +11,14 @@
 #import "BeeTest.h"
 #import "BeeTestController.h"
 #import "SavedTestRun.h"
+#import <CouchbaseLiteListener/CBLListener.h>
 
 
 // Set this to a URL to a database to which saved tests should be uploaded.
 //#define kUpstreamSavedTestDatabaseURL @"http://example.com/workerbee-tests"
+
+
+#define kListenerPort 59840
 
 
 @interface TestListController ()
@@ -25,6 +29,7 @@
 @implementation TestListController
 {
     NSMutableDictionary* _activeTestByClass;
+    CBLListener* _listener;
 }
 
 static UIColor* kBGColor;
@@ -69,6 +74,8 @@ static UIColor* kBGColor;
     
     [_savedRunCountLabel setHidden: YES];
     [_uploadButton setHidden: YES];
+
+    [self startListener];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -129,6 +136,22 @@ static UIColor* kBGColor;
     _savedRunCountLabel.text = text;
     _savedRunCountLabel.hidden = _uploadButton.hidden = (nSaved == 0);
 #endif
+}
+
+
+- (void) startListener {
+    CBLManager* manager = [CBLManager sharedInstance];
+    _listener = [[CBLListener alloc] initWithManager: manager port: kListenerPort];
+    [_listener setBonjourName: @"" type: @"_cbl._tcp."];
+    NSString* message;
+    NSError* error;
+    if ([_listener start: &error]) {
+        message = [NSString stringWithFormat: @"Listener starting on port %d...", _listener.port];
+        [_listener addObserver: self forKeyPath: @"bonjourURL" options: 0 context: NULL];
+    } else{  //FIX: Show alert
+        message = [NSString stringWithFormat: @"Listener failed to start: %@", error.localizedDescription];
+    }
+    _listenerInfo.text = message;
 }
 
 
@@ -201,7 +224,11 @@ static UIColor* kBGColor;
                          change:(NSDictionary *)change
                         context:(void *)context
 {
-    if ([object isKindOfClass: [BeeTest class]]) {
+    if (object == _listener) {
+        _listenerInfo.text = [NSString stringWithFormat: @"Listener available at %@",
+                              _listener.bonjourURL];
+
+    } else if ([object isKindOfClass: [BeeTest class]]) {
         // Test "running" state changed:
         BOOL running = [object running];
         Class testClass = [object class];

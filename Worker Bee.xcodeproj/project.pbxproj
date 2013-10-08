@@ -12,6 +12,7 @@
 		27170A531445076C0049E6E4 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 27170A521445076C0049E6E4 /* Default.png */; };
 		2728F63617B3045400E929FD /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2728F63517B3045400E929FD /* CFNetwork.framework */; };
 		2728F63817B3080300E929FD /* CouchbaseLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2728F63717B3080300E929FD /* CouchbaseLite.framework */; };
+		27840B1B18045B48005B9F62 /* CouchbaseLiteListener.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27840B1A18045B48005B9F62 /* CouchbaseLiteListener.framework */; };
 		279B52F8159D3675003C95F9 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 279B52F7159D3675003C95F9 /* libsqlite3.dylib */; };
 		279B52FA159D367E003C95F9 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 279B52F9159D367E003C95F9 /* SystemConfiguration.framework */; };
 		27A07488143CCDCD0043BEB6 /* BeeCouchTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A07487143CCDCD0043BEB6 /* BeeCouchTest.m */; };
@@ -26,6 +27,8 @@
 		27B28FB614314FB800B86F18 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B28FB514314FB800B86F18 /* AppDelegate.m */; };
 		27B28FDF1431549200B86F18 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27B28FDE1431549200B86F18 /* Security.framework */; };
 		27B28FE11431549E00B86F18 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 27B28FE01431549E00B86F18 /* libz.dylib */; };
+		27B678B418049FFD00B06D11 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 27B678B218049FFD00B06D11 /* Default-568h@2x.png */; };
+		27B678B518049FFD00B06D11 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 27B678B318049FFD00B06D11 /* Default@2x.png */; };
 		27CB6560143B91DD00EEA1F2 /* Application.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27CB655F143B91DD00EEA1F2 /* Application.xib */; };
 		27CB6566143B997A00EEA1F2 /* TestListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CB6564143B997900EEA1F2 /* TestListController.m */; };
 		27CB6567143B997A00EEA1F2 /* TestListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27CB6565143B997900EEA1F2 /* TestListController.xib */; };
@@ -45,6 +48,7 @@
 		27170A521445076C0049E6E4 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
 		2728F63517B3045400E929FD /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		2728F63717B3080300E929FD /* CouchbaseLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CouchbaseLite.framework; path = Frameworks/CouchbaseLite.framework; sourceTree = "<group>"; };
+		27840B1A18045B48005B9F62 /* CouchbaseLiteListener.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CouchbaseLiteListener.framework; path = Frameworks/CouchbaseLiteListener.framework; sourceTree = "<group>"; };
 		279B52F7159D3675003C95F9 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		279B52F9159D367E003C95F9 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		27A07486143CCDCD0043BEB6 /* BeeCouchTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeeCouchTest.h; sourceTree = "<group>"; };
@@ -68,6 +72,8 @@
 		27B28FE01431549E00B86F18 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		27B28FE2143154B700B86F18 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		27B290061432368E00B86F18 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		27B678B218049FFD00B06D11 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = SOURCE_ROOT; };
+		27B678B318049FFD00B06D11 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = SOURCE_ROOT; };
 		27CB655F143B91DD00EEA1F2 /* Application.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Application.xib; sourceTree = "<group>"; };
 		27CB6563143B997900EEA1F2 /* TestListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestListController.h; sourceTree = "<group>"; };
 		27CB6564143B997900EEA1F2 /* TestListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestListController.m; sourceTree = "<group>"; };
@@ -94,6 +100,7 @@
 				27B28FA614314FB800B86F18 /* UIKit.framework in Frameworks */,
 				2728F63817B3080300E929FD /* CouchbaseLite.framework in Frameworks */,
 				27B28FA814314FB800B86F18 /* Foundation.framework in Frameworks */,
+				27840B1B18045B48005B9F62 /* CouchbaseLiteListener.framework in Frameworks */,
 				27B28FAA14314FB800B86F18 /* CoreGraphics.framework in Frameworks */,
 				27B28FDF1431549200B86F18 /* Security.framework in Frameworks */,
 				27B28FE11431549E00B86F18 /* libz.dylib in Frameworks */,
@@ -109,6 +116,8 @@
 				27A37421143E5E85005A577D /* Icon.png */,
 				27A37422143E5E85005A577D /* Icon@2x.png */,
 				27170A521445076C0049E6E4 /* Default.png */,
+				27B678B218049FFD00B06D11 /* Default-568h@2x.png */,
+				27B678B318049FFD00B06D11 /* Default@2x.png */,
 				27DB17F4143BD36A00EBA619 /* double_lined.png */,
 				27DB17F1143BB3A800EBA619 /* little_pluses.png */,
 			);
@@ -139,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				2728F63717B3080300E929FD /* CouchbaseLite.framework */,
+				27840B1A18045B48005B9F62 /* CouchbaseLiteListener.framework */,
 				2728F63517B3045400E929FD /* CFNetwork.framework */,
 				27B28FA514314FB800B86F18 /* UIKit.framework */,
 				27B28FA714314FB800B86F18 /* Foundation.framework */,
@@ -230,7 +240,7 @@
 				ORGANIZATIONNAME = "Couchbase, Inc.";
 				TargetAttributes = {
 					27B28FA014314FB800B86F18 = {
-						DevelopmentTeam = KAZWMGZL2X;
+						DevelopmentTeam = N2Q372V7W2;
 					};
 				};
 			};
@@ -259,11 +269,13 @@
 				27B28FB014314FB800B86F18 /* InfoPlist.strings in Resources */,
 				27CB6560143B91DD00EEA1F2 /* Application.xib in Resources */,
 				27CB6567143B997A00EEA1F2 /* TestListController.xib in Resources */,
+				27B678B418049FFD00B06D11 /* Default-568h@2x.png in Resources */,
 				27CB6577143BAA2F00EEA1F2 /* BeeTestController.xib in Resources */,
 				27DB17F2143BB3A800EBA619 /* little_pluses.png in Resources */,
 				27DB17F5143BD36A00EBA619 /* double_lined.png in Resources */,
 				27A37423143E5E85005A577D /* Icon.png in Resources */,
 				27A37424143E5E85005A577D /* Icon@2x.png in Resources */,
+				27B678B518049FFD00B06D11 /* Default@2x.png in Resources */,
 				27170A531445076C0049E6E4 /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -355,12 +367,14 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 200;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\\\"$(SRCROOT)/Frameworks\\\"",
+					"\\\\\\\"$(SRCROOT)/Frameworks\\\\\\\"",
 					/Couchbase/DemoApps/WorkerBee,
 					/Couchbase/DemoApps/WorkerBee/Frameworks,
+					"/Couchbase/CouchbaseLite/build/CouchbaseLite/Build/Products/Debug-ios-universal",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = App/Prefix.pch;
@@ -368,6 +382,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				VERSIONING_SYSTEM = "apple-generic";
 				WRAPPER_EXTENSION = app;
 			};
@@ -378,12 +393,14 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 200;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\\\"$(SRCROOT)/Frameworks\\\"",
+					"\\\\\\\"$(SRCROOT)/Frameworks\\\\\\\"",
 					/Couchbase/DemoApps/WorkerBee,
 					/Couchbase/DemoApps/WorkerBee/Frameworks,
+					"/Couchbase/CouchbaseLite/build/CouchbaseLite/Build/Products/Debug-ios-universal",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = App/Prefix.pch;
@@ -391,6 +408,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				VERSIONING_SYSTEM = "apple-generic";
 				WRAPPER_EXTENSION = app;
 			};
