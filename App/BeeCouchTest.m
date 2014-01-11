@@ -44,7 +44,7 @@
         if (database) {
             [database deleteDatabase: &error];
         }
-        _database = [_manager createDatabaseNamed: self.databaseName error: &error];
+        _database = [_manager databaseNamed: self.databaseName error: &error];
     }
     return _database;
 }

@@ -26,7 +26,7 @@
         NSString* dateStr = [CBLJSON JSONObjectWithDate: [NSDate date]];
         NSDictionary* props = @{@"sequence": @(_sequence),
                                 @"date": dateStr};
-        CBLDocument* doc = [self.database untitledDocument];
+        CBLDocument* doc = [self.database createDocument];
         NSError* error;
         if (![doc putProperties: props error: &error]) {
             [self logFormat: @"!!! Failed to create doc %@", props];

@@ -226,7 +226,7 @@ static UIColor* kBGColor;
 {
     if (object == _listener) {
         _listenerInfo.text = [NSString stringWithFormat: @"Listener available at %@",
-                              _listener.bonjourURL];
+                              _listener.URL];
 
     } else if ([object isKindOfClass: [BeeTest class]]) {
         // Test "running" state changed:

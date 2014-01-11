@@ -60,7 +60,6 @@
     self.navigationItem.rightBarButtonItem = rightItem;
     
     [self beeTest: _test isRunning: _test.running];
-    [self scrollToEnd];
     [self showStatus];
 }
 
@@ -83,7 +82,6 @@
 - (void) beeTest: (BeeTest*)test loggedMessage: (NSString*)message {
     BOOL scrollToEnd = !_transcript.tracking
             && CGRectGetMaxY(_transcript.bounds) >= _transcript.contentSize.height - 20;
-    
     [self displayMessages];
     
     if (scrollToEnd)

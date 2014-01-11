@@ -20,7 +20,7 @@ NSUInteger sCount;
 
 + (CBLDatabase*) database {
     if (!sDatabase) {
-        sDatabase = [[CBLManager sharedInstance] createDatabaseNamed: @"workerbee-tests" error: NULL];
+        sDatabase = [[CBLManager sharedInstance] databaseNamed: @"workerbee-tests" error: NULL];
         sCount = [sDatabase documentCount];
     }
     return sDatabase;
@@ -63,15 +63,16 @@ NSUInteger sCount;
 }
 
 + (BOOL) uploadAllTo: (NSURL*)upstreamURL error: (NSError**)outError {
-    CBLReplication* repl = [[self database] pushToURL: upstreamURL];
+    CBLReplication* repl = [[self database] createPushReplication: upstreamURL];
+    [repl start];
     while (repl.running) {
         NSLog(@"Waiting for replication to finish...");
         [[NSRunLoop currentRunLoop] runMode: NSDefaultRunLoopMode
                                  beforeDate: [NSDate distantFuture]];
     }
     
-    *outError = repl.error;
-    NSLog(@"...Replication finished. Error = %@", repl.error);
+    *outError = repl.lastError;
+    NSLog(@"...Replication finished. Error = %@", repl.lastError);
     if (*outError)
         return NO;
     
