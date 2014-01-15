@@ -63,7 +63,7 @@ NSUInteger sCount;
 }
 
 + (BOOL) uploadAllTo: (NSURL*)upstreamURL error: (NSError**)outError {
-    CBLReplication* repl = [[self database] createPushReplication: upstreamURL];
+    CBLReplication* repl = [[self database] replicationToURL: upstreamURL];
     [repl start];
     while (repl.running) {
         NSLog(@"Waiting for replication to finish...");
