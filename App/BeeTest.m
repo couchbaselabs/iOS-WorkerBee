@@ -149,6 +149,9 @@
             self.status = nil;
         }
         [self addTimestamp: (run ? @"STARTED" : @"STOPPED")];
+        if (!run)
+            [self logFormat: @"(Elapsed time: %.3f sec)",
+             [self.endTime timeIntervalSinceDate: self.startTime]];
         [_delegate beeTest: self isRunning: _running];
         
         if (run)

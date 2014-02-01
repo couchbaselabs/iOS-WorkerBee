@@ -371,10 +371,7 @@
 				CURRENT_PROJECT_VERSION = 200;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\\\\\\\"$(SRCROOT)/Frameworks\\\\\\\"",
-					/Couchbase/DemoApps/WorkerBee,
-					/Couchbase/DemoApps/WorkerBee/Frameworks,
-					"/Couchbase/CouchbaseLite/build/CouchbaseLite/Build/Products/Debug-ios-universal",
+					"$(SRCROOT)/Frameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = App/Prefix.pch;
@@ -397,10 +394,7 @@
 				CURRENT_PROJECT_VERSION = 200;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\\\\\\\"$(SRCROOT)/Frameworks\\\\\\\"",
-					/Couchbase/DemoApps/WorkerBee,
-					/Couchbase/DemoApps/WorkerBee/Frameworks,
-					"/Couchbase/CouchbaseLite/build/CouchbaseLite/Build/Products/Debug-ios-universal",
+					"$(SRCROOT)/Frameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = App/Prefix.pch;
