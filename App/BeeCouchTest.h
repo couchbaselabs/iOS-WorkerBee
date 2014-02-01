@@ -28,4 +28,9 @@
     You can override this method to use a different name. */
 @property (readonly) NSString* databaseName;
 
+/** Deletes the test database. The next call to the .database property will create and return a
+    new, empty CBLDatabase instance.
+    This is useful if you'd like to run several sub-tests, each starting with an empty database. */
+- (void) deleteDatabase;
+
 @end

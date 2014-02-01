@@ -40,13 +40,25 @@
     if (!_createdDatabase) {
         _createdDatabase = YES;
         NSError* error = nil;
-        CBLDatabase* database = [self.manager databaseNamed: self.databaseName error: NULL];
+        CBLDatabase* database = [self.manager existingDatabaseNamed: self.databaseName error: NULL];
         if (database) {
             [database deleteDatabase: &error];
         }
         _database = [_manager databaseNamed: self.databaseName error: &error];
     }
     return _database;
+}
+
+
+- (void) deleteDatabase {
+    if (!_createdDatabase)
+        return;
+    CBLDatabase* database = [self.manager existingDatabaseNamed: self.databaseName error: NULL];
+    if (database) {
+        NSError* error = nil;
+        if (![database deleteDatabase: &error])
+            [self logFormat: @"WARNING: Couldn't delete database: %@", error];
+    }
 }
 
 
