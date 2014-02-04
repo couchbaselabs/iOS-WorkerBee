@@ -10,18 +10,13 @@
 #import <CouchbaseLite/CBLJSON.h>
 
 
-#define kDocumentBatchSize 100
-
-#define kNumberOfDocuments 100
+#define kNumberOfDocuments 1000
 // Multiplier for generating an array with
 // 'kSizeOfDocument' indexes
 #define kSizeofDocument 5000000
 
 
 @implementation PerfTestScenario1
-{
-    int _sequence;
-}
 
 - (void) heartbeat {
     [self logFormat: @"Starting Test"];
@@ -30,8 +25,7 @@
     
     NSString *value = @"1234567";
     
-    NSMutableArray *bigObj = [NSMutableArray arrayWithObjects:nil];
-    
+    NSMutableArray *bigObj = [[NSMutableArray alloc] init];
     for (int i = 0; i < kSizeofDocument; i++) {
             [bigObj addObject:value];
     }
@@ -40,11 +34,13 @@
     
     [self.database inTransaction:^BOOL{
         for (int j = 0; j < kNumberOfDocuments; j++) {
-            CBLDocument* doc = [self.database createDocument];
-            NSError* error;
-            if (![doc putProperties: props error: &error]) {
-                [self logFormat: @"!!! Failed to create doc %@", props];
-                self.error = error;
+            @autoreleasepool {
+                CBLDocument* doc = [self.database createDocument];
+                NSError* error;
+                if (![doc putProperties: props error: &error]) {
+                    [self logFormat: @"!!! Failed to create doc %@", props];
+                    self.error = error;
+                }
             }
         }
         return YES;
@@ -59,7 +55,6 @@
 
 - (void) setUp {
     [super setUp];
-    _sequence = 0;
     self.heartbeatInterval = 1.0;
 }
 
