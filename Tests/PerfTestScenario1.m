@@ -10,10 +10,21 @@
 #import <CouchbaseLite/CBLJSON.h>
 
 
-#define kNumberOfDocuments 1000
+//#define kNumberOfDocuments 10
+//#define kNumberOfDocuments 100
+//#define kNumberOfDocuments 1000
+//#define kNumberOfDocuments 10000
+#define kNumberOfDocuments 50000
+//#define kNumberOfDocuments 100000
 // Multiplier for generating an array with
 // 'kSizeOfDocument' indexes
-#define kSizeofDocument 5000000
+//#define kSizeofDocument 50
+//#define kSizeofDocument 100
+//#define kSizeofDocument 1000
+#define kSizeofDocument 10000
+//#define kSizeofDocument 100000
+//#define kSizeofDocument 1000000
+//#define kSizeofDocument 5000000
 
 
 @implementation PerfTestScenario1
@@ -21,7 +32,7 @@
 - (void) heartbeat {
     [self logFormat: @"Starting Test"];
     
-    NSDate *start = [NSDate date];
+   
     
     NSString *value = @"1234567";
     
@@ -31,6 +42,8 @@
     }
     
     NSDictionary* props = @{@"bigArray": bigObj};
+    
+    NSDate *start = [NSDate date];
     
     [self.database inTransaction:^BOOL{
         for (int j = 0; j < kNumberOfDocuments; j++) {
