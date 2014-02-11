@@ -52,7 +52,7 @@
             if (class_getClassMethod(c, @selector(isSubclassOfClass:)) 
                     && [c isSubclassOfClass: self]
                     && ![c isAbstractTest]) {
-                NSLog(@"BeeTets: Found test class %@", classes[i]);
+                NSLog(@"BeeTest: Found test class %@", classes[i]);
                 [testClasses addObject: classes[i]];
             }
         }
@@ -203,7 +203,7 @@
 }
 
 
-#pragma - HEARTBEAT:
+#pragma mark - HEARTBEAT:
 
 - (NSTimeInterval) heartbeatInterval {
     return _heartbeat ? [_heartbeat timeInterval] : 0.0;
@@ -254,7 +254,7 @@
     if (written < 0)
         NSLog(@"ERROR: Can't write to log: %@", _output.streamError);
     else
-        NSAssert(written == data.length, @"Only wrote %i bytes of %u", written, data.length);
+        NSAssert(written == data.length, @"Only wrote %ld bytes of %lu", (long)written, (unsigned long)data.length);
     [_output write: (const uint8_t*)"\n" maxLength: 1];
 }
 

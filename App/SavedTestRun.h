@@ -27,4 +27,6 @@
 @property (copy) NSString* error;
 @property (copy) NSString* log;
 
++ (NSDictionary*) deviceInfo;
+
 @end

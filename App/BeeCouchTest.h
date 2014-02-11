@@ -15,7 +15,7 @@
 
 #pragma mark For subclasses to call:
 
-/** The embedded TouchDB server. */
+/** The top-level Couchbase Lite object. */
 @property (readonly) CBLManager* manager;
 
 /** A database to use for your test.

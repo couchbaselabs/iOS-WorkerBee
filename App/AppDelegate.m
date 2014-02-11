@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "SavedTestRun.h"
 #import "CouchbaseStartupTest.h"
 
 
@@ -18,7 +19,8 @@
 - (BOOL)application:(UIApplication *)application
         didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    NSLog(@"------ application:didFinishLaunchingWithOptions:");
+    NSLog(@"Device info: %@", [SavedTestRun deviceInfo]);
+    
     [_window addSubview:_navController.view];
     [_window makeKeyAndVisible];
     
