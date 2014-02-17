@@ -8,7 +8,12 @@
 
 #import "BeeCouchTest.h"
 
-@interface PerfTestScenario8 : BeeCouchTest
+/*
+ Test Definition: Test Doc revision performance by updating a value n times
+ */
+
+
+@interface Test8_DocRevisions : BeeCouchTest
 
 @property NSMutableArray *docs;
 

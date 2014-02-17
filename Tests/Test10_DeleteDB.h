@@ -1,5 +1,5 @@
 //
-//  PerfTestScenario9.h
+//  PerfTestScenario10.h
 //  Worker Bee
 //
 //  Created by Ashvinder Singh on 2/14/14.
@@ -8,7 +8,12 @@
 
 #import "BeeCouchTest.h"
 
-@interface PerfTestScenario9 : BeeCouchTest
+/*
+ Test Definition: Test how much time it takes to delete a database
+ */
+
+
+@interface Test10_DeleteDB : BeeCouchTest
 
 @property NSString *dbname;
 

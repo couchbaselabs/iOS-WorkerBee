@@ -8,41 +8,42 @@
 
 #import <malloc/malloc.h>
 #import <CouchbaseLite/CBLJSON.h>
-#import "PerfTestScenario8.h"
+#import "Test8_DocRevisions.h"
 
 #define kNumberOfDocuments 1
 #define kNumberOfUpdates 10
 
-@implementation PerfTestScenario8
+@implementation Test8_DocRevisions
 
 - (void) heartbeat {
     [self logFormat: @"Starting Test"];
     
     // Start measuring time from here
      NSDate *start = [NSDate date];
-    
-    for (CBLDocument *doc in self.docs) {
-        
-        @autoreleasepool {
+
+        for (CBLDocument *doc in self.docs) {
             
-            for (int i = 0; i < kNumberOfUpdates; i++) {
+            @autoreleasepool {
+            
+                for (int i = 0; i < kNumberOfUpdates; i++) {
                 
-                // copy the document
-                NSMutableDictionary *contents = [doc.properties mutableCopy];
+                    // copy the document
+                    NSMutableDictionary *contents = [doc.properties mutableCopy];
                 
-                // toggle value of check property
-                BOOL wasChecked = [[contents valueForKey: @"toogle"] boolValue];
-                [contents setObject: [NSNumber numberWithBool: !wasChecked] forKey: @"toogle"];
+                    // toggle value of check property
+                    BOOL wasChecked = [[contents valueForKey: @"toggle"] boolValue];
+                    [contents setObject: [NSNumber numberWithBool: !wasChecked] forKey: @"toggle"];
                 
-                // save the updated document
-                NSError* error;
-                if (![doc putProperties: contents error: &error]) {
-                    [self logFormat: @"!!! Failed to Update doc"];
-                    self.error = error;
+                    // save the updated document
+                    NSError* error;
+                    if (![doc putProperties: contents error: &error]) {
+                        [self logFormat: @"!!! Failed to Update doc"];
+                        self.error = error;
+                    }
                 }
             }
         }
-    }
+        
     NSDate *methodFinish = [NSDate date];
     NSTimeInterval executionTime = [methodFinish timeIntervalSinceDate:start];
     [self logFormat:@"Total Time Taken: %f",executionTime];

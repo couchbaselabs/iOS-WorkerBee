@@ -8,7 +8,12 @@
 
 #import "BeeCouchTest.h"
 
-@interface PerfTestScenario7 : BeeCouchTest
+/*
+ Test Definition: Test Pull replication
+ */
+
+
+@interface Test7_PullReplication : BeeCouchTest
 
 @property  CBLReplication *pull;
 

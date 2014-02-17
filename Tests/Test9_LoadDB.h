@@ -1,5 +1,5 @@
 //
-//  PerfTestScenario10.h
+//  PerfTestScenario9.h
 //  Worker Bee
 //
 //  Created by Ashvinder Singh on 2/14/14.
@@ -8,7 +8,12 @@
 
 #import "BeeCouchTest.h"
 
-@interface PerfTestScenario10 : BeeCouchTest
+/*
+ Test Definition: Test how much time it takes to load a database
+ */
+
+
+@interface Test9_LoadDB : BeeCouchTest
 
 @property NSString *dbname;
 

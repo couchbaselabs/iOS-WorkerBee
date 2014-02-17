@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Couchbase, Inc. All rights reserved.
 //
 #import <malloc/malloc.h>
-#import "PerfTestScenario7.h"
+#import "Test7_PullReplication.h"
 #import <CouchbaseLite/CouchbaseLite.h>
 
 
@@ -14,13 +14,8 @@
 // size in bytes
 #define kSizeofDocument 10
 
-@implementation PerfTestScenario7
+@implementation Test7_PullReplication
 
-- (void) heartbeat {
-    
-    [self logFormat: @"heartbeat"];
-    
-}
 
 - (void) replicationChanged: (NSNotificationCenter*)n {
     
@@ -49,7 +44,6 @@
 
 - (void) setUp {
     [super setUp];
-    self.heartbeatInterval = 1.0;
     
     NSMutableString *str = [[NSMutableString alloc] init];
     

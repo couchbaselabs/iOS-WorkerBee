@@ -8,7 +8,12 @@
 
 #import "BeeCouchTest.h"
 
-@interface PerfTestScenario11 : BeeCouchTest
+/*
+ Test Definition: Test how much time it takes to delete a (set) of documents
+ */
+
+
+@interface Test11_DeleteDocs : BeeCouchTest
 
 @property NSMutableArray *docs;
 

@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Couchbase, Inc. All rights reserved.
 //
 #import <malloc/malloc.h>
-#import "PerfTestScenario2.h"
+#import "Test3_CreateDocsWithAttachments.h"
 #import <CouchbaseLite/CouchbaseLite.h>
 
 // In Bytes
@@ -19,7 +19,7 @@
 //#define kSizeOfAttachment  50000000
 
 
-@implementation PerfTestScenario2
+@implementation Test3_CreateDocsWithAttachments
 
 
 - (void) heartbeat {

@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Couchbase, Inc. All rights reserved.
 //
 #import <malloc/malloc.h>
-#import "PerfTestScenario3.h"
+#import "Test2_CreateDocsUnoptimizedWay.h"
 #import <CouchbaseLite/CBLJSON.h>
 
 #define kNumberOfDocuments 10
@@ -15,7 +15,7 @@
 // 'kSizeOfDocument' indexes
 #define kSizeofDocument 50
 
-@implementation PerfTestScenario3
+@implementation Test2_CreateDocsUnoptimizedWay
 
 - (void) heartbeat {
     [self logFormat: @"Starting Test"];
