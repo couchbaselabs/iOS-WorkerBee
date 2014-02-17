@@ -10,9 +10,9 @@
 #import "Test6_PushReplication.h"
 #import <CouchbaseLite/CouchbaseLite.h>
 
-#define kNumberOfDocuments 1
+#define kNumberOfDocuments 100
 // size in bytes
-#define kSizeofDocument 10
+#define kSizeofDocument 100000
 
 
 @implementation Test6_PushReplication
@@ -54,18 +54,22 @@
     
     NSDictionary* props = @{@"k": str};
     
-    for (int j = 0; j < kNumberOfDocuments; j++) {
-        @autoreleasepool {
-            CBLDocument* doc = [self.database createDocument];
-            NSError* error;
-            if (![doc putProperties: props error: &error]) {
-                [self logFormat: @"!!! Failed to create doc %@", props];
-                self.error = error;
+    [self.database inTransaction:^BOOL{
+        for (int j = 0; j < kNumberOfDocuments; j++) {
+            @autoreleasepool {
+                CBLDocument* doc = [self.database createDocument];
+                NSError* error;
+                if (![doc putProperties: props error: &error]) {
+                    [self logFormat: @"!!! Failed to create doc %@", props];
+                    self.error = error;
+                }
             }
         }
-    }
+        return YES;
+    }];
+
     
-    NSURL *syncGateway  = [NSURL URLWithString:@"http://10.17.23.126:4985/sync_gateway"];
+    NSURL *syncGateway  = [NSURL URLWithString:@"http://10.0.1.10:4985/sync_gateway"];
     
     self.push = [self.database replicationToURL: syncGateway];
     self.push.persistent = NO;

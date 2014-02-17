@@ -10,9 +10,9 @@
 #import <CouchbaseLite/CouchbaseLite.h>
 
 
-#define kNumberOfDocuments 1
+#define kNumberOfDocuments 100
 // size in bytes
-#define kSizeofDocument 10
+#define kSizeofDocument 100000
 
 @implementation Test7_PullReplication
 
@@ -45,14 +45,14 @@
 - (void) setUp {
     [super setUp];
     
-    NSMutableString *str = [[NSMutableString alloc] init];
+    //NSMutableString *str = [[NSMutableString alloc] init];
     
-    for (int i = 0; i < kSizeofDocument; i++) {
-        [str appendString:@"1"];
-    }
+    //for (int i = 0; i < kSizeofDocument; i++) {
+    //    [str appendString:@"1"];
+    //}
     
-    NSDictionary* props = @{@"k": str};
-    
+    //NSDictionary* props = @{@"k": str};
+    /*
     for (int j = 0; j < kNumberOfDocuments; j++) {
         @autoreleasepool {
             CBLDocument* doc = [self.database createDocument];
@@ -63,8 +63,9 @@
             }
         }
     }
+     */
     
-    NSURL *syncGateway  = [NSURL URLWithString:@"http://10.17.23.126:4985/sync_gateway"];
+    NSURL *syncGateway  = [NSURL URLWithString:@"http://10.0.1.10:4985/sync_gateway"];
     
     self.pull = [self.database replicationFromURL: syncGateway];
     self.pull.persistent = NO;
