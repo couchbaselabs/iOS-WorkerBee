@@ -10,10 +10,10 @@
 #import <malloc/malloc.h>
 #import <CouchbaseLite/CouchbaseLite.h>
 
-#define kNumberOfDocuments 100
+#define kNumberOfDocuments 10000
 // size in bytes
-#define kSizeofDocument 10
-#define kNumberOfDeletes 100
+#define kSizeofDocument 1000
+#define kNumberOfDeletes 10
 
 @implementation Test11_DeleteDocs
 
@@ -22,12 +22,11 @@
     
     // Start measuring time from here
     NSDate *start = [NSDate date];
-    
-    [self.database inTransaction:^BOOL{
+    int i = 0;
+    //[self.database inTransaction:^BOOL{
         for (CBLDocument *doc in self.docs) {
             @autoreleasepool {
-                for (int i = 0; i < kNumberOfDeletes; i++) {
-                                
+                if (i < kNumberOfDeletes) {
                     // delete document
                     NSError* error;
                     if (![doc deleteDocument: &error]) {
@@ -35,10 +34,11 @@
                         self.error = error;
                     }
                 }
+                i++;
             }
         }
-        return YES;
-    }];
+      //  return YES;
+    //}];
     
     NSDate *methodFinish = [NSDate date];
     NSTimeInterval executionTime = [methodFinish timeIntervalSinceDate:start];
@@ -49,6 +49,7 @@
 
 - (void) setUp {
     [super setUp];
+    [self logFormat: @"Starting Setup"];
     self.heartbeatInterval = 1.0;
      self.docs = [[NSMutableArray alloc] init];
     
@@ -73,6 +74,9 @@
         }
         return YES;
     }];
+    
+    [self logFormat: @"Finished Setup"];
+    
 }
 
 
