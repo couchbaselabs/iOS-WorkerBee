@@ -28,27 +28,42 @@
         id v = [doc objectForKey: @"vacant"];
         id name = [doc objectForKey: @"name"];
         if (v && name) emit(name, v);
-     }) version: @"2"];
+     }) reduceBlock: REDUCEBLOCK({return [CBLView totalValues:values];})
+        version: @"2"];
     
+    NSDate *methodFinish = [NSDate date];
+    NSTimeInterval executionTime = [methodFinish timeIntervalSinceDate:start];
+    [self logFormat:@"Total Time Taken For Indexing: %f",executionTime];
  
+    start = [NSDate date];
+    
     CBLQuery* query = [[self.database viewNamed: @"vacant"] createQuery];
     query.descending = NO;
-    //query.limit = 50;
+    query.mapOnly = YES;
     
     NSError *error;
     CBLQueryEnumerator *rowEnum = [query run: &error];
     for (CBLQueryRow* row in rowEnum) {
-        [self logFormat: @"name: %@, Vacant: %@",row.key, row.value];
-        //NSLog(@"name = %@ value = %@", row.key, row.value);
+        //[self logFormat: @"name: %@, Vacant: %@",row.key, row.value];
     }
-    
-    NSDate *methodFinish = [NSDate date];
-    NSTimeInterval executionTime = [methodFinish timeIntervalSinceDate:start];
-    [self logFormat:@"Total Time Taken: %f",executionTime];
 
+    methodFinish = [NSDate date];
+    executionTime = [methodFinish timeIntervalSinceDate:start];
+    [self logFormat:@"Total Time For Query: %f",executionTime];
     
     [view deleteIndex];
-    [view deleteView];
+
+    // Start measuring time for reduce query from here
+    start = [NSDate date];
+    
+    query = [[self.database viewNamed: @"vacant"] createQuery];
+    query.mapOnly = NO;
+    rowEnum = [query run: &error];
+    CBLQueryRow *row = [rowEnum rowAtIndex:0];
+    methodFinish = [NSDate date];
+    
+    [self logFormat: @"Vacant: %@",row.value ];
+    [self logFormat:@"Total Time For Reduce query: %f",executionTime];
     
     [self logFormat: @"Finished Test"];
     self.running = NO;
@@ -81,6 +96,7 @@ Vacant: YES / NO
             if (![doc putProperties: props error: &error]) {
                 [self logFormat: @"!!! Failed to create doc %@", props];
                 self.error = error;
+                return NO;
             }
         }
         return YES;
