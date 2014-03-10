@@ -12,16 +12,17 @@
 
 //#define kNumberOfDocuments 10
 //#define kNumberOfDocuments 100
-//#define kNumberOfDocuments 1000
+#define kNumberOfDocuments 1000
 //#define kNumberOfDocuments 10000
-#define kNumberOfDocuments 50000
+//#define kNumberOfDocuments 50000
 //#define kNumberOfDocuments 100000
+
 // Multiplier for generating an array with
 // 'kSizeOfDocument' indexes
-//#define kSizeofDocument 50
+#define kSizeofDocument 50
 //#define kSizeofDocument 100
 //#define kSizeofDocument 1000
-#define kSizeofDocument 10000
+//#define kSizeofDocument 10000
 //#define kSizeofDocument 100000
 //#define kSizeofDocument 1000000
 //#define kSizeofDocument 5000000

@@ -49,6 +49,8 @@
 		BF12A5FF18AED3F800997DC4 /* Test9_LoadDB.m in Sources */ = {isa = PBXBuildFile; fileRef = BF12A5F418AED3F800997DC4 /* Test9_LoadDB.m */; };
 		BF12A60018AED3F800997DC4 /* Test10_DeleteDB.m in Sources */ = {isa = PBXBuildFile; fileRef = BF12A5F618AED3F800997DC4 /* Test10_DeleteDB.m */; };
 		BF12A60118AED3F800997DC4 /* Test11_DeleteDocs.m in Sources */ = {isa = PBXBuildFile; fileRef = BF12A5F818AED3F800997DC4 /* Test11_DeleteDocs.m */; };
+		BFA9350018C92E9C00680E5E /* Test12_QueryView.m in Sources */ = {isa = PBXBuildFile; fileRef = BFA934FF18C92E9C00680E5E /* Test12_QueryView.m */; };
+		BFA9350618CD965700680E5E /* Test13_ReduceQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = BFA9350518CD965700680E5E /* Test13_ReduceQuery.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -118,6 +120,10 @@
 		BF12A5F618AED3F800997DC4 /* Test10_DeleteDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test10_DeleteDB.m; sourceTree = "<group>"; };
 		BF12A5F718AED3F800997DC4 /* Test11_DeleteDocs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test11_DeleteDocs.h; sourceTree = "<group>"; };
 		BF12A5F818AED3F800997DC4 /* Test11_DeleteDocs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test11_DeleteDocs.m; sourceTree = "<group>"; };
+		BFA934FE18C92E9C00680E5E /* Test12_QueryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test12_QueryView.h; sourceTree = "<group>"; };
+		BFA934FF18C92E9C00680E5E /* Test12_QueryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test12_QueryView.m; sourceTree = "<group>"; };
+		BFA9350418CD965700680E5E /* Test13_ReduceQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test13_ReduceQuery.h; sourceTree = "<group>"; };
+		BFA9350518CD965700680E5E /* Test13_ReduceQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test13_ReduceQuery.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -253,6 +259,10 @@
 				BF12A5F618AED3F800997DC4 /* Test10_DeleteDB.m */,
 				BF12A5F718AED3F800997DC4 /* Test11_DeleteDocs.h */,
 				BF12A5F818AED3F800997DC4 /* Test11_DeleteDocs.m */,
+				BFA934FE18C92E9C00680E5E /* Test12_QueryView.h */,
+				BFA934FF18C92E9C00680E5E /* Test12_QueryView.m */,
+				BFA9350418CD965700680E5E /* Test13_ReduceQuery.h */,
+				BFA9350518CD965700680E5E /* Test13_ReduceQuery.m */,
 				27CB656B143B9EB800EEA1F2 /* CountTest.h */,
 				27CB656C143B9EB800EEA1F2 /* CountTest.m */,
 				27A0748A143CDE6B0043BEB6 /* CreateDocsTest.h */,
@@ -289,7 +299,7 @@
 		27B28F9814314FB800B86F18 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Couchbase, Inc.";
 				TargetAttributes = {
 					27B28FA014314FB800B86F18 = {
@@ -350,12 +360,14 @@
 				27CB656D143B9EB900EEA1F2 /* CountTest.m in Sources */,
 				BF12A5FE18AED3F800997DC4 /* Test8_DocRevisions.m in Sources */,
 				BF12A5FC18AED3F800997DC4 /* Test6_PushReplication.m in Sources */,
+				BFA9350618CD965700680E5E /* Test13_ReduceQuery.m in Sources */,
 				BF12A5FB18AED3F800997DC4 /* Test2_CreateDocsUnoptimizedWay.m in Sources */,
 				27CB6576143BAA2F00EEA1F2 /* BeeTestController.m in Sources */,
 				BF12A5FF18AED3F800997DC4 /* Test9_LoadDB.m in Sources */,
 				27A07488143CCDCD0043BEB6 /* BeeCouchTest.m in Sources */,
 				27A0748C143CDE6B0043BEB6 /* CreateDocsTest.m in Sources */,
 				BF12A60118AED3F800997DC4 /* Test11_DeleteDocs.m in Sources */,
+				BFA9350018C92E9C00680E5E /* Test12_QueryView.m in Sources */,
 				270EA1ED1443C1AD0000AEA9 /* SavedTestRun.m in Sources */,
 				27170A4B1444E4020049E6E4 /* CouchbaseStartupTest.m in Sources */,
 				BF12A5FD18AED3F800997DC4 /* Test7_PullReplication.m in Sources */,
@@ -380,8 +392,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD)";
+				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -394,10 +407,15 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WARNING_CFLAGS = "-Wall";
@@ -408,15 +426,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD)";
+				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";

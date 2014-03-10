@@ -10,7 +10,7 @@
 #import "Test6_PushReplication.h"
 #import <CouchbaseLite/CouchbaseLite.h>
 
-#define kNumberOfDocuments 50000
+#define kNumberOfDocuments 25000
 // size in bytes
 #define kSizeofDocument 10000
 
@@ -69,7 +69,7 @@
     }];
 
     
-    NSURL *syncGateway  = [NSURL URLWithString:@"http://10.17.24.121:4985/sync_gateway"];
+    NSURL *syncGateway  = [NSURL URLWithString:@"http://10.0.1.10:4985/sync_gateway"];
     
     self.push = [self.database replicationToURL: syncGateway];
     self.push.persistent = NO;

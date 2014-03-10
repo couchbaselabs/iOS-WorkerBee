@@ -31,21 +31,17 @@
     }) reduceBlock: REDUCEBLOCK({return [CBLView totalValues:values];})
               version: @"2"];
     
-    
     CBLQuery* query = [[self.database viewNamed: @"vacant"] createQuery];
     query.descending = NO;
     
     NSError *error;
     CBLQueryEnumerator *rowEnum = [query run: &error];
-    for (CBLQueryRow* row in rowEnum) {
-        [self logFormat: @"Vacant: %@",row.value];
-        //NSLog(@"name = %@ value = %@", row.key, row.value);
-    }
+    CBLQueryRow *row = [rowEnum rowAtIndex:0];
+    [self logFormat: @"Vacant: %@",row.value ];
     
     NSDate *methodFinish = [NSDate date];
     NSTimeInterval executionTime = [methodFinish timeIntervalSinceDate:start];
-    [self logFormat:@"Total Time Taken: %f",executionTime];
-    
+    [self logFormat:@"Total Time For Query View: %f",executionTime];
     
     [view deleteIndex];
     [view deleteView];
@@ -80,6 +76,7 @@
             if (![doc putProperties: props error: &error]) {
                 [self logFormat: @"!!! Failed to create doc %@", props];
                 self.error = error;
+                return NO;
             }
         }
         return YES;

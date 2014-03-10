@@ -12,7 +12,7 @@
 
 #define kNumberOfDocuments 1
 // size in bytes
-#define kSizeofDocument 10
+#define kSizeofDocument 50000000
 #define kShutAndReloadDatbase 1
 
 
