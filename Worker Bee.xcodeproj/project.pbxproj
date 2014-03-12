@@ -11,8 +11,6 @@
 		27170A4B1444E4020049E6E4 /* CouchbaseStartupTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 27170A4A1444E4020049E6E4 /* CouchbaseStartupTest.m */; };
 		27170A531445076C0049E6E4 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 27170A521445076C0049E6E4 /* Default.png */; };
 		2728F63617B3045400E929FD /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2728F63517B3045400E929FD /* CFNetwork.framework */; };
-		2728F63817B3080300E929FD /* CouchbaseLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2728F63717B3080300E929FD /* CouchbaseLite.framework */; };
-		27840B1B18045B48005B9F62 /* CouchbaseLiteListener.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27840B1A18045B48005B9F62 /* CouchbaseLiteListener.framework */; };
 		279B52F8159D3675003C95F9 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 279B52F7159D3675003C95F9 /* libsqlite3.dylib */; };
 		279B52FA159D367E003C95F9 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 279B52F9159D367E003C95F9 /* SystemConfiguration.framework */; };
 		27A07488143CCDCD0043BEB6 /* BeeCouchTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A07487143CCDCD0043BEB6 /* BeeCouchTest.m */; };
@@ -50,7 +48,6 @@
 		BF12A60018AED3F800997DC4 /* Test10_DeleteDB.m in Sources */ = {isa = PBXBuildFile; fileRef = BF12A5F618AED3F800997DC4 /* Test10_DeleteDB.m */; };
 		BF12A60118AED3F800997DC4 /* Test11_DeleteDocs.m in Sources */ = {isa = PBXBuildFile; fileRef = BF12A5F818AED3F800997DC4 /* Test11_DeleteDocs.m */; };
 		BFA9350018C92E9C00680E5E /* Test12_QueryView.m in Sources */ = {isa = PBXBuildFile; fileRef = BFA934FF18C92E9C00680E5E /* Test12_QueryView.m */; };
-		BFA9350618CD965700680E5E /* Test13_ReduceQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = BFA9350518CD965700680E5E /* Test13_ReduceQuery.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,8 +57,6 @@
 		27170A4A1444E4020049E6E4 /* CouchbaseStartupTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouchbaseStartupTest.m; sourceTree = "<group>"; };
 		27170A521445076C0049E6E4 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
 		2728F63517B3045400E929FD /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
-		2728F63717B3080300E929FD /* CouchbaseLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CouchbaseLite.framework; path = Frameworks/CouchbaseLite.framework; sourceTree = "<group>"; };
-		27840B1A18045B48005B9F62 /* CouchbaseLiteListener.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CouchbaseLiteListener.framework; path = Frameworks/CouchbaseLiteListener.framework; sourceTree = "<group>"; };
 		279B52F7159D3675003C95F9 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		279B52F9159D367E003C95F9 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		27A07486143CCDCD0043BEB6 /* BeeCouchTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeeCouchTest.h; sourceTree = "<group>"; };
@@ -122,8 +117,6 @@
 		BF12A5F818AED3F800997DC4 /* Test11_DeleteDocs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test11_DeleteDocs.m; sourceTree = "<group>"; };
 		BFA934FE18C92E9C00680E5E /* Test12_QueryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test12_QueryView.h; sourceTree = "<group>"; };
 		BFA934FF18C92E9C00680E5E /* Test12_QueryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test12_QueryView.m; sourceTree = "<group>"; };
-		BFA9350418CD965700680E5E /* Test13_ReduceQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test13_ReduceQuery.h; sourceTree = "<group>"; };
-		BFA9350518CD965700680E5E /* Test13_ReduceQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test13_ReduceQuery.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,9 +129,7 @@
 				279B52FA159D367E003C95F9 /* SystemConfiguration.framework in Frameworks */,
 				279B52F8159D3675003C95F9 /* libsqlite3.dylib in Frameworks */,
 				27B28FA614314FB800B86F18 /* UIKit.framework in Frameworks */,
-				2728F63817B3080300E929FD /* CouchbaseLite.framework in Frameworks */,
 				27B28FA814314FB800B86F18 /* Foundation.framework in Frameworks */,
-				27840B1B18045B48005B9F62 /* CouchbaseLiteListener.framework in Frameworks */,
 				27B28FAA14314FB800B86F18 /* CoreGraphics.framework in Frameworks */,
 				27B28FDF1431549200B86F18 /* Security.framework in Frameworks */,
 				BF12A5E518AEB09100997DC4 /* CouchbaseLite.framework in Frameworks */,
@@ -186,10 +177,8 @@
 		27B28FA414314FB800B86F18 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				2728F63717B3080300E929FD /* CouchbaseLite.framework */,
 				BF12A5E318AEB09100997DC4 /* CouchbaseLite.framework */,
 				BF12A5E418AEB09100997DC4 /* CouchbaseLiteListener.framework */,
-				27840B1A18045B48005B9F62 /* CouchbaseLiteListener.framework */,
 				2728F63517B3045400E929FD /* CFNetwork.framework */,
 				27B28FA514314FB800B86F18 /* UIKit.framework */,
 				27B28FA714314FB800B86F18 /* Foundation.framework */,
@@ -261,8 +250,6 @@
 				BF12A5F818AED3F800997DC4 /* Test11_DeleteDocs.m */,
 				BFA934FE18C92E9C00680E5E /* Test12_QueryView.h */,
 				BFA934FF18C92E9C00680E5E /* Test12_QueryView.m */,
-				BFA9350418CD965700680E5E /* Test13_ReduceQuery.h */,
-				BFA9350518CD965700680E5E /* Test13_ReduceQuery.m */,
 				27CB656B143B9EB800EEA1F2 /* CountTest.h */,
 				27CB656C143B9EB800EEA1F2 /* CountTest.m */,
 				27A0748A143CDE6B0043BEB6 /* CreateDocsTest.h */,
@@ -360,7 +347,6 @@
 				27CB656D143B9EB900EEA1F2 /* CountTest.m in Sources */,
 				BF12A5FE18AED3F800997DC4 /* Test8_DocRevisions.m in Sources */,
 				BF12A5FC18AED3F800997DC4 /* Test6_PushReplication.m in Sources */,
-				BFA9350618CD965700680E5E /* Test13_ReduceQuery.m in Sources */,
 				BF12A5FB18AED3F800997DC4 /* Test2_CreateDocsUnoptimizedWay.m in Sources */,
 				27CB6576143BAA2F00EEA1F2 /* BeeTestController.m in Sources */,
 				BF12A5FF18AED3F800997DC4 /* Test9_LoadDB.m in Sources */,

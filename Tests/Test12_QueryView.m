@@ -10,8 +10,11 @@
 #import <malloc/malloc.h>
 #import <CouchbaseLite/CouchbaseLite.h>
 
+@interface CBLView (Internal)
+- (int) updateIndex;
+@end
 
-#define kNumberOfDocuments 1000
+#define kNumberOfDocuments 10000
 
 
 @implementation Test12_QueryView
@@ -29,7 +32,9 @@
         id name = [doc objectForKey: @"name"];
         if (v && name) emit(name, v);
      }) reduceBlock: REDUCEBLOCK({return [CBLView totalValues:values];})
-        version: @"2"];
+        version: @"3"];
+    
+    [view updateIndex];
     
     NSDate *methodFinish = [NSDate date];
     NSTimeInterval executionTime = [methodFinish timeIntervalSinceDate:start];
@@ -41,18 +46,21 @@
     query.descending = NO;
     query.mapOnly = YES;
     
+    NSString *key = [[NSString alloc] init];
+    NSString *value = [[NSString alloc] init];
     NSError *error;
     CBLQueryEnumerator *rowEnum = [query run: &error];
     for (CBLQueryRow* row in rowEnum) {
-        //[self logFormat: @"name: %@, Vacant: %@",row.key, row.value];
+        @autoreleasepool {
+            key = row.key;
+            value = row.value;
+        }
     }
 
     methodFinish = [NSDate date];
     executionTime = [methodFinish timeIntervalSinceDate:start];
     [self logFormat:@"Total Time For Query: %f",executionTime];
     
-    [view deleteIndex];
-
     // Start measuring time for reduce query from here
     start = [NSDate date];
     
