@@ -6,28 +6,29 @@
 //  Copyright (c) 2014 Couchbase, Inc. All rights reserved.
 //
 #import <malloc/malloc.h>
-#import "PerfTestScenario1.h"
+#import "Test1_CreateDocs.h"
 #import <CouchbaseLite/CBLJSON.h>
 
 
 //#define kNumberOfDocuments 10
 //#define kNumberOfDocuments 100
-//#define kNumberOfDocuments 1000
+#define kNumberOfDocuments 1000
 //#define kNumberOfDocuments 10000
-#define kNumberOfDocuments 50000
+//#define kNumberOfDocuments 50000
 //#define kNumberOfDocuments 100000
+
 // Multiplier for generating an array with
 // 'kSizeOfDocument' indexes
-//#define kSizeofDocument 50
+#define kSizeofDocument 50
 //#define kSizeofDocument 100
 //#define kSizeofDocument 1000
-#define kSizeofDocument 10000
+//#define kSizeofDocument 10000
 //#define kSizeofDocument 100000
 //#define kSizeofDocument 1000000
 //#define kSizeofDocument 5000000
 
 
-@implementation PerfTestScenario1
+@implementation Test1_CreateDocs
 
 - (void) heartbeat {
     [self logFormat: @"Starting Test"];

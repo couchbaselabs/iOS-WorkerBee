@@ -8,8 +8,11 @@
 
 #import "BeeCouchTest.h"
 
+/*
+Test Definition: Create Documents with different size of Binary attachments.
+*/
 
-@interface PerfTestScenario2 : BeeCouchTest
+@interface Test3_CreateDocsWithAttachments : BeeCouchTest
 
 
 @end

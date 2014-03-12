@@ -38,7 +38,7 @@ NSUInteger sCount;
 
 - (void) recordTest: (BeeTest*)test {
     self.device = [[self class] deviceInfo];
-    self.serverVersion = CBLVersion();
+    self.serverVersion = CBLVersionString();
     self.testName = [[test class] testName];
     self.startTime = test.startTime;
     self.endTime = test.endTime;

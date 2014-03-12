@@ -6,27 +6,27 @@
 //  Copyright (c) 2014 Couchbase, Inc. All rights reserved.
 //
 #import <malloc/malloc.h>
-#import "PerfTestScenario2.h"
+#import "Test3_CreateDocsWithAttachments.h"
 #import <CouchbaseLite/CouchbaseLite.h>
 
 // In Bytes
 //#define kSizeOfAttachment  500
 //#define kSizeOfAttachment  1000
 //#define kSizeOfAttachment  10000
-#define kSizeOfAttachment  100000
+#define kSizeOfAttachment  1000
 //#define kSizeOfAttachment  1000000
 //#define kSizeOfAttachment  10000000
 //#define kSizeOfAttachment  50000000
 
 
-@implementation PerfTestScenario2
+@implementation Test3_CreateDocsWithAttachments
 
 
 - (void) heartbeat {
     
     //int aNumberOfDocs[6] = {10,100,1000,10000,50000,100000};
     //int aNumberOfDocs[3] = {10,100,1000};
-    int aNumberOfDocs[1] = {10000};
+    int aNumberOfDocs[1] = {10};
     
     NSMutableString *str = [NSMutableString stringWithCapacity:100];
     for (int i = 0; i< kSizeOfAttachment; i++) {
