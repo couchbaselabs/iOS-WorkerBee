@@ -66,7 +66,7 @@
     
     
     NSUInteger bytes = [str lengthOfBytesUsingEncoding:NSUTF8StringEncoding];
-    [self logFormat:@"%i bytes", bytes];
+    [self logFormat:@"%lu bytes", (unsigned long)bytes];
     
     NSNumber *flag = @YES;
     

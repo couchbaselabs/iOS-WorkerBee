@@ -38,7 +38,7 @@ NSUInteger sCount;
 
 - (void) recordTest: (BeeTest*)test {
     self.device = [[self class] deviceInfo];
-    self.serverVersion = CBLVersionString();
+    self.serverVersion = CBLVersion();
     self.testName = [[test class] testName];
     self.startTime = test.startTime;
     self.endTime = test.endTime;
@@ -64,7 +64,7 @@ NSUInteger sCount;
 }
 
 + (BOOL) uploadAllTo: (NSURL*)upstreamURL error: (NSError**)outError {
-    CBLReplication* repl = [[self database] replicationToURL: upstreamURL];
+    CBLReplication* repl = [[self database] createPushReplication: upstreamURL];
     [repl start];
     while (repl.running) {
         NSLog(@"Waiting for replication to finish...");

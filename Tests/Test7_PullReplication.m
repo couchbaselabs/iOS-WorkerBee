@@ -15,6 +15,9 @@
 #define kSizeofDocument 100000
 
 @implementation Test7_PullReplication
+{
+    NSDate* _pullStartTime;
+}
 
 
 - (void) replicationChanged: (NSNotificationCenter*)n {
@@ -47,13 +50,12 @@
     
     NSURL *syncGateway  = [NSURL URLWithString:@"http://10.17.24.121:4985/sync_gateway"];
     
-    self.pull = [self.database replicationFromURL: syncGateway];
-    self.pull.persistent = NO;
+    self.pull = [self.database createPullReplication: syncGateway];
+    [self logFormat: @"Start Replication: Pull"];
 
     // Start measuring time from here
-    self.startTime = [NSDate date];
+    _pullStartTime = [NSDate date];
     
-    [self logFormat: @"Start Replication: Pull"];
     [self.pull start];
     
     NSNotificationCenter* nctr = [NSNotificationCenter defaultCenter];

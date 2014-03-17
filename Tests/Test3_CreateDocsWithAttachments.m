@@ -62,7 +62,7 @@
         
         NSDate *methodFinish = [NSDate date];
         NSTimeInterval executionTime = [methodFinish timeIntervalSinceDate:start];
-        [self logFormat: @"Attachment size:%u", data.length];
+        [self logFormat: @"Attachment size:%lu", (unsigned long)data.length];
         [self logFormat:@"Documents with attachment: %d",docs];
         [self logFormat:@"Total Time Taken: %f",executionTime];
     }

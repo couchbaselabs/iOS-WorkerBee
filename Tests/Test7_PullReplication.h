@@ -17,6 +17,4 @@
 
 @property  CBLReplication *pull;
 
-@property  NSDate *startTime;
-
 @end

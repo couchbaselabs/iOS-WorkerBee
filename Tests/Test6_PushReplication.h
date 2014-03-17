@@ -15,7 +15,6 @@ Test Definition: Test Push replication
 @interface Test6_PushReplication : BeeCouchTest
 
 @property  CBLReplication *push;
-@property  NSDate *startTime;
 
 @end
     

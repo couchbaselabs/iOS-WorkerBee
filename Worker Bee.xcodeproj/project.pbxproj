@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		270BC8DA18D76B6A005EF242 /* CouchbaseLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270BC8D818D76B6A005EF242 /* CouchbaseLite.framework */; };
+		270BC8DB18D76B6A005EF242 /* CouchbaseLiteListener.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270BC8D918D76B6A005EF242 /* CouchbaseLiteListener.framework */; };
 		270EA1ED1443C1AD0000AEA9 /* SavedTestRun.m in Sources */ = {isa = PBXBuildFile; fileRef = 270EA1EC1443C1AD0000AEA9 /* SavedTestRun.m */; };
 		27170A4B1444E4020049E6E4 /* CouchbaseStartupTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 27170A4A1444E4020049E6E4 /* CouchbaseStartupTest.m */; };
 		27170A531445076C0049E6E4 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 27170A521445076C0049E6E4 /* Default.png */; };
@@ -36,8 +38,6 @@
 		27CB6577143BAA2F00EEA1F2 /* BeeTestController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27CB6575143BAA2F00EEA1F2 /* BeeTestController.xib */; };
 		27DB17F2143BB3A800EBA619 /* little_pluses.png in Resources */ = {isa = PBXBuildFile; fileRef = 27DB17F1143BB3A800EBA619 /* little_pluses.png */; };
 		27DB17F5143BD36A00EBA619 /* double_lined.png in Resources */ = {isa = PBXBuildFile; fileRef = 27DB17F4143BD36A00EBA619 /* double_lined.png */; };
-		BF12A5E518AEB09100997DC4 /* CouchbaseLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF12A5E318AEB09100997DC4 /* CouchbaseLite.framework */; };
-		BF12A5E618AEB09100997DC4 /* CouchbaseLiteListener.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF12A5E418AEB09100997DC4 /* CouchbaseLiteListener.framework */; };
 		BF12A5F918AED3F800997DC4 /* Test1_CreateDocs.m in Sources */ = {isa = PBXBuildFile; fileRef = BF12A5E818AED3F800997DC4 /* Test1_CreateDocs.m */; };
 		BF12A5FA18AED3F800997DC4 /* Test3_CreateDocsWithAttachments.m in Sources */ = {isa = PBXBuildFile; fileRef = BF12A5EA18AED3F800997DC4 /* Test3_CreateDocsWithAttachments.m */; };
 		BF12A5FB18AED3F800997DC4 /* Test2_CreateDocsUnoptimizedWay.m in Sources */ = {isa = PBXBuildFile; fileRef = BF12A5EC18AED3F800997DC4 /* Test2_CreateDocsUnoptimizedWay.m */; };
@@ -51,6 +51,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		270BC8D818D76B6A005EF242 /* CouchbaseLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CouchbaseLite.framework; path = Frameworks/CouchbaseLite.framework; sourceTree = "<group>"; };
+		270BC8D918D76B6A005EF242 /* CouchbaseLiteListener.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CouchbaseLiteListener.framework; path = Frameworks/CouchbaseLiteListener.framework; sourceTree = "<group>"; };
 		270EA1EB1443C1AD0000AEA9 /* SavedTestRun.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavedTestRun.h; sourceTree = "<group>"; };
 		270EA1EC1443C1AD0000AEA9 /* SavedTestRun.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SavedTestRun.m; sourceTree = "<group>"; };
 		27170A491444E4020049E6E4 /* CouchbaseStartupTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouchbaseStartupTest.h; sourceTree = "<group>"; };
@@ -95,8 +97,6 @@
 		27CB6575143BAA2F00EEA1F2 /* BeeTestController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BeeTestController.xib; sourceTree = "<group>"; };
 		27DB17F1143BB3A800EBA619 /* little_pluses.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = little_pluses.png; path = ../App/little_pluses.png; sourceTree = "<group>"; };
 		27DB17F4143BD36A00EBA619 /* double_lined.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = double_lined.png; path = ../App/double_lined.png; sourceTree = "<group>"; };
-		BF12A5E318AEB09100997DC4 /* CouchbaseLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CouchbaseLite.framework; path = "../../couchlite/couchbase-lite-community-ios_1.0-beta2/CouchbaseLite.framework"; sourceTree = "<group>"; };
-		BF12A5E418AEB09100997DC4 /* CouchbaseLiteListener.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CouchbaseLiteListener.framework; path = "../../couchlite/couchbase-lite-community-ios_1.0-beta2/CouchbaseLiteListener.framework"; sourceTree = "<group>"; };
 		BF12A5E718AED3F800997DC4 /* Test1_CreateDocs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test1_CreateDocs.h; sourceTree = "<group>"; };
 		BF12A5E818AED3F800997DC4 /* Test1_CreateDocs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test1_CreateDocs.m; sourceTree = "<group>"; };
 		BF12A5E918AED3F800997DC4 /* Test3_CreateDocsWithAttachments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test3_CreateDocsWithAttachments.h; sourceTree = "<group>"; };
@@ -124,15 +124,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BF12A5E618AEB09100997DC4 /* CouchbaseLiteListener.framework in Frameworks */,
 				2728F63617B3045400E929FD /* CFNetwork.framework in Frameworks */,
 				279B52FA159D367E003C95F9 /* SystemConfiguration.framework in Frameworks */,
 				279B52F8159D3675003C95F9 /* libsqlite3.dylib in Frameworks */,
 				27B28FA614314FB800B86F18 /* UIKit.framework in Frameworks */,
+				270BC8DA18D76B6A005EF242 /* CouchbaseLite.framework in Frameworks */,
 				27B28FA814314FB800B86F18 /* Foundation.framework in Frameworks */,
+				270BC8DB18D76B6A005EF242 /* CouchbaseLiteListener.framework in Frameworks */,
 				27B28FAA14314FB800B86F18 /* CoreGraphics.framework in Frameworks */,
 				27B28FDF1431549200B86F18 /* Security.framework in Frameworks */,
-				BF12A5E518AEB09100997DC4 /* CouchbaseLite.framework in Frameworks */,
 				27B28FE11431549E00B86F18 /* libz.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -177,8 +177,8 @@
 		27B28FA414314FB800B86F18 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				BF12A5E318AEB09100997DC4 /* CouchbaseLite.framework */,
-				BF12A5E418AEB09100997DC4 /* CouchbaseLiteListener.framework */,
+				270BC8D818D76B6A005EF242 /* CouchbaseLite.framework */,
+				270BC8D918D76B6A005EF242 /* CouchbaseLiteListener.framework */,
 				2728F63517B3045400E929FD /* CFNetwork.framework */,
 				27B28FA514314FB800B86F18 /* UIKit.framework */,
 				27B28FA714314FB800B86F18 /* Foundation.framework */,
@@ -378,6 +378,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -412,6 +413,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -447,7 +449,8 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/Frameworks",
-					"/Users/ashvinder/couchlite/couchbase-lite-community-ios_1.0-beta2",
+					"/Couchbase/CouchbaseLite/build/CouchbaseLite/Build/Products/Debug-ios-universal",
+					"$(PROJECT_DIR)/Frameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = App/Prefix.pch;
@@ -471,7 +474,8 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/Frameworks",
-					"/Users/ashvinder/couchlite/couchbase-lite-community-ios_1.0-beta2",
+					"/Couchbase/CouchbaseLite/build/CouchbaseLite/Build/Products/Debug-ios-universal",
+					"$(PROJECT_DIR)/Frameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = App/Prefix.pch;

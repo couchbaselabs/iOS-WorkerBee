@@ -16,6 +16,9 @@
 
 
 @implementation Test6_PushReplication
+{
+    NSDate* _pushStartTime;
+}
 
 - (void) replicationChanged: (NSNotificationCenter*)n {
     
@@ -30,7 +33,7 @@
    if (self.push.status == kCBLReplicationStopped && !self.push.lastError) {
        [self logFormat: @"Replication Stopped and No Error Found"];
        NSDate *methodFinish = [NSDate date];
-       NSTimeInterval executionTime = [methodFinish timeIntervalSinceDate:self.startTime];
+       NSTimeInterval executionTime = [methodFinish timeIntervalSinceDate:_pushStartTime];
        [self logFormat:@"Total Time Taken: %f",executionTime];
        [self logFormat: @"Completed %d Out of total %d",completed,total];
    }
@@ -71,13 +74,12 @@
     
     NSURL *syncGateway  = [NSURL URLWithString:@"http://10.0.1.10:4985/sync_gateway"];
     
-    self.push = [self.database replicationToURL: syncGateway];
-    self.push.persistent = NO;
-    
-    // Start measuring time from here
-    self.startTime = [NSDate date];
-    
+    self.push = [self.database createPushReplication: syncGateway];
     [self logFormat: @"Start Replication: Push"];
+
+    // Start measuring time from here
+    _pushStartTime = [NSDate date];
+    
     [self.push start];
 
     NSNotificationCenter* nctr = [NSNotificationCenter defaultCenter];
