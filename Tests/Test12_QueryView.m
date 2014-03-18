@@ -69,7 +69,8 @@
     rowEnum = [query run: &error];
     CBLQueryRow *row = [rowEnum rowAtIndex:0];
     methodFinish = [NSDate date];
-    
+    executionTime = [methodFinish timeIntervalSinceDate:start];
+
     [self logFormat: @"Vacant: %@",row.value ];
     [self logFormat:@"Total Time For Reduce query: %f",executionTime];
     
@@ -89,28 +90,30 @@ Vacant: YES / NO
 - (void) setUp {
     [super setUp];
      [self logFormat: @"Doing Setup"];
-    
+
+    NSDate* start = [NSDate date];
     [self.database inTransaction:^BOOL{
         for (int i = 0; i < kNumberOfDocuments; i++) {
-        
-            NSString* name = [NSString stringWithFormat:@"%@%@", @"n", @(i)];
-            bool vacant = (i+2) % 2 ? 1 : 0;
-            NSDictionary* props = @{@"name":name,
-                                    @"apt": @(i),
-                                    @"phone":@(408100000+i),
-                                    @"vacant":@(vacant)};
-            CBLDocument* doc = [self.database createDocument];
-            NSError* error;
-            if (![doc putProperties: props error: &error]) {
-                [self logFormat: @"!!! Failed to create doc %@", props];
-                self.error = error;
-                return NO;
+            @autoreleasepool {
+                NSString* name = [NSString stringWithFormat:@"%@%@", @"n", @(i)];
+                bool vacant = (i+2) % 2 ? 1 : 0;
+                NSDictionary* props = @{@"name":name,
+                                        @"apt": @(i),
+                                        @"phone":@(408100000+i),
+                                        @"vacant":@(vacant)};
+                CBLDocument* doc = [self.database createDocument];
+                NSError* error;
+                if (![doc putProperties: props error: &error]) {
+                    [self logFormat: @"!!! Failed to create doc %@", props];
+                    self.error = error;
+                    return NO;
+                }
             }
         }
         return YES;
     }];
     self.heartbeatInterval = 0.001;
-    [self logFormat: @"Completed Setup"];
+    [self logFormat: @"Completed Setup in %.3f sec", -[start timeIntervalSinceNow]];
 }
 
 
