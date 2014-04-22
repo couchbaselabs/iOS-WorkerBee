@@ -14,7 +14,7 @@
 - (int) updateIndex;
 @end
 
-#define kNumberOfDocuments 10000
+#define kNumberOfDocuments 1000
 
 
 @implementation Test12_QueryView
@@ -31,7 +31,7 @@
         id v = [doc objectForKey: @"vacant"];
         id name = [doc objectForKey: @"name"];
         if (v && name) emit(name, v);
-     }) reduceBlock: REDUCEBLOCK({return [CBLView totalValues:values];})
+     }) reduceBlock: REDUCEBLOCK({return @(values.count);})
         version: @"3"];
     
     [view updateIndex];

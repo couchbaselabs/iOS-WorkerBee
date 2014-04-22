@@ -17,6 +17,36 @@
 
 
 @implementation Test9_LoadDB
+{
+    CBLManager* _mymanager;
+    CBLDatabase* _database;
+    BOOL _createdDatabase;
+}
+
+- (CBLDatabase*) mydatabase {
+    if (!_createdDatabase) {
+        _createdDatabase = YES;
+        NSError* error = nil;
+        CBLDatabase* database = [self.testmanager existingDatabaseNamed: self.dbname error: NULL];
+        if (database) {
+            _database = database;
+        }
+        _database = [_mymanager databaseNamed: self.dbname error: &error];
+    }
+    CBLDatabase* database = [self.testmanager existingDatabaseNamed: self.dbname error: NULL];
+    if (database) {
+        _database = database;
+    }
+    return _database;
+}
+
+
+- (CBLManager*) testmanager {
+    if (!_mymanager) {
+        _mymanager = [[CBLManager alloc] init];
+    }
+    return _mymanager;
+}
 
 - (void) heartbeat {
     
@@ -25,12 +55,10 @@
     NSDate *start = [NSDate date];
 
     for (int i = 0; i < kShutAndReloadDatbase; i++) {
-        [self.manager close];
-        [self tearDown];
+        [self.mymanager close];
+        self.mymanager = nil;
         
-        [self setUp];
-        CBLDatabase* db = [self database];
-        
+        CBLDatabase* db = [self mydatabase];
         if (!db) {
             [self logFormat:@"Error database not found"];
         }
@@ -43,12 +71,14 @@
     
 }
 
+
+
 - (void) setUp {
     [super setUp];
     self.heartbeatInterval = 1.0;
     
     self.dbname = [[NSString alloc] init];
-    self.dbname = self.database.name;
+    self.dbname = @"test9";
     
     [self logFormat:@"DBName %@",self.dbname];
     
@@ -59,10 +89,10 @@
     }
     
     NSDictionary* props = @{@"k": str};
-    [self.database inTransaction:^BOOL{
+    [self.mydatabase inTransaction:^BOOL{
         for (int j = 0; j < kNumberOfDocuments; j++) {
             @autoreleasepool {
-                CBLDocument* doc = [self.database createDocument];
+                CBLDocument* doc = [self.mydatabase createDocument];
                 NSError* error;
                 if (![doc putProperties: props error: &error]) {
                     [self logFormat: @"!!! Failed to create doc %@", props];

@@ -15,6 +15,10 @@
 
 @interface Test9_LoadDB : BeeCouchTest
 
+@property  CBLManager* mymanager;
+
+@property (readonly) CBLDatabase* database;
+
 @property NSString *dbname;
 
 @end
