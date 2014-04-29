@@ -48,7 +48,7 @@
 		BF508FAD18E3946A0069EED4 /* CouchbaseLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF508FAB18E3946A0069EED4 /* CouchbaseLite.framework */; };
 		BF508FAE18E3946A0069EED4 /* CouchbaseLiteListener.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF508FAC18E3946A0069EED4 /* CouchbaseLiteListener.framework */; };
 		BFA9350018C92E9C00680E5E /* Test12_QueryView.m in Sources */ = {isa = PBXBuildFile; fileRef = BFA934FF18C92E9C00680E5E /* Test12_QueryView.m */; };
-		BFF5882D190825F400A2EE0D /* Test13_ReplicateWithAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF5882C190825F400A2EE0D /* Test13_ReplicateWithAttachment.m */; };
+		BFF5882D190825F400A2EE0D /* Test13_PushReplicateWithAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF5882C190825F400A2EE0D /* Test13_PushReplicateWithAttachment.m */; };
 		BFF588301909687B00A2EE0D /* Test14_MultipleReplications.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF5882F1909687B00A2EE0D /* Test14_MultipleReplications.m */; };
 /* End PBXBuildFile section */
 
@@ -119,8 +119,8 @@
 		BF508FAC18E3946A0069EED4 /* CouchbaseLiteListener.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CouchbaseLiteListener.framework; path = Frameworks/CouchbaseLiteListener.framework; sourceTree = "<group>"; };
 		BFA934FE18C92E9C00680E5E /* Test12_QueryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test12_QueryView.h; sourceTree = "<group>"; };
 		BFA934FF18C92E9C00680E5E /* Test12_QueryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test12_QueryView.m; sourceTree = "<group>"; };
-		BFF5882B190825F400A2EE0D /* Test13_ReplicateWithAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test13_ReplicateWithAttachment.h; sourceTree = "<group>"; };
-		BFF5882C190825F400A2EE0D /* Test13_ReplicateWithAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test13_ReplicateWithAttachment.m; sourceTree = "<group>"; };
+		BFF5882B190825F400A2EE0D /* Test13_PushReplicateWithAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test13_PushReplicateWithAttachment.h; sourceTree = "<group>"; };
+		BFF5882C190825F400A2EE0D /* Test13_PushReplicateWithAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test13_PushReplicateWithAttachment.m; sourceTree = "<group>"; };
 		BFF5882E1909687B00A2EE0D /* Test14_MultipleReplications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test14_MultipleReplications.h; sourceTree = "<group>"; };
 		BFF5882F1909687B00A2EE0D /* Test14_MultipleReplications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test14_MultipleReplications.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -248,8 +248,8 @@
 				BF12A5F018AED3F800997DC4 /* Test7_PullReplication.m */,
 				BF12A5F118AED3F800997DC4 /* Test8_DocRevisions.h */,
 				BF12A5F218AED3F800997DC4 /* Test8_DocRevisions.m */,
-				BFF5882B190825F400A2EE0D /* Test13_ReplicateWithAttachment.h */,
-				BFF5882C190825F400A2EE0D /* Test13_ReplicateWithAttachment.m */,
+				BFF5882B190825F400A2EE0D /* Test13_PushReplicateWithAttachment.h */,
+				BFF5882C190825F400A2EE0D /* Test13_PushReplicateWithAttachment.m */,
 				BFF5882E1909687B00A2EE0D /* Test14_MultipleReplications.h */,
 				BFF5882F1909687B00A2EE0D /* Test14_MultipleReplications.m */,
 				BF12A5F318AED3F800997DC4 /* Test9_LoadDB.h */,
@@ -363,7 +363,7 @@
 				27A07488143CCDCD0043BEB6 /* BeeCouchTest.m in Sources */,
 				27A0748C143CDE6B0043BEB6 /* CreateDocsTest.m in Sources */,
 				BFF588301909687B00A2EE0D /* Test14_MultipleReplications.m in Sources */,
-				BFF5882D190825F400A2EE0D /* Test13_ReplicateWithAttachment.m in Sources */,
+				BFF5882D190825F400A2EE0D /* Test13_PushReplicateWithAttachment.m in Sources */,
 				BF12A60118AED3F800997DC4 /* Test11_DeleteDocs.m in Sources */,
 				BFA9350018C92E9C00680E5E /* Test12_QueryView.m in Sources */,
 				270EA1ED1443C1AD0000AEA9 /* SavedTestRun.m in Sources */,

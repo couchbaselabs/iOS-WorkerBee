@@ -12,6 +12,8 @@
 
 @property  CBLReplication *push;
 
+extern NSString * const syncGatewayURL;
+
 @end
 
 

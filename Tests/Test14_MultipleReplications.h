@@ -8,6 +8,10 @@
 
 #import "BeeCouchTest.h"
 
+/*
+ Test Definition: This test creates multiple pairs (push and pull) replications and prints the total time it took to complete all replication operations.  
+ */
+
 @interface Test14_MultipleReplications : BeeCouchTest
 
 extern NSString * const syncGateways[];

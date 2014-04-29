@@ -6,14 +6,16 @@
 //  Copyright (c) 2014 Couchbase, Inc. All rights reserved.
 //
 
-#import "Test13_ReplicateWithAttachment.h"
+#import "Test13_PushReplicateWithAttachment.h"
 #import <malloc/malloc.h>
 #import <CouchbaseLite/CouchbaseLite.h>
 
 
-#define kNumberOfDocuments 2
+#define kNumberOfDocuments 1
 // size in bytes
-#define kSizeofAttachment 100
+#define kSizeofAttachment 100000000
+
+NSString * const syncGatewayURL = @"http://10.17.33.142:4985/sync_gateway1";
 
 
 @implementation Test13_ReplicateWithAttachment
@@ -60,18 +62,29 @@
 - (void) setUp {
     [super setUp];
     
-    NSMutableData *data = [NSMutableData dataWithLength:kSizeofAttachment];
-    
     NSString *cachesFolder = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
     NSString *file = [cachesFolder stringByAppendingPathComponent:@"testfile"];
     _fileurl = [NSURL fileURLWithPath:file];
-    BOOL success = [[NSFileManager defaultManager] createFileAtPath:file contents:data attributes:nil];
+    BOOL success = [[NSFileManager defaultManager] createFileAtPath:file contents:nil attributes:nil];
     
     [self logFormat: @"Created file at %@", _fileurl];
     if (!success) {
         [self logFormat: @"Failed to create file at %@", file];
         self.running = NO;
     }
+    
+    NSError *error = nil;
+    // Append data to the file in increments of 1% of totalsize of attachment
+    for (int i = 0; i <= kSizeofAttachment; i += 1 + kSizeofAttachment / 100) {
+        NSMutableData *data = [NSMutableData dataWithLength:i];
+        [data writeToURL:_fileurl options:NSDataWritingAtomic error:&error];
+    }
+    
+    NSFileManager *man = [NSFileManager defaultManager];
+    NSDictionary *attrs = [man attributesOfItemAtPath:file error: NULL];
+    double result = [attrs fileSize];
+    
+    [self logFormat: @"created file size %f", result];
     
     [self.database inTransaction:^BOOL{
         for (int j = 0; j < kNumberOfDocuments; j++) {
@@ -85,7 +98,7 @@
                 CBLSavedRevision* saved = [rev save:&error];
                 
                 if (!saved){
-                    [self logFormat: @"!!! Failed to attach %@", data];
+                    [self logFormat: @"!!! Failed to attach"];
                     self.error = error;
                 }
             }
@@ -94,7 +107,7 @@
     }];
     
     
-    NSURL *syncGateway  = [NSURL URLWithString:@"http://10.0.1.13:4985/sync_gateway"];
+    NSURL *syncGateway  = [NSURL URLWithString:syncGatewayURL];
     
     self.push = [self.database createPushReplication: syncGateway];
     [self logFormat: @"Start Replication: Push"];
@@ -108,6 +121,7 @@
     [nctr addObserver: self selector: @selector(replicationChanged:)
                  name: kCBLReplicationChangeNotification object: self.push];
     
+
 }
 
 
