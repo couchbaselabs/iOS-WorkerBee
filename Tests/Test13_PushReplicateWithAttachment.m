@@ -13,7 +13,7 @@
 
 #define kNumberOfDocuments 1
 // size in bytes
-#define kSizeofAttachment 100000000
+#define kSizeofAttachment 1000000000
 
 NSString * const syncGatewayURL = @"http://10.17.33.142:4985/sync_gateway1";
 
@@ -72,14 +72,27 @@ NSString * const syncGatewayURL = @"http://10.17.33.142:4985/sync_gateway1";
         [self logFormat: @"Failed to create file at %@", file];
         self.running = NO;
     }
-    
-    NSError *error = nil;
+
+    NSFileHandle *fileHandle = [NSFileHandle fileHandleForWritingAtPath:file];
+
     // Append data to the file in increments of 1% of totalsize of attachment
-    for (int i = 0; i <= kSizeofAttachment; i += 1 + kSizeofAttachment / 100) {
-        NSMutableData *data = [NSMutableData dataWithLength:i];
-        [data writeToURL:_fileurl options:NSDataWritingAtomic error:&error];
+    int allocation_size = (kSizeofAttachment / 100) ? (kSizeofAttachment / 100) : 1;
+    
+    for (int total = 0; total < kSizeofAttachment; total = total + allocation_size ) {
+        @autoreleasepool {
+            [self logFormat: @"Total Count %d, allocation size %d", total,allocation_size];
+            NSMutableData *data = [NSMutableData dataWithLength:allocation_size];
+    
+            [fileHandle seekToEndOfFile];
+    
+            [fileHandle writeData:data];
+            
+            data = nil;
+        }
     }
     
+    [fileHandle closeFile];
+
     NSFileManager *man = [NSFileManager defaultManager];
     NSDictionary *attrs = [man attributesOfItemAtPath:file error: NULL];
     double result = [attrs fileSize];
