@@ -10,8 +10,8 @@
 #import <CouchbaseLite/CBLJSON.h>
 #import "Test8_DocRevisions.h"
 
-#define kNumberOfDocuments 1
-#define kNumberOfUpdates 1000
+#define kNumberOfDocuments 1000
+#define kNumberOfUpdates 100
 
 @implementation Test8_DocRevisions
 
@@ -21,35 +21,39 @@
     // Start measuring time from here
      NSDate *start = [NSDate date];
 
+    
+    for (int i = 0; i < kNumberOfUpdates; i++) {
+        NSDate *inter_start = [NSDate date];
         [self.database inTransaction:^BOOL{
-            for (CBLDocument *doc in self.docs) {
-                
-                @autoreleasepool {
             
-                    for (int i = 0; i < kNumberOfUpdates; i++) {
+            for (CBLDocument *doc in self.docs) {
+            
+                @autoreleasepool {
+                    // copy the document
+                    NSMutableDictionary *contents = [doc.properties mutableCopy];
                 
-                        // copy the document
-                        NSMutableDictionary *contents = [doc.properties mutableCopy];
+                    // toggle value of check property
+                    bool wasChecked = [[contents valueForKey: @"toggle"] boolValue];
+                    [contents setObject: [NSNumber numberWithBool: !wasChecked] forKey: @"toggle"];
                 
-                        // toggle value of check property
-                        bool wasChecked = [[contents valueForKey: @"toggle"] boolValue];
-                        [contents setObject: [NSNumber numberWithBool: !wasChecked] forKey: @"toggle"];
-                
-                        // save the updated document
-                        NSError* error;
-                        if (![doc putProperties: contents error: &error]) {
-                            [self logFormat: @"!!! Failed to Update doc"];
-                            self.error = error;
-                        }
-                        if (self.error) {
-                            [self logFormat:@"Got Error: %@",self.error];
-                        }
+                    // save the updated document
+                    NSError* error;
+                    if (![doc putProperties: contents error: &error]) {
+                        [self logFormat: @"!!! Failed to Update doc"];
+                        self.error = error;
+                    }
+                    if (self.error) {
+                        [self logFormat:@"Got Error: %@",self.error];
                     }
                 }
             }
             return YES;
         }];
-        
+        NSDate *interTime = [NSDate date];
+        NSTimeInterval executionTime = [interTime timeIntervalSinceDate:inter_start];
+        [self logFormat:@"Time for 1000 docs: %f, count: %d",executionTime,i];
+    }
+    
     NSDate *methodFinish = [NSDate date];
     NSTimeInterval executionTime = [methodFinish timeIntervalSinceDate:start];
     [self logFormat:@"Total Time Taken: %f",executionTime];
