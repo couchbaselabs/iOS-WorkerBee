@@ -48,7 +48,7 @@
 - (void) setUp {
     [super setUp];
     
-    NSURL *syncGateway  = [NSURL URLWithString:@"http://10.17.24.121:4985/sync_gateway"];
+    NSURL *syncGateway  = [NSURL URLWithString:@"http://localhost:4984/db"];
     
     self.pull = [self.database createPullReplication: syncGateway];
     [self logFormat: @"Start Replication: Pull"];

@@ -302,6 +302,7 @@
         [_messages removeObjectAtIndex: 0];
     [self writeToOutput: message];
     [_delegate beeTest: self loggedMessage: message];
+    NSLog(@"logMessage: %@", message);
 }
 
 - (void) logFormat: (NSString*)format, ... {

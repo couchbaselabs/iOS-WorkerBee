@@ -49,12 +49,9 @@
 - (void) setUp {
     [super setUp];
     
-    NSMutableString *str = [[NSMutableString alloc] init];
-    
-    for (int i = 0; i < kSizeofDocument; i++) {
-        [str appendString:@"1"];
-    }
-    
+    NSMutableData* utf8 = [NSMutableData dataWithLength: kSizeofDocument];
+    memset(utf8.mutableBytes, '1', utf8.length);
+    NSString* str = [[NSString alloc] initWithData: utf8 encoding: NSUTF8StringEncoding];
     NSDictionary* props = @{@"k": str};
     
     [self.database inTransaction:^BOOL{
@@ -72,7 +69,7 @@
     }];
 
     
-    NSURL *syncGateway  = [NSURL URLWithString:@"http://10.0.1.10:4985/sync_gateway"];
+    NSURL *syncGateway  = [NSURL URLWithString:@"http://localhost:4984/db"];
     
     self.push = [self.database createPushReplication: syncGateway];
     [self logFormat: @"Start Replication: Push"];

@@ -70,6 +70,7 @@
 
 - (void) tearDown {
     _database = nil;
+    [_manager close];
     _manager = nil;
 
     [super tearDown];
