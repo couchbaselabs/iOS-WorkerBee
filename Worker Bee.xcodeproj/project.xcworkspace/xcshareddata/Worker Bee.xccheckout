@@ -5,14 +5,14 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>7DFD51D3-FD2C-41CA-9BA8-AFD780808D36</string>
+	<string>5978B4AB-FCBB-43B2-9013-8753E578FD60</string>
 	<key>IDESourceControlProjectName</key>
 	<string>Worker Bee</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>0595015F-FE0C-48E7-B55C-B7F73C71451D</key>
 		<string>git://github.com/couchbaselabs/iOS-WorkerBee.git</string>
-		<key>8F615A0F-21E6-491D-A515-AA409112EFC5</key>
+		<key>62DEFC25-0DC7-4C56-8CB0-60EA2137CFA6</key>
 		<string>ssh://github.com/couchbase/couchbase-lite-ios.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
@@ -21,7 +21,7 @@
 	<dict>
 		<key>0595015F-FE0C-48E7-B55C-B7F73C71451D</key>
 		<string>../..</string>
-		<key>8F615A0F-21E6-491D-A515-AA409112EFC5</key>
+		<key>62DEFC25-0DC7-4C56-8CB0-60EA2137CFA6</key>
 		<string>../../../../CouchbaseLite</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
@@ -36,7 +36,7 @@
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>8F615A0F-21E6-491D-A515-AA409112EFC5</string>
+			<string>62DEFC25-0DC7-4C56-8CB0-60EA2137CFA6</string>
 			<key>IDESourceControlWCCName</key>
 			<string>CouchbaseLite</string>
 		</dict>

@@ -13,6 +13,39 @@
 		27170A4B1444E4020049E6E4 /* CouchbaseStartupTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 27170A4A1444E4020049E6E4 /* CouchbaseStartupTest.m */; };
 		27170A531445076C0049E6E4 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 27170A521445076C0049E6E4 /* Default.png */; };
 		2728F63617B3045400E929FD /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2728F63517B3045400E929FD /* CFNetwork.framework */; };
+		277730741953A5E6006BB191 /* Test1_CreateDocs.m in Sources */ = {isa = PBXBuildFile; fileRef = BF12A5E818AED3F800997DC4 /* Test1_CreateDocs.m */; };
+		277730781953A5E6006BB191 /* BeeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CB6569143B9B7E00EEA1F2 /* BeeTest.m */; };
+		277730791953A5E6006BB191 /* Test10_DeleteDB.m in Sources */ = {isa = PBXBuildFile; fileRef = BF12A5F618AED3F800997DC4 /* Test10_DeleteDB.m */; };
+		2777307A1953A5E6006BB191 /* Test3_CreateDocsWithAttachments.m in Sources */ = {isa = PBXBuildFile; fileRef = BF12A5EA18AED3F800997DC4 /* Test3_CreateDocsWithAttachments.m */; };
+		2777307C1953A5E6006BB191 /* Test8_DocRevisions.m in Sources */ = {isa = PBXBuildFile; fileRef = BF12A5F218AED3F800997DC4 /* Test8_DocRevisions.m */; };
+		2777307D1953A5E6006BB191 /* Test6_PushReplication.m in Sources */ = {isa = PBXBuildFile; fileRef = BF12A5EE18AED3F800997DC4 /* Test6_PushReplication.m */; };
+		2777307E1953A5E6006BB191 /* Test2_CreateDocsUnoptimizedWay.m in Sources */ = {isa = PBXBuildFile; fileRef = BF12A5EC18AED3F800997DC4 /* Test2_CreateDocsUnoptimizedWay.m */; };
+		277730801953A5E6006BB191 /* Test9_LoadDB.m in Sources */ = {isa = PBXBuildFile; fileRef = BF12A5F418AED3F800997DC4 /* Test9_LoadDB.m */; };
+		277730811953A5E6006BB191 /* BeeCouchTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A07487143CCDCD0043BEB6 /* BeeCouchTest.m */; };
+		277730831953A5E6006BB191 /* Test11_DeleteDocs.m in Sources */ = {isa = PBXBuildFile; fileRef = BF12A5F818AED3F800997DC4 /* Test11_DeleteDocs.m */; };
+		277730841953A5E6006BB191 /* Test12_QueryView.m in Sources */ = {isa = PBXBuildFile; fileRef = BFA934FF18C92E9C00680E5E /* Test12_QueryView.m */; };
+		277730871953A5E6006BB191 /* Test7_PullReplication.m in Sources */ = {isa = PBXBuildFile; fileRef = BF12A5F018AED3F800997DC4 /* Test7_PullReplication.m */; };
+		277730891953A5E6006BB191 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2728F63517B3045400E929FD /* CFNetwork.framework */; };
+		2777308A1953A5E6006BB191 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 279B52F9159D367E003C95F9 /* SystemConfiguration.framework */; };
+		2777308B1953A5E6006BB191 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 279B52F7159D3675003C95F9 /* libsqlite3.dylib */; };
+		2777308C1953A5E6006BB191 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27B28FA514314FB800B86F18 /* UIKit.framework */; };
+		2777308D1953A5E6006BB191 /* CouchbaseLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270BC8D818D76B6A005EF242 /* CouchbaseLite.framework */; };
+		2777308E1953A5E6006BB191 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27B28FA714314FB800B86F18 /* Foundation.framework */; };
+		2777308F1953A5E6006BB191 /* CouchbaseLiteListener.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270BC8D918D76B6A005EF242 /* CouchbaseLiteListener.framework */; };
+		277730901953A5E6006BB191 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27B28FA914314FB800B86F18 /* CoreGraphics.framework */; };
+		277730911953A5E6006BB191 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27B28FDE1431549200B86F18 /* Security.framework */; };
+		277730921953A5E6006BB191 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 27B28FE01431549E00B86F18 /* libz.dylib */; };
+		277730941953A5E6006BB191 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 27B28FAE14314FB800B86F18 /* InfoPlist.strings */; };
+		277730951953A5E6006BB191 /* Application.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27CB655F143B91DD00EEA1F2 /* Application.xib */; };
+		277730961953A5E6006BB191 /* TestListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27CB6565143B997900EEA1F2 /* TestListController.xib */; };
+		277730971953A5E6006BB191 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 27B678B218049FFD00B06D11 /* Default-568h@2x.png */; };
+		277730981953A5E6006BB191 /* BeeTestController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27CB6575143BAA2F00EEA1F2 /* BeeTestController.xib */; };
+		277730991953A5E6006BB191 /* little_pluses.png in Resources */ = {isa = PBXBuildFile; fileRef = 27DB17F1143BB3A800EBA619 /* little_pluses.png */; };
+		2777309A1953A5E6006BB191 /* double_lined.png in Resources */ = {isa = PBXBuildFile; fileRef = 27DB17F4143BD36A00EBA619 /* double_lined.png */; };
+		2777309B1953A5E6006BB191 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 27A37421143E5E85005A577D /* Icon.png */; };
+		2777309C1953A5E6006BB191 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 27A37422143E5E85005A577D /* Icon@2x.png */; };
+		2777309D1953A5E6006BB191 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 27B678B318049FFD00B06D11 /* Default@2x.png */; };
+		2777309E1953A5E6006BB191 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 27170A521445076C0049E6E4 /* Default.png */; };
 		279B52F8159D3675003C95F9 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 279B52F7159D3675003C95F9 /* libsqlite3.dylib */; };
 		279B52FA159D367E003C95F9 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 279B52F9159D367E003C95F9 /* SystemConfiguration.framework */; };
 		27A07488143CCDCD0043BEB6 /* BeeCouchTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A07487143CCDCD0043BEB6 /* BeeCouchTest.m */; };
@@ -38,6 +71,9 @@
 		27CB6577143BAA2F00EEA1F2 /* BeeTestController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27CB6575143BAA2F00EEA1F2 /* BeeTestController.xib */; };
 		27DB17F2143BB3A800EBA619 /* little_pluses.png in Resources */ = {isa = PBXBuildFile; fileRef = 27DB17F1143BB3A800EBA619 /* little_pluses.png */; };
 		27DB17F5143BD36A00EBA619 /* double_lined.png in Resources */ = {isa = PBXBuildFile; fileRef = 27DB17F4143BD36A00EBA619 /* double_lined.png */; };
+		27E940471953A74000A9732E /* HeadlessBeeAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E940461953A74000A9732E /* HeadlessBeeAppDelegate.m */; };
+		27E940491953A76800A9732E /* HeadlessBeeApplication.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27E940481953A76800A9732E /* HeadlessBeeApplication.xib */; };
+		27E9404A1953A79E00A9732E /* SavedTestRun.m in Sources */ = {isa = PBXBuildFile; fileRef = 270EA1EC1443C1AD0000AEA9 /* SavedTestRun.m */; };
 		BF12A5F918AED3F800997DC4 /* Test1_CreateDocs.m in Sources */ = {isa = PBXBuildFile; fileRef = BF12A5E818AED3F800997DC4 /* Test1_CreateDocs.m */; };
 		BF12A5FA18AED3F800997DC4 /* Test3_CreateDocsWithAttachments.m in Sources */ = {isa = PBXBuildFile; fileRef = BF12A5EA18AED3F800997DC4 /* Test3_CreateDocsWithAttachments.m */; };
 		BF12A5FB18AED3F800997DC4 /* Test2_CreateDocsUnoptimizedWay.m in Sources */ = {isa = PBXBuildFile; fileRef = BF12A5EC18AED3F800997DC4 /* Test2_CreateDocsUnoptimizedWay.m */; };
@@ -59,6 +95,8 @@
 		27170A4A1444E4020049E6E4 /* CouchbaseStartupTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouchbaseStartupTest.m; sourceTree = "<group>"; };
 		27170A521445076C0049E6E4 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
 		2728F63517B3045400E929FD /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		277730A21953A5E6006BB191 /* HeadlessBee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HeadlessBee.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		277730A31953A5E7006BB191 /* HeadlessBee-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "HeadlessBee-Info.plist"; path = "/Couchbase/DemoApps/WorkerBee/HeadlessBee-Info.plist"; sourceTree = "<absolute>"; };
 		279B52F7159D3675003C95F9 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		279B52F9159D367E003C95F9 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		27A07486143CCDCD0043BEB6 /* BeeCouchTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeeCouchTest.h; sourceTree = "<group>"; };
@@ -97,6 +135,9 @@
 		27CB6575143BAA2F00EEA1F2 /* BeeTestController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BeeTestController.xib; sourceTree = "<group>"; };
 		27DB17F1143BB3A800EBA619 /* little_pluses.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = little_pluses.png; path = ../App/little_pluses.png; sourceTree = "<group>"; };
 		27DB17F4143BD36A00EBA619 /* double_lined.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = double_lined.png; path = ../App/double_lined.png; sourceTree = "<group>"; };
+		27E940451953A74000A9732E /* HeadlessBeeAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeadlessBeeAppDelegate.h; sourceTree = "<group>"; };
+		27E940461953A74000A9732E /* HeadlessBeeAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeadlessBeeAppDelegate.m; sourceTree = "<group>"; };
+		27E940481953A76800A9732E /* HeadlessBeeApplication.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeadlessBeeApplication.xib; sourceTree = "<group>"; };
 		BF12A5E718AED3F800997DC4 /* Test1_CreateDocs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test1_CreateDocs.h; sourceTree = "<group>"; };
 		BF12A5E818AED3F800997DC4 /* Test1_CreateDocs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test1_CreateDocs.m; sourceTree = "<group>"; };
 		BF12A5E918AED3F800997DC4 /* Test3_CreateDocsWithAttachments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test3_CreateDocsWithAttachments.h; sourceTree = "<group>"; };
@@ -120,6 +161,23 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		277730881953A5E6006BB191 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				277730891953A5E6006BB191 /* CFNetwork.framework in Frameworks */,
+				2777308A1953A5E6006BB191 /* SystemConfiguration.framework in Frameworks */,
+				2777308B1953A5E6006BB191 /* libsqlite3.dylib in Frameworks */,
+				2777308C1953A5E6006BB191 /* UIKit.framework in Frameworks */,
+				2777308D1953A5E6006BB191 /* CouchbaseLite.framework in Frameworks */,
+				2777308E1953A5E6006BB191 /* Foundation.framework in Frameworks */,
+				2777308F1953A5E6006BB191 /* CouchbaseLiteListener.framework in Frameworks */,
+				277730901953A5E6006BB191 /* CoreGraphics.framework in Frameworks */,
+				277730911953A5E6006BB191 /* Security.framework in Frameworks */,
+				277730921953A5E6006BB191 /* libz.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		27B28F9E14314FB800B86F18 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -170,6 +228,7 @@
 			isa = PBXGroup;
 			children = (
 				27B28FA114314FB800B86F18 /* Worker Bee.app */,
+				277730A21953A5E6006BB191 /* HeadlessBee.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -199,6 +258,9 @@
 				27B28FB414314FB800B86F18 /* AppDelegate.h */,
 				27B28FB514314FB800B86F18 /* AppDelegate.m */,
 				27CB655F143B91DD00EEA1F2 /* Application.xib */,
+				27E940451953A74000A9732E /* HeadlessBeeAppDelegate.h */,
+				27E940461953A74000A9732E /* HeadlessBeeAppDelegate.m */,
+				27E940481953A76800A9732E /* HeadlessBeeApplication.xib */,
 				27CB6563143B997900EEA1F2 /* TestListController.h */,
 				27CB6564143B997900EEA1F2 /* TestListController.m */,
 				27CB6565143B997900EEA1F2 /* TestListController.xib */,
@@ -220,6 +282,7 @@
 			isa = PBXGroup;
 			children = (
 				27B28FAD14314FB800B86F18 /* Info.plist */,
+				277730A31953A5E7006BB191 /* HeadlessBee-Info.plist */,
 				27B28FAE14314FB800B86F18 /* InfoPlist.strings */,
 				27B28FB114314FB800B86F18 /* main.m */,
 				27B28FB314314FB800B86F18 /* Prefix.pch */,
@@ -263,6 +326,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		277730721953A5E6006BB191 /* HeadlessBee */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2777309F1953A5E6006BB191 /* Build configuration list for PBXNativeTarget "HeadlessBee" */;
+			buildPhases = (
+				277730731953A5E6006BB191 /* Sources */,
+				277730881953A5E6006BB191 /* Frameworks */,
+				277730931953A5E6006BB191 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HeadlessBee;
+			productName = "Empty App";
+			productReference = 277730A21953A5E6006BB191 /* HeadlessBee.app */;
+			productType = "com.apple.product-type.application";
+		};
 		27B28FA014314FB800B86F18 /* Worker Bee */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 27B28FCE14314FB900B86F18 /* Build configuration list for PBXNativeTarget "Worker Bee" */;
@@ -307,11 +387,31 @@
 			projectRoot = "";
 			targets = (
 				27B28FA014314FB800B86F18 /* Worker Bee */,
+				277730721953A5E6006BB191 /* HeadlessBee */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		277730931953A5E6006BB191 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				277730941953A5E6006BB191 /* InfoPlist.strings in Resources */,
+				277730951953A5E6006BB191 /* Application.xib in Resources */,
+				277730961953A5E6006BB191 /* TestListController.xib in Resources */,
+				277730971953A5E6006BB191 /* Default-568h@2x.png in Resources */,
+				27E940491953A76800A9732E /* HeadlessBeeApplication.xib in Resources */,
+				277730981953A5E6006BB191 /* BeeTestController.xib in Resources */,
+				277730991953A5E6006BB191 /* little_pluses.png in Resources */,
+				2777309A1953A5E6006BB191 /* double_lined.png in Resources */,
+				2777309B1953A5E6006BB191 /* Icon.png in Resources */,
+				2777309C1953A5E6006BB191 /* Icon@2x.png in Resources */,
+				2777309D1953A5E6006BB191 /* Default@2x.png in Resources */,
+				2777309E1953A5E6006BB191 /* Default.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		27B28F9F14314FB800B86F18 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -333,6 +433,27 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		277730731953A5E6006BB191 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27E940471953A74000A9732E /* HeadlessBeeAppDelegate.m in Sources */,
+				277730781953A5E6006BB191 /* BeeTest.m in Sources */,
+				277730811953A5E6006BB191 /* BeeCouchTest.m in Sources */,
+				277730741953A5E6006BB191 /* Test1_CreateDocs.m in Sources */,
+				2777307E1953A5E6006BB191 /* Test2_CreateDocsUnoptimizedWay.m in Sources */,
+				2777307A1953A5E6006BB191 /* Test3_CreateDocsWithAttachments.m in Sources */,
+				27E9404A1953A79E00A9732E /* SavedTestRun.m in Sources */,
+				2777307D1953A5E6006BB191 /* Test6_PushReplication.m in Sources */,
+				277730871953A5E6006BB191 /* Test7_PullReplication.m in Sources */,
+				2777307C1953A5E6006BB191 /* Test8_DocRevisions.m in Sources */,
+				277730801953A5E6006BB191 /* Test9_LoadDB.m in Sources */,
+				277730791953A5E6006BB191 /* Test10_DeleteDB.m in Sources */,
+				277730831953A5E6006BB191 /* Test11_DeleteDocs.m in Sources */,
+				277730841953A5E6006BB191 /* Test12_QueryView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		27B28F9D14314FB800B86F18 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -374,6 +495,54 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		277730A01953A5E6006BB191 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 200;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/Frameworks",
+					"$(PROJECT_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = App/Prefix.pch;
+				INFOPLIST_FILE = "HeadlessBee-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = HeadlessBee;
+				PROVISIONING_PROFILE = "";
+				VERSIONING_SYSTEM = "apple-generic";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		277730A11953A5E6006BB191 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 200;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/Frameworks",
+					"$(PROJECT_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = App/Prefix.pch;
+				INFOPLIST_FILE = "HeadlessBee-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = HeadlessBee;
+				PROVISIONING_PROFILE = "";
+				VERSIONING_SYSTEM = "apple-generic";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
 		27B28FCC14314FB900B86F18 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -418,7 +587,7 @@
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				COPY_PHASE_STRIP = YES;
+				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -431,7 +600,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "70B102CC-ADC5-4B25-A18D-8C723EEC64E5";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "16CBA82F-0A2E-49BF-9990-0AAF99C1ADEB";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -492,6 +661,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		2777309F1953A5E6006BB191 /* Build configuration list for PBXNativeTarget "HeadlessBee" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				277730A01953A5E6006BB191 /* Debug */,
+				277730A11953A5E6006BB191 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		27B28F9B14314FB800B86F18 /* Build configuration list for PBXProject "Worker Bee" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
