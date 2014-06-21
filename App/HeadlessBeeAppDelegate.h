@@ -11,4 +11,5 @@
 
 @interface HeadlessBeeAppDelegate : UIResponder <UIApplicationDelegate>
 @property (nonatomic) UIWindow* window;
+@property (readonly) NSDictionary* config;
 @end

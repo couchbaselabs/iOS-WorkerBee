@@ -25,6 +25,10 @@ int main(int argc, char *argv[])
 - (BOOL)application:(UIApplication *)application
         didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    NSString* path = [[NSBundle mainBundle] pathForResource: @"config" ofType: @"json"];
+    _config = [NSJSONSerialization JSONObjectWithData: [NSData dataWithContentsOfFile: path]
+                                              options: 0 error: NULL];
+
     NSLog(@"Device info: %@", [SavedTestRun deviceInfo]);
 
     [self performSelector: @selector(runTests) withObject: nil afterDelay: 0];
