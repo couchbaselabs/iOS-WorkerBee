@@ -38,18 +38,30 @@ int main(int argc, char *argv[])
 
 
 - (void) runTests {
-    NSArray* allClasses = [[BeeTest allTestClasses] sortedArrayUsingComparator:^NSComparisonResult(Class c1, Class c2) {
-        return [[c1 description] compare: [c2 description] options: NSNumericSearch];
-    }];
-    for (Class testClass in allClasses) {
-        @autoreleasepool {
-            NSLog(@"-------- RUNNING TEST %@", testClass);
-            BeeTest* test = [[testClass alloc] init];
-            test.running = YES;
-            while (test.running) {
-                [[NSRunLoop currentRunLoop] runMode: NSDefaultRunLoopMode
-                                         beforeDate: [NSDate dateWithTimeIntervalSinceNow: 1.0]];
-            }
+    NSString* testName = [[NSUserDefaults standardUserDefaults] stringForKey: @"RunTest"];
+    if (testName) {
+        Class testClass = NSClassFromString(testName);
+        NSAssert(testClass, @"No test class named %@", testName);
+        [self runTest: testClass];
+    } else {
+        NSArray* allClasses = [[BeeTest allTestClasses] sortedArrayUsingComparator:^NSComparisonResult(Class c1, Class c2) {
+            return [[c1 description] compare: [c2 description] options: NSNumericSearch];
+        }];
+        for (Class testClass in allClasses)
+            [self runTest: testClass];
+    }
+    exit(0);
+}
+
+
+- (void) runTest: (Class)testClass {
+    @autoreleasepool {
+        NSLog(@"-------- RUNNING TEST %@", testClass);
+        BeeTest* test = [[testClass alloc] init];
+        test.running = YES;
+        while (test.running) {
+            [[NSRunLoop currentRunLoop] runMode: NSDefaultRunLoopMode
+                                     beforeDate: [NSDate dateWithTimeIntervalSinceNow: 1.0]];
         }
     }
 }
