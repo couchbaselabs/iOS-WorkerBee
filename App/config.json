@@ -1,3 +1,32 @@
 {
-    "Something": 42
+    "Test1_CreateDocs": {
+        "numbers_of_documents":[1, 100, 10000, 100000],
+        "sizes_of_document":   [100, 500, 10000, 1000000],
+        "kpi_total_time": [[150, 40,50,3500],[150, 300,4000,-1],[12000, 24000,-1,-1],[30, 50,-1,-1]],
+        "repeat_count": 5
+    },
+
+    "Test2_CreateDocsUnoptimizedWay": {
+        "numbers_of_documents":[1, 100],
+        "sizes_of_document":   [100, 500],
+        "kpi_total_time": [[150, 40],[150, 300]],
+        "repeat_count": 3
+    },
+    
+    "Test3_CreateDocsWithAttachments": {
+        "numbers_of_documents":[1, 100],
+        "sizes_of_document":   [100, 500],
+        "kpi_total_time": [[150, 40],[150, 300]],
+        "repeat_count": 3
+    },
+
+    "Test6_PushReplication": {
+   		"sync_gateway_url": "http://172.23.96.66:4984/db",
+        "numbers_of_documents":[1, 100],
+        "sizes_of_document":   [100, 500],
+        "kpi_total_time": [[150, 40],[150, 300]],
+        "repeat_count": 3
+    }
 }
+
+

@@ -58,6 +58,8 @@ int main(int argc, char *argv[])
     @autoreleasepool {
         NSLog(@"-------- RUNNING TEST %@", testClass);
         BeeTest* test = [[testClass alloc] init];
+        [BeeTest setConfig:_config];
+
         test.running = YES;
         while (test.running) {
             [[NSRunLoop currentRunLoop] runMode: NSDefaultRunLoopMode

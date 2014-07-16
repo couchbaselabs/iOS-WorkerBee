@@ -9,62 +9,91 @@
 #import "Test1_CreateDocs.h"
 #import <CouchbaseLite/CBLJSON.h>
 
-
-//#define kNumberOfDocuments 10
-//#define kNumberOfDocuments 100
-#define kNumberOfDocuments 1000
-//#define kNumberOfDocuments 10000
-//#define kNumberOfDocuments 50000
-//#define kNumberOfDocuments 100000
-
-// Multiplier for generating an array with
-// 'kSizeOfDocument' indexes
-#define kSizeofDocument 50
-//#define kSizeofDocument 100
-//#define kSizeofDocument 1000
-//#define kSizeofDocument 10000
-//#define kSizeofDocument 100000
-//#define kSizeofDocument 1000000
-//#define kSizeofDocument 5000000
-
-
 @implementation Test1_CreateDocs
 
 - (void) heartbeat {
     [self logFormat: @"Starting Test"];
-    
-   
-    
-    NSString *value = @"1234567";
-    
-    NSMutableArray *bigObj = [[NSMutableArray alloc] init];
-    for (int i = 0; i < kSizeofDocument; i++) {
-            [bigObj addObject:value];
-    }
-    
-    NSDictionary* props = @{@"bigArray": bigObj};
-    
-    NSDate *start = [NSDate date];
-    
-    [self.database inTransaction:^BOOL{
-        for (int j = 0; j < kNumberOfDocuments; j++) {
-            @autoreleasepool {
-                CBLDocument* doc = [self.database createDocument];
-                NSError* error;
-                if (![doc putProperties: props error: &error]) {
-                    [self logFormat: @"!!! Failed to create doc %@", props];
-                    self.error = error;
+    @autoreleasepool {
+        NSDictionary* testCaseConfig = [[BeeTest config] objectForKey:NSStringFromClass([self class])];
+        NSMutableArray* arrayNumberOfDocuments = [[NSMutableArray alloc] init];
+        arrayNumberOfDocuments = [testCaseConfig  objectForKey:@"numbers_of_documents"];
+        NSMutableArray* arraySizeofDocument = [[NSMutableArray alloc] init];
+        arraySizeofDocument = [testCaseConfig  objectForKey:@"sizes_of_document"];
+        NSMutableArray* arrayKpis = [[NSMutableArray alloc] init];
+        arrayKpis = [testCaseConfig  objectForKey:@"kpi_total_time"];
+        int repeatCount = [[testCaseConfig  objectForKey:@"repeat_count"] intValue];
+        [self logFormat:@"Running with params: %d NumberOfDocuments, %d SizeofDocument, repeatCount=%d", [arrayNumberOfDocuments count], [arraySizeofDocument count], repeatCount];
+        int failCount = 0;
+        int testCount = 0;
+
+        for (int arrayNumbers = 0; arrayNumbers < [arrayNumberOfDocuments count];  arrayNumbers++) {
+            int kNumberOfDocuments = [[arrayNumberOfDocuments objectAtIndex: arrayNumbers] intValue];
+            NSMutableArray* arrayKpiNumbers = [arrayKpis objectAtIndex: arrayNumbers];
+
+            for (int arraySizes = 0; arraySizes < [arraySizeofDocument count];  arraySizes++) {
+                int kSizeofDocument = [[arraySizeofDocument objectAtIndex: arraySizes] intValue];
+                double kpiTotalTime = [[arrayKpiNumbers objectAtIndex: arraySizes] doubleValue];
+
+                if (kpiTotalTime == -1) {
+                    // Skip
+                    [self logFormat:@"Result %d: SKIP for creating \t%d documents, \tsize %dB",testCount, kNumberOfDocuments, kSizeofDocument];
+                    continue;
                 }
+
+                NSMutableArray *arrayResults;
+                arrayResults = [NSMutableArray array];
+
+                for (int repeat = 0; repeat < repeatCount;  repeat++) {
+                    @autoreleasepool {
+                        NSMutableString *str = [NSMutableString stringWithCapacity:kSizeofDocument];
+                        for (int i = 0; i< kSizeofDocument; i++) {
+                            [str appendString:@"1"];
+                        }
+                        NSDictionary* props = @{@"bigString": str};
+
+                        NSDate *start = [NSDate date];
+                        [self.database inTransaction:^BOOL{
+                            for (int j = 0; j < kNumberOfDocuments; j++) {
+                                @autoreleasepool {
+                                    CBLDocument* doc = [self.database createDocument];
+                                    NSError* error;
+                                    if (![doc putProperties: props error: &error]) {
+                                        [self logFormat: @"!!! Failed to create doc %@", props];
+                                        self.error = error;
+                                    }
+                                }
+                            }
+                            return YES;
+                        }];
+
+                        NSDate *methodFinish = [NSDate date];
+                        NSTimeInterval executionTime = [methodFinish timeIntervalSinceDate:start] * 1000;
+                        NSNumber *executionTimeNSNumber = [NSNumber numberWithDouble:executionTime];
+                        [arrayResults addObject: executionTimeNSNumber];
+
+                         // Delete the database so a new database will be created for each iteration
+                        [self deleteDatabase];
+                    }
+                }
+                testCount ++;
+                double executionTimeAvg = [[arrayResults valueForKeyPath:@"@avg.doubleValue"] doubleValue];
+                double executionTimeMin = [[arrayResults valueForKeyPath:@"@min.doubleValue"] doubleValue];
+                double executionTimeMax = [[arrayResults valueForKeyPath:@"@max.doubleValue"] doubleValue];
+                NSString* passFail = (executionTimeAvg <= kpiTotalTime) ? @"PASS" : @"FAIL";
+                if ([passFail isEqualToString:@"FAIL"])  {
+                    failCount++;
+                }
+                [self logFormat:@"Result %d: %@. Time to create \t%d documents, \tsize %dB, \t\tkpi %.2fms: \tavg:%.2f \tmin:%.2f \tmax:%.2f.  \tAvg_Per_Doc:%.2f \tList:%@",testCount, passFail, kNumberOfDocuments, kSizeofDocument, kpiTotalTime, executionTimeAvg, executionTimeMin, executionTimeMax, executionTimeAvg/kNumberOfDocuments, arrayResults];
             }
         }
-        return YES;
-    }];
-    
-    NSDate *methodFinish = [NSDate date];
-    NSTimeInterval executionTime = [methodFinish timeIntervalSinceDate:start];
-    [self logFormat:@"Total Time Taken: %f",executionTime];
-    self.running = NO;
-    
+
+        if (failCount == 0)
+            [self logFormat:@"Summary: PASS.  %d test iteration completed successfully", testCount];
+        else
+            [self logFormat:@"Summary: FAIL.  Among %d test iterations,  %d tests failed.",testCount, failCount];
+        self.running = NO;
+
+    }
 }
 
 - (void) setUp {

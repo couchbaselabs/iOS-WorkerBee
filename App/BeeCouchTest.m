@@ -59,6 +59,7 @@
         if (![database deleteDatabase: &error])
             [self logFormat: @"WARNING: Couldn't delete database: %@", error];
     }
+    _createdDatabase = NO;
 }
 
 

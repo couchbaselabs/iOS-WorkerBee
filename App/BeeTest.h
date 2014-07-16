@@ -24,6 +24,9 @@
     Defaults to the class's name with any "Test" suffix removed. */
 + (NSString*) displayName;
 
++ (NSDictionary*) config;
++ (void) setConfig: (NSDictionary*)config;
+
 #pragma mark Instance properties
 
 /** The test's delegate; this will be the associated BeeTestController. */

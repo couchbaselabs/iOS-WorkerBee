@@ -76,6 +76,15 @@
     return name;
 }
 
+static NSDictionary* config;
++ (void) setConfig: (NSDictionary*)config_in {
+    config = config_in;
+}
+
++ (NSDictionary*) config {
+    return config;
+}
+
 
 @synthesize delegate=_delegate, status = _status, startTime = _startTime, endTime = _endTime,
             stoppedByUser = _stoppedByUser, error = _error, messages = _messages,
