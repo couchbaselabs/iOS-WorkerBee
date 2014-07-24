@@ -1,0 +1,116 @@
+//
+//  BeeCouchMultipleTest.m
+//  Worker Bee
+//
+//  Created by Li Yang on 7/17/14.
+//  Copyright (c) 2014 Couchbase, Inc. All rights reserved.
+//
+
+#import "BeeCouchMultipleTest.h"
+
+@implementation BeeCouchMultipleTest
+
+- (void) setUp {
+    [super setUp];
+
+    [self runMultiple];
+}
+
+- (double) runOne:(int)numberOfDocuments sizeOfDocuments:(int)sizeOfDocuments {
+    return 0;
+}
+
+- (void) runMultiple {
+    [self logFormat: @"Starting Test iterations"];
+    NSDictionary* testCaseConfig = [[BeeTest config] objectForKey:NSStringFromClass([self class])];
+    NSMutableArray* arrayNumberOfDocuments = [[NSMutableArray alloc] init];
+    arrayNumberOfDocuments = [testCaseConfig  objectForKey:@"numbers_of_documents"];
+    NSMutableArray* arraySizeofDocuments = [[NSMutableArray alloc] init];
+    arraySizeofDocuments = [testCaseConfig  objectForKey:@"sizes_of_document"];
+    NSMutableArray* arrayKpisPerDoc = [[NSMutableArray alloc] init];
+    arrayKpisPerDoc = [testCaseConfig  objectForKey:@"kpi_total_time"];
+    int repeatCount = [[testCaseConfig  objectForKey:@"repeat_count"] intValue];
+    double SumKpiBaseLine = [[testCaseConfig  objectForKey:@"sum_kpi_baseline"] doubleValue];
+    [self logFormat:@"Running with params: %d NumberOfDocuments, %d SizeofDocument, repeatCount=%d", [arrayNumberOfDocuments count], [arraySizeofDocuments count], repeatCount];
+    NSMutableArray* resultNumberOfDocuments = [[NSMutableArray alloc] init];
+    
+    int failCount = 0;
+    int testCount = 0;
+    double sumKpi = 0;
+    
+    for (int arrayNumbers = 0; arrayNumbers < [arrayNumberOfDocuments count];  arrayNumbers++) {
+        int kNumberOfDocuments = [[arrayNumberOfDocuments objectAtIndex: arrayNumbers] intValue];
+        NSMutableArray* arrayKpisPerDocNumbers = [arrayKpisPerDoc objectAtIndex: arrayNumbers];
+        NSMutableArray* resultSizeofDocuments = [[NSMutableArray alloc] init];
+        
+        for (int arraySizes = 0; arraySizes < [arraySizeofDocuments count];  arraySizes++) {
+            int kSizeofDocument = [[arraySizeofDocuments objectAtIndex: arraySizes] intValue];
+            double kpiTotalTime = [[arrayKpiNumbers objectAtIndex: arraySizes] doubleValue];
+            testCount ++;
+            
+            if (kpiTotalTime < 0) {
+                // Skip
+                [self logFormat:@"Test iteration #%d: SKIP. doc=%d size=%dB",testCount, kNumberOfDocuments, kSizeofDocument];
+                [resultSizeofDocuments addObject: @"SKIP"];
+                continue;
+            }
+            
+            NSMutableArray *arrayResults;
+            arrayResults = [NSMutableArray array];
+            
+            for (int repeat = 0; repeat < repeatCount;  repeat++) {
+                // Run one iteration of the test
+                double executionTime = [self runOne:kNumberOfDocuments sizeOfDocuments:kSizeofDocument];
+                NSNumber *executionTimeNSNumber = [NSNumber numberWithDouble:executionTime];
+                [arrayResults addObject: executionTimeNSNumber];
+                
+                // Delete the database so a new database will be created for each iteration
+                [self deleteDatabase];
+            }
+            double executionTimeAvg = [[arrayResults valueForKeyPath:@"@avg.doubleValue"] doubleValue];
+            double executionTimeMin = [[arrayResults valueForKeyPath:@"@min.doubleValue"] doubleValue];
+            double executionTimeMax = [[arrayResults valueForKeyPath:@"@max.doubleValue"] doubleValue];
+            double executionTimeAvgPerDoc = executionTimeAvg / kNumberOfDocuments;
+            sumKpi = sumKpi + executionTimeAvgPerDoc;
+            NSString* passFail = (executionTimeAvgPerDoc <= kpiTotalTime) ? @"PASS" : @"FAIL";
+            if ([passFail isEqualToString:@"FAIL"])  {
+                failCount++;
+            }
+            NSString *executionTimeAvgStr = [NSString stringWithFormat:@"%.02f", executionTimeAvg];
+            NSString *executionTimeMinStr = [NSString stringWithFormat:@"%.02f", executionTimeMin];
+            NSString *executionTimeMaxStr = [NSString stringWithFormat:@"%.02f", executionTimeMax];
+            NSString *executionTimeAvgPerDocStr = [NSString stringWithFormat:@"%.02f", executionTimeAvgPerDoc];
+            NSString *compareStr = [NSString stringWithFormat:@"%@", executionTimeAvgPerDocStr];
+
+            [resultSizeofDocuments addObject: compareStr];
+ 
+            [self logFormat:@"Test iteration #%d: %@. (docs=%d size=%dB) avg:%@ min:%@ max:%@ \tkpi %f, Avg_Per_Doc \t%@ \tList:%@",
+             testCount, passFail, kNumberOfDocuments, kSizeofDocument,
+             executionTimeAvgStr, executionTimeMinStr, executionTimeMaxStr,
+             kpiTotalTime, executionTimeAvgPerDocStr, arrayResults];
+//            [self logFormat:@"Test iteration #%d: %@. (docs=%d size=%dB) avg:%@ min:%@ max:%@ \tkpi %f, Avg_Per_Doc \t%@",
+//             testCount, passFail, kNumberOfDocuments, kSizeofDocument,
+//             executionTimeAvgStr, executionTimeMinStr, executionTimeMaxStr,
+//             kpiTotalTime, executionTimeAvgPerDocStr];
+        }
+        [resultNumberOfDocuments addObject: resultSizeofDocuments];
+    }
+    
+    // This is the number for easier comparison between test runs to see whether there are over 10% variation.  The number does not have meaning of its own because it is the sum of all test iterations
+    double diffPercent = (SumKpiBaseLine - sumKpi )/SumKpiBaseLine*100;
+    if (diffPercent > 10)
+        [self logFormat:@"=== %@ failed to compare to baseline: sumKpi=%.02f, SumKpiBaseLine=%.02f, percentage of difference: %.02f", [self class], sumKpi, SumKpiBaseLine, diffPercent];
+    else
+        [self logFormat:@"=== %@ OK comparing to baseline: sumKpi=%.02f, SumKpiBaseLine=%.02f, percentage of difference: %.02f", [self class], sumKpi, SumKpiBaseLine, diffPercent];
+    [self logFormat:@" "];
+    
+    
+    if (failCount == 0)
+        [self logFormat:@"Summary: PASS.  %d test iteration completed successfully.  Results %@", testCount, resultNumberOfDocuments];
+    else
+        [self logFormat:@"Summary: FAIL.  Among %d test iterations,  %d tests failed.  Results %@",testCount, failCount, resultNumberOfDocuments];
+    
+}
+
+
+@end

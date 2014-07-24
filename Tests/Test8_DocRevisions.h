@@ -6,14 +6,14 @@
 //  Copyright (c) 2014 Couchbase, Inc. All rights reserved.
 //
 
-#import "BeeCouchTest.h"
+#import "BeeCouchMultipleTest.h"
 
 /*
  Test Definition: Test Doc revision performance by updating a value n times
  */
 
 
-@interface Test8_DocRevisions : BeeCouchTest
+@interface Test8_DocRevisions : BeeCouchMultipleTest
 
 @property NSMutableArray *docs;
 

@@ -6,14 +6,14 @@
 //  Copyright (c) 2014 Couchbase, Inc. All rights reserved.
 //
 
-#import "BeeCouchTest.h"
+#import "BeeCouchMultipleTest.h"
 
 /*
  Test Definition: Test how much time it takes to delete a database
  */
 
 
-@interface Test10_DeleteDB : BeeCouchTest
+@interface Test10_DeleteDB : BeeCouchMultipleTest
 
 @property NSString *dbname;
 

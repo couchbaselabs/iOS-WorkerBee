@@ -6,13 +6,13 @@
 //  Copyright (c) 2014 Couchbase, Inc. All rights reserved.
 //
 
-#import "BeeCouchTest.h"
+#import "BeeCouchMultipleTest.h"
 
 /*
 Test Definition: Create Documents with different size of Binary attachments.
 */
 
-@interface Test3_CreateDocsWithAttachments : BeeCouchTest
+@interface Test3_CreateDocsWithAttachments : BeeCouchMultipleTest
 
 
 @end

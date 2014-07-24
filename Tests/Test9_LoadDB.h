@@ -1,19 +1,23 @@
 //
-//  PerfTestScenario9.h
-//  Worker Bee
+// PerfTestScenario9.h
+// Worker Bee
 //
-//  Created by Ashvinder Singh on 2/14/14.
-//  Copyright (c) 2014 Couchbase, Inc. All rights reserved.
+// Created by Ashvinder Singh on 2/14/14.
+// Copyright (c) 2014 Couchbase, Inc. All rights reserved.
 //
 
-#import "BeeCouchTest.h"
+#import "BeeCouchMultipleTest.h"
 
 /*
  Test Definition: Test how much time it takes to load a database
  */
 
 
-@interface Test9_LoadDB : BeeCouchTest
+@interface Test9_LoadDB : BeeCouchMultipleTest
+
+@property CBLManager* mymanager;
+
+@property (readonly) CBLDatabase* database;
 
 @property NSString *dbname;
 

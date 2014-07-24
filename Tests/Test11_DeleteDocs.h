@@ -6,14 +6,14 @@
 //  Copyright (c) 2014 Couchbase, Inc. All rights reserved.
 //
 
-#import "BeeCouchTest.h"
+#import "BeeCouchMultipleTest.h"
 
 /*
  Test Definition: Test how much time it takes to delete a (set) of documents
  */
 
 
-@interface Test11_DeleteDocs : BeeCouchTest
+@interface Test11_DeleteDocs : BeeCouchMultipleTest
 
 @property NSMutableArray *docs;
 

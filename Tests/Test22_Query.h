@@ -6,12 +6,12 @@
 //  Copyright (c) 2014 Couchbase, Inc. All rights reserved.
 //
 
-#import "BeeCouchTest.h"
+#import "BeeCouchMultipleTest.h"
 
 /*
  Test Definition: Test how much time it takes to query a view
  */
 
-@interface Test12_QueryView : BeeCouchTest
+@interface Test22_Query : BeeCouchMultipleTest
 
 @end
