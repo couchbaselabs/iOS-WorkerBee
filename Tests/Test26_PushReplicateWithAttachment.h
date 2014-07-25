@@ -1,14 +1,14 @@
 //
-// Test15_ReplicateWithAttachment.h
-// Worker Bee
+//  Test26_PushReplicateWithAttachment.h
+//  Worker Bee
 //
-// Created by Ashvinder Singh on 4/23/14.
-// Copyright (c) 2014 Couchbase, Inc. All rights reserved.
+//  Created by Li Yang on 7/23/14.
+//  Copyright (c) 2014 Couchbase, Inc. All rights reserved.
 //
 
 #import "BeeCouchMultipleTest.h"
 
-@interface Test15_ReplicateWithAttachment : BeeCouchMultipleTest
+@interface Test26_PushReplicateWithAttachment : BeeCouchMultipleTest
 
 @property CBLReplication *push;
 

@@ -1,22 +1,22 @@
 //
-//  PerfTestScenario7.m
+//  Test25_PullReplication.m
 //  Worker Bee
 //
-//  Created by Ashvinder Singh on 2/13/14.
+//  Created by Li Yang on 7/23/14.
 //  Copyright (c) 2014 Couchbase, Inc. All rights reserved.
 //
+
 #import <malloc/malloc.h>
-#import "Test7_PullReplication.h"
+#import "Test25_PullReplication.h"
 #import <CouchbaseLite/CouchbaseLite.h>
 
+// Before running this test, start walrus by the following:
+// cd /opt/couchbase-sync-gateway/bin
+// ./sync_gateway -interface=':4984' config.json
 
-@implementation Test7_PullReplication
+@implementation Test25_PullReplication
 {
     bool pushReplicationRunning, pullReplicationRunning;
-}
-
-+ (BOOL) isAbstractTest {
-    return self == [BeeCouchMultipleTest class];
 }
 
 - (void) pushReplicationChanged: (NSNotificationCenter*)n {
@@ -24,14 +24,15 @@
     [self logFormat: @"Push: completed %d Out of total %d",self.push.completedChangesCount,self.push.changesCount];
     if (self.push.status == kCBLReplicationStopped) {
         if (self.push.lastError)
-            [self logFormat: @"Push replication Stopped and error found - %@", self.push.lastError];
+        [self logSummary:[NSString stringWithFormat:
+                          @"*** Replication Stopped and error found - %@", self.push.lastError]];
         pushReplicationRunning = NO;
     }
 }
 
 - (void) pullReplicationChanged: (NSNotificationCenter*)n {
     // Uncomment the following line to see the progress of pull replication
-    [self logFormat: @"Pull: completed %d Out of total %d",self.pull.completedChangesCount,self.pull.changesCount];
+    //[self logFormat: @"Pull: completed %d Out of total %d",self.pull.completedChangesCount,self.pull.changesCount];
     if (self.pull.status == kCBLReplicationStopped) {
         if (self.pull.lastError)
             [self logFormat: @"Pull replication Stopped and error found - %@", self.pull.lastError];
@@ -40,8 +41,12 @@
 }
 
 - (double) runOne:(int)kNumberOfDocuments sizeOfDocuments:(int)kSizeofDocument {
-    NSDictionary* testCaseConfig = [[BeeTest config] objectForKey:NSStringFromClass([self class])];
-    NSString* syncGatewayUrl = [testCaseConfig  objectForKey:@"sync_gateway_url"];
+    NSDictionary* environmentConfig = [[BeeTest config] objectForKey:@"environment"];
+    NSString* syncGatewayIp = [environmentConfig  objectForKey:@"sync_gateway_ip"];
+    NSString* syncGatewayPort = [environmentConfig  objectForKey:@"sync_gateway_port"];
+    NSString* syncGatewayDb = [environmentConfig  objectForKey:@"sync_gateway_db"];
+    NSString* syncGatewayUrl = [NSString  stringWithFormat:@"http://%@:%@/%@",
+                                syncGatewayIp, syncGatewayPort, syncGatewayDb];
     [self logFormat: @"Starting Test %@ - Sync_gateway %@", [self class], syncGatewayUrl];
     
     @autoreleasepool {
@@ -109,11 +114,6 @@
 
 }
 
-
-- (void) setUp {
-    [super setUp];
-    self.heartbeatInterval = 1.0;
-}
 
 
 @end

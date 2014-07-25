@@ -1,8 +1,8 @@
 //
-//  Test12_QueryView.h
+//  Test22_Query.h
 //  Worker Bee
 //
-//  Created by Ashvinder Singh on 3/6/14.
+//  Created by Li Yang on 7/23/14.
 //  Copyright (c) 2014 Couchbase, Inc. All rights reserved.
 //
 

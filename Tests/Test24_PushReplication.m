@@ -1,8 +1,8 @@
 //
-//  PerfTestScenario6.m
+//  Test24_PushReplication.m
 //  Worker Bee
 //
-//  Created by Ashvinder Singh on 2/12/14.
+//  Created by Li Yang on 7/23/14.
 //  Copyright (c) 2014 Couchbase, Inc. All rights reserved.
 //
 
@@ -17,7 +17,7 @@
 
 - (void) pushReplicationChanged: (NSNotificationCenter*)n {
    // Uncomment the following line to see the progress of replication
-   [self logFormat: @"Completed %d Out of total %d",self.push.completedChangesCount,self.push.changesCount];
+   // [self logFormat: @"Completed %d Out of total %d",self.push.completedChangesCount,self.push.changesCount];
     
    if (self.push.status == kCBLReplicationStopped) {
        // If do not see this line, it means there is no error

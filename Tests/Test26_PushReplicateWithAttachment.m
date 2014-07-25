@@ -1,40 +1,44 @@
 //
-// Test15_ReplicateWithAttachment.m
-// Worker Bee
+//  Test26_PushReplicateWithAttachment.m
+//  Worker Bee
 //
-// Created by Ashvinder Singh on 4/23/14.
-// Copyright (c) 2014 Couchbase, Inc. All rights reserved.
+//  Created by Li Yang on 7/23/14.
+//  Copyright (c) 2014 Couchbase, Inc. All rights reserved.
 //
 
-#import "Test15_PushReplicateWithAttachment.h"
+#import "Test26_PushReplicateWithAttachment.h"
 #import <malloc/malloc.h>
 #import <CouchbaseLite/CouchbaseLite.h>
 
+// Before running this test, start walrus by the following:
+// cd /opt/couchbase-sync-gateway/bin
+// ./sync_gateway -interface=':4984' config.json
 
-@implementation Test15_ReplicateWithAttachment
+@implementation Test26_PushReplicateWithAttachment
 {
     bool replicationRunning;
 }
 
-+ (BOOL) isAbstractTest {
-    return self == [BeeCouchMultipleTest class];
-}
-
 - (void) pushReplicationChanged: (NSNotificationCenter*)n {
     // Uncomment the following line to see the progress of replication
-    // [self logFormat: @"Completed %d Out of total %d",self.push.completedChangesCount,self.push.changesCount];
+    [self logFormat: @"Completed %d Out of total %d",self.push.completedChangesCount,self.push.changesCount];
     
     if (self.push.status == kCBLReplicationStopped) {
         // If do not see this line, it means there is no error
         if (self.push.lastError)
-            [self logFormat: @"Replication Stopped and error found - %@", self.push.lastError];
+        [self logSummary:[NSString stringWithFormat:
+                          @"*** Replication Stopped and error found - %@", self.push.lastError]];
         replicationRunning = NO;
     }
 }
 
 - (double) runOne:(int)kNumberOfDocuments sizeOfDocuments:(int)kSizeofAttachment {
-    NSDictionary* testCaseConfig = [[BeeTest config] objectForKey:NSStringFromClass([self class])];
-    NSString* syncGatewayUrl = [testCaseConfig  objectForKey:@"sync_gateway_url"];
+    NSDictionary* environmentConfig = [[BeeTest config] objectForKey:@"environment"];
+    NSString* syncGatewayIp = [environmentConfig  objectForKey:@"sync_gateway_ip"];
+    NSString* syncGatewayPort = [environmentConfig  objectForKey:@"sync_gateway_port"];
+    NSString* syncGatewayDb = [environmentConfig  objectForKey:@"sync_gateway_db"];
+    NSString* syncGatewayUrl = [NSString  stringWithFormat:@"http://%@:%@/%@",
+                                syncGatewayIp, syncGatewayPort, syncGatewayDb];
     [self logFormat: @"Starting Test %@ - Sync_gateway %@", [self class], syncGatewayUrl];
     
     @autoreleasepool {
