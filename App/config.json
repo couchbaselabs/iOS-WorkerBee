@@ -15,8 +15,8 @@
                            [1,   1,  2,  10,  -1,  -1, -1],
                            [1,   1,  2,  -1,  -1,  -1, -1],
                            [1,   1, -1,  -1,  -1,  -1, -1],],
-        "repeat_count": 3,
-        "sum_kpi_baseline": 5954.01
+        "repeat_count": 1,
+        "sum_kpi_baseline": 2087.22
     },
 
     "Test2_CreateDocsUnoptimizedWay": {
@@ -27,21 +27,21 @@
                 [20, 25, 25,  50, 150, -2, -2],
                 [20, 30, 20,  50,  -2, -2, -1]],
         "repeat_count": 2,
-        "sum_kpi_baseline": 1641.17
+        "sum_kpi_baseline": 1629.16
     },
     
     
     "Test3_CreateDocsWithAttachments": {
         "numbers_of_documents":[1, 10, 100, 1000, 10000, 100000],
         "sizes_of_document":   [500, 1000, 10000, 100000, 1000000, 10000000, 50000000],
-        "kpi": [[80, 80, 80, 110, 180, 900, -2],
-                [20, 20, 20, 30, 100, 400, -2],
-                [20, 20, 20, 20, 100, -2, -2],
-                [20, 20, 20,  10,  -2, -2, -1],
+        "kpi": [[80, 80, 90, 110, 180, 900, -2],
+                [25, 25, 20, 30, 100, 400, -2],
+                [20, 20, 20, 25, 100, -2, -2],
+                [20, 20, 20, 25,  -2, -2, -1],
                 [20, 20,  -2,  -2,  -2, -2, -1],
                 [-2, -2, -2,  -1,  -1,  -1, -1],],
-        "repeat_count": 3,
-        "sum_kpi_baseline": 1443.10    },
+        "repeat_count": 2,
+        "sum_kpi_baseline": 1595.15    },
 
     "Test8_DocRevisions": {
         "numbers_of_documents":[1, 10, 100, 1000, 10000, 100000],
@@ -53,59 +53,59 @@
                 [1,   -2, -2,  -2,  -2, -2, -1],
                 [-2,  -2, -2,  -1,  -1,  -1, -1],],
         "repeat_count": 2,
-        "sum_kpi_baseline": 650.35
+        "sum_kpi_baseline": 674.19
     },
     
     "Test9_LoadDB": {
         "numbers_of_documents":[1],
         "sizes_of_document":   [1000, 10000, 100000, 500000, 1000000, 10000000, -2],
-        "kpi": [[4, 3, 5, 5, 5, 10, 10]],
-        "repeat_count": 5,
-        "sum_kpi_baseline": 27.58
+        "kpi": [[4, 3, 5, 5, 5, -2, -2]],
+        "repeat_count": 3,
+        "sum_kpi_baseline": 15.36
     },
     
     "Test10_DeleteDB": {
         "numbers_of_documents":[1],
         "sizes_of_document":   [1000, 10000, 100000, 500000, 1000000, 10000000, 50000000],
-        "kpi": [[3, 3, 5, 5, 5, 10, 30]],
-        "repeat_count": 5,
-        "sum_kpi_baseline": 50.23
+        "kpi": [[3, 3, 5, 5, 5, -10, -30]],
+        "repeat_count": 3,
+        "sum_kpi_baseline": 16.04
     },
     
     "Test11_DeleteDocs": {
         "numbers_of_documents":[1, 100],
         "sizes_of_document":   [1000, 10000, 100000, 500000, 1000000, 10000000, 50000000],
-        "kpi": [[20, 10, 10, 10, 20, 20, -2],[20, 10, 10, 10, 20, -2, -2]],
-        "repeat_count": 3,
-        "sum_kpi_baseline": 45.60
+        "kpi": [[20, 10, 10, 10, 20, -20, -2],[20, 10, 10, 10, -20, -2, -2]],
+        "repeat_count": 2,
+        "sum_kpi_baseline": 31.81
     },
     
     "Test21_Index": {
         "numbers_of_documents":[1, 10, 100, 1000, 50000, 100000],
         "sizes_of_document":   [0],
-        "kpi": [[25], [25], [50], [300], [13000], [30000]],
+        "kpi": [[25], [25], [50], [300], [-13000], [-30000]],
         "kpi_is_total": true,
-        "repeat_count": 3,
-        "sum_kpi_baseline": 37555.92
+        "repeat_count": 2,
+        "sum_kpi_baseline": 315.99
     },
  
     
     "Test22_Query": {
         "numbers_of_documents":[1, 10, 100, 1000, 50000, 100000],
         "sizes_of_document":   [0],
-        "kpi": [[5], [5], [10], [100], [3200], [6500]],
+        "kpi": [[5], [5], [10], [100], [3200], [-2]],
         "kpi_is_total": true,
-        "repeat_count": 3,
-        "sum_kpi_baseline": 9258.24
+        "repeat_count": 2,
+        "sum_kpi_baseline": 3178.26
     },
     
     "Test23_ReduceQuery": {
         "numbers_of_documents":[1, 10, 100, 1000, 50000, 100000],
         "sizes_of_document":   [0],
-        "kpi": [[2], [3], [5], [50], [25000], [5500]],
+        "kpi": [[2], [3], [5], [50], [-25000], [-2]],
         "kpi_is_total": true,
         "repeat_count": 3,
-        "sum_kpi_baseline": 7236.65
+        "sum_kpi_baseline": 50.67
     },
     
     
@@ -113,61 +113,49 @@
     "Test24_PushReplication": {
         "numbers_of_documents":[1, 10, 100, 1000, 100000],
         "sizes_of_document":   [1000, 10000, 100000, 1000000],
-        "kpi": [[  300,    10,    20,   50],
-                [   10,    20,    50,  200],
-                [   40,   100,   400, 2400],
-                [24000,  4500,  2500,22000],
-                [22000, 45000,    -2,   -2]],
+        "kpi": [[  10000,    150,    500,   1000],
+                [   200,    500,    1500,  200],
+                [   300,   6500,   400,   -2],
+                [2000,  2000,    -2,   -2],
+                [120000,    -2,    -2,   -2]],
         "kpi_is_total": true,
         "repeat_count": 1,
-        "sum_kpi_baseline": 93315.20
+        "sum_kpi_baseline": 146844.77
     },
-    
+
     "Test25_PullReplication": {
         "numbers_of_documents":[1, 10, 100, 1000, 100000],
         "sizes_of_document":   [1000, 10000, 100000, 1000000],
-        "kpi": [[250, 10, 150, 150],
-                [20, 20, 1200, 1200],
-                [120, 1500, 1500, 2000],
-                [3700, 4000, 5200, 10000],
-                [100000, 100000, -2, -2]],
+        "kpi": [[350000, 350000, 350000, 350000],
+                [450000, 350000, 350000, 350000],
+                [350000, 350000, 350000, -2],
+                [350000, -4000, -2, -2],
+                [-100000, -2, -2, -2]],
         "kpi_is_total": true,
         "repeat_count": 1,
-        "sum_kpi_baseline": 999999
+        "sum_kpi_baseline": 4372924.06
     },
-    
+
+
     "Test26_PushReplicateWithAttachment": {
         "numbers_of_documents":[1, 10, 100, 1000, 100000],
         "sizes_of_document":   [1000, 10000, 100000, 1000000],
-        "kpi": [[5099999, 50, 50, 50],
-                [50, 70, 70, 1200],
-                [70, 150, 99999, 99999],
-                [99999, 99999, -2, -2],
-                [99999, -2, -2, -2]],
+        "kpi": [[300, 400, 400, -2],
+                [400, 400, -2, -2],
+                [600, -2, -2, -2],
+                [2000, -2, -2, -2],
+                [-2, -2, -2, -2]],
         "kpi_is_total": true,
         "repeat_count": 1,
-        "sum_kpi_baseline": 999999
+        "sum_kpi_baseline": 4010.25
     },
-    
-    "Test27_MultipleReplications": {
-   		"sync_gateway_urls":["http://10.17.45.13:4985/db", "http://10.17.45.13:5985/db"],
-        "numbers_of_documents":[1, 10, 100, 1000, 100000],
-        "sizes_of_document":   [1000, 10000, 100000, 1000000],
-        "kpi": [[80, 70, 70, 110],
-                [20, 20, 20, 100],
-                [20, 20, 20, 100],
-                [20, 20, 20, 100],
-                [20, 20, 20, -2],
-                [20, 20, -2, -2]],
-        "kpi_is_total": true,
-        "repeat_count": 1,
-        "sum_kpi_baseline": 99999
-    },
-    
+
     "environment": {
-   		"sync_gateway_ip":"10.17.45.13",
+   		"sync_gateway_ip2":"169.254.252.228",
+   		"sync_gateway_ip":"192.168.0.16",
    		"sync_gateway_port":"4984",
-        "sync_gateway_db":"db"
+        "sync_gateway_db":"db",
+        "Note":"Baseliine taken on Friday 7/25"
     }
     
 }

@@ -53,6 +53,7 @@ NSString* const summaryFileName = @"Bee_csv.txt";
 - (void)logSummary:(NSString *)str {
     // Also print it to console
     [self logFormat:@"%@", str];
+    [[self class] writeToFile:str toFile:outputFileName ];
     [[self class] writeToFile:str toFile:summaryFileName ];
 }
 
@@ -60,7 +61,6 @@ NSString* const summaryFileName = @"Bee_csv.txt";
     // Also print it to console
     [self logFormat:@"%@", str];
     [[self class] writeToFile:str toFile:outputFileName ];
-    [[self class] writeToFile:str toFile:summaryFileName ];
 }
 
 - (void) runMultiple {
@@ -75,7 +75,7 @@ NSString* const summaryFileName = @"Bee_csv.txt";
     int repeatCount = [[testCaseConfig  objectForKey:@"repeat_count"] intValue];
     double SumKpiBaseLine = [[testCaseConfig  objectForKey:@"sum_kpi_baseline"] doubleValue];
 
-    [self logToFile:[NSString stringWithFormat:@"\n\n-------------------- %@ - %@", [self class], [NSDate date]]];
+    [self logSummary:[NSString stringWithFormat:@"\n\n-------------------- %@ - %@", [self class], [NSDate date]]];
     [self logToFile:[NSString stringWithFormat:@"\nParams: %d NumberOfDocuments, %d SizeofDocument, repeatCount=%d", [arrayNumberOfDocuments count], [arraySizeofDocuments count], repeatCount]];
 
     NSMutableArray* resultNumberOfDocuments = [[NSMutableArray alloc] init];
