@@ -5,48 +5,36 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>5978B4AB-FCBB-43B2-9013-8753E578FD60</string>
+	<string>F7C3346A-1660-437C-955E-7497C67F0D15</string>
 	<key>IDESourceControlProjectName</key>
 	<string>Worker Bee</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>0595015F-FE0C-48E7-B55C-B7F73C71451D</key>
-		<string>git://github.com/couchbaselabs/iOS-WorkerBee.git</string>
-		<key>62DEFC25-0DC7-4C56-8CB0-60EA2137CFA6</key>
-		<string>ssh://github.com/couchbase/couchbase-lite-ios.git</string>
+		<key>4B47B4D0-8C06-4DB0-AD77-38F57FAF9EAD</key>
+		<string>https://github.com/couchbaselabs/iOS-WorkerBee/</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Worker Bee.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>0595015F-FE0C-48E7-B55C-B7F73C71451D</key>
+		<key>4B47B4D0-8C06-4DB0-AD77-38F57FAF9EAD</key>
 		<string>../..</string>
-		<key>62DEFC25-0DC7-4C56-8CB0-60EA2137CFA6</key>
-		<string>../../../../CouchbaseLite</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>git://github.com/couchbaselabs/iOS-WorkerBee.git</string>
+	<string>https://github.com/couchbaselabs/iOS-WorkerBee/</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>0595015F-FE0C-48E7-B55C-B7F73C71451D</string>
+	<string>4B47B4D0-8C06-4DB0-AD77-38F57FAF9EAD</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>62DEFC25-0DC7-4C56-8CB0-60EA2137CFA6</string>
+			<string>4B47B4D0-8C06-4DB0-AD77-38F57FAF9EAD</string>
 			<key>IDESourceControlWCCName</key>
-			<string>CouchbaseLite</string>
-		</dict>
-		<dict>
-			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.git</string>
-			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>0595015F-FE0C-48E7-B55C-B7F73C71451D</string>
-			<key>IDESourceControlWCCName</key>
-			<string>WorkerBee</string>
+			<string>iOS-WorkerBee</string>
 		</dict>
 	</array>
 </dict>

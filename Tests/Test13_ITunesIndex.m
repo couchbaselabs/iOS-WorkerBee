@@ -135,7 +135,7 @@
 //             (unsigned long)artists.count, (unsigned long)kArtistCount);
 }
 
-#define NEW_FTS_API
+//#define NEW_FTS_API
 
 - (void) indexFullText {
     // Another view that creates a full-text index of everything:
