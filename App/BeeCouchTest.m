@@ -58,6 +58,7 @@
         [self logFormat: @"WARNING: Couldn't delete database: %@", error];
     _database = nil;
     _createdDatabase = NO;
+    _database = nil;
 }
 
 

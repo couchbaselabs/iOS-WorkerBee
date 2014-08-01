@@ -220,7 +220,7 @@ static NSDictionary* config;
 
 - (void) setHeartbeatInterval: (NSTimeInterval)interval {
     [_heartbeat invalidate];
-    if (interval > 0) {
+    if (interval > 0 && _running) {
         _heartbeat = [NSTimer scheduledTimerWithTimeInterval: interval
                                                        target: self
                                                      selector: @selector(heartbeat)
