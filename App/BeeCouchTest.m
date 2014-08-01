@@ -53,12 +53,10 @@
 - (void) deleteDatabase {
     if (!_createdDatabase)
         return;
-    CBLDatabase* database = [self.manager existingDatabaseNamed: self.databaseName error: NULL];
-    if (database) {
-        NSError* error = nil;
-        if (![database deleteDatabase: &error])
-            [self logFormat: @"WARNING: Couldn't delete database: %@", error];
-    }
+    NSError* error = nil;
+    if (![_database deleteDatabase: &error])
+        [self logFormat: @"WARNING: Couldn't delete database: %@", error];
+    _database = nil;
     _createdDatabase = NO;
 }
 
