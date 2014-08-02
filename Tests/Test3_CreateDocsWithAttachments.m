@@ -13,10 +13,9 @@
 
 - (double) runOne:(int)kNumberOfDocuments sizeOfDocuments:(int)kSizeOfAttachment {
     @autoreleasepool {
-        NSMutableString *str = [NSMutableString stringWithCapacity:kSizeOfAttachment];
-        for (int i = 0; i< kSizeOfAttachment; i++) {
-            [str appendString:@"1"];
-        }
+        NSMutableData* utf8 = [NSMutableData dataWithLength: kSizeOfAttachment];
+        memset(utf8.mutableBytes, '1', utf8.length);
+        NSString* str = [[NSString alloc] initWithData: utf8 encoding: NSUTF8StringEncoding];
         NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
 
         NSDate *start = [NSDate date];

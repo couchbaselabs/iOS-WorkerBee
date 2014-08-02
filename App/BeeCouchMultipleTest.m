@@ -117,8 +117,9 @@ NSString* const summaryFileName = @"Bee_csv.txt";
             arrayResults = [NSMutableArray array];
             
             for (int repeat = 0; repeat < repeatCount;  repeat++) {
+                (void)[self database];
                 // Run one iteration of the test
-                double executionTime = round ( 100 * [self runOne:kNumberOfDocuments sizeOfDocuments:kSizeofDocument] ) / 100;
+                double executionTime = [self runOne:kNumberOfDocuments sizeOfDocuments:kSizeofDocument];
                 [arrayResults addObject: [NSNumber numberWithDouble:executionTime]];
                 
                 // Delete the database so a new database will be created for each iteration
@@ -179,8 +180,9 @@ NSString* const summaryFileName = @"Bee_csv.txt";
         
     for (NSMutableArray* row in resultNumberOfDocuments) {
         NSMutableString *str = [NSMutableString string];
-        for (NSNumber* num in row) {
-            [str appendString:[NSString stringWithFormat:@"%.02f; ",[num doubleValue]]];
+        [str appendString:[NSString stringWithFormat:@"%@; ",[row objectAtIndex:0]]];
+        for (int i = 1; i < [row count]; i++) {
+            [str appendString:[NSString stringWithFormat:@"%.02f; ",[[row objectAtIndex:i] doubleValue]]];
         }
         [self logSummary:[NSString stringWithFormat:@"\n%@;", str]];
     }

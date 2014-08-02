@@ -14,10 +14,9 @@
 
 - (double) runOne:(int)kNumberOfDocuments sizeOfDocuments:(int)kSizeofDocument {
     @autoreleasepool {
-        NSMutableString *str = [NSMutableString stringWithCapacity:kSizeofDocument];
-        for (int i = 0; i< kSizeofDocument; i++) {
-            [str appendString:@"1"];
-        }
+        NSMutableData* utf8 = [NSMutableData dataWithLength: kSizeofDocument];
+        memset(utf8.mutableBytes, '1', utf8.length);
+        NSString* str = [[NSString alloc] initWithData: utf8 encoding: NSUTF8StringEncoding];
         NSNumber *flag = @YES;
         NSDictionary* props = @{@"data": str, @"toogle":flag};
         
