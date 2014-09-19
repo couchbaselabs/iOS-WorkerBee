@@ -1,5 +1,5 @@
 //
-//  Test24_PushReplication.h
+//  Test24_PullReplication.h
 //  Worker Bee
 //
 //  Created by Li Yang on 7/23/14.
@@ -9,12 +9,14 @@
 #import "BeeCouchMultipleTest.h"
 
 /*
-Test Definition: Test Push replication
-*/
+ Test Definition: Test Pull replication
+ */
 
-@interface Test24_PushReplication : BeeCouchMultipleTest
 
+@interface Test24_PullReplication : BeeCouchMultipleTest
+
+@property  CBLReplication *pull;
 @property  CBLReplication *push;
 
+
 @end
-    

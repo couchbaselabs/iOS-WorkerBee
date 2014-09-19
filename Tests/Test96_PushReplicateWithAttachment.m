@@ -1,18 +1,18 @@
 //
-//  Test26_PushReplicateWithAttachment.m
+//  Test96_PushReplicateWithAttachment.m
 //  Worker Bee
 //
 //  Created by Li Yang on 7/23/14.
 //  Copyright (c) 2014 Couchbase, Inc. All rights reserved.
 //
 
-#import "Test26_PushReplicateWithAttachment.h"
+#import "Test96_PushReplicateWithAttachment.h"
 #import <malloc/malloc.h>
 #import <CouchbaseLite/CouchbaseLite.h>
 
 //To run this test, start sync_gateway and change sync_gateway_ip in config.json
 
-@implementation Test26_PushReplicateWithAttachment
+@implementation Test96_PushReplicateWithAttachment
 {
     bool replicationRunning;
 }

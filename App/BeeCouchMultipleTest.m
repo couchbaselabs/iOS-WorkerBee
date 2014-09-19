@@ -75,7 +75,7 @@ NSString* const summaryFileName = @"Bee_csv.txt";
     arrayBaselines = [testCaseConfig  objectForKey:@"baseline"];
     bool kpiIsTotal = [[testCaseConfig  objectForKey:@"kpi_is_total"] boolValue];
     int repeatCount = [[testCaseConfig  objectForKey:@"repeat_count"] intValue];
-    double SumKpiBaseline = [[testCaseConfig  objectForKey:@"sum_kpi_baseline"] doubleValue];
+    double sumKpiBaseline = [[testCaseConfig  objectForKey:@"sum_kpi_baseline"] doubleValue];
 
     NSString *localDate = [NSDateFormatter localizedStringFromDate:[NSDate date] dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterShortStyle];
     [self logSummary:[NSString stringWithFormat:@"\n\n-------------------- %@ - %@", [self class], localDate]];
@@ -128,15 +128,17 @@ NSString* const summaryFileName = @"Bee_csv.txt";
             double executionTimeAvg = round ( 100 * [[arrayResults valueForKeyPath:@"@avg.doubleValue"] doubleValue] ) / 100;
             double executionTimeMin = round ( 100 * [[arrayResults valueForKeyPath:@"@min.doubleValue"] doubleValue] ) / 100;
             double executionTimeMax = round ( 100 * [[arrayResults valueForKeyPath:@"@max.doubleValue"] doubleValue] ) / 100;
-            double temp = round (( executionTimeAvg / kNumberOfDocuments) * 100 ) / 100;
-            double executionTimeAvgPerDoc = round( temp * 100 ) / 100;
+            // Use executionTimeMin as baseline comparison
+            double temp = round (( executionTimeMin / kNumberOfDocuments) * 100 ) / 100;
+            double executionTimeMinPerDoc = round( temp * 100 ) / 100;
 
             double result;
 
             if (kpiIsTotal)
-                result = executionTimeAvg;
+                // Use executionTimeMin as baseline comparison
+                result = executionTimeMin;
             else
-                result = executionTimeAvgPerDoc;
+                result = executionTimeMinPerDoc;
 
             sumKpi = sumKpi + result;
             double diffBaseline = round(((result - kBaseline )/kBaseline*100)*100)/100;
@@ -146,28 +148,28 @@ NSString* const summaryFileName = @"Bee_csv.txt";
              [NSNumber numberWithDouble:diffBaseline]];
 
             NSString* passFail;
-            if(result > kpiTotalTime || diffBaseline > 10 || diffBaseline < -10) {
+            if(result > kpiTotalTime || diffBaseline > 20) {
                 passFail = @"FAIL";
                 failCount++;
             } else {
                 passFail = @"PASS";
             }
 
-            [self logToFile:[NSString stringWithFormat:@"\nTest iteration #%d: %@. (docs=%d size=%dB) avg:%.02f min:%.02f max:%.02f \tkpi %.02f \tbaseline %.02f diff baseline \t%.02f%% \tList:%@", testCount, passFail, kNumberOfDocuments, kSizeofDocument,
-                executionTimeAvg, executionTimeMin, executionTimeMax, kpiTotalTime, kBaseline, diffBaseline, arrayResults]];
+            [self logToFile:[NSString stringWithFormat:@"\nTest iteration #%d: %@. (docs=%d size=%dB) avg:%.02f max:%.02f min:%.02f result:%.02f \tkpi %.02f \tbaseline %.02f diff baseline \t%.02f%% \tList:%@", testCount, passFail, kNumberOfDocuments, kSizeofDocument,
+                executionTimeAvg, executionTimeMax, executionTimeMin, result, kpiTotalTime, kBaseline, diffBaseline, arrayResults]];
         }
         [resultNumberOfDocuments addObject: resultSizeofDocuments];
         [diffBaselinesNumberofDocuments addObject: diffBaselinesSizeofDocuments];
     }
 
     // This is the number for easier comparison between test runs to see whether there are over 10% variation.  The number does not have meaning of its own because it is the sum of all test iterations
-    double diffPercent = (SumKpiBaseline - sumKpi )/SumKpiBaseline*100;
+    double diffPercent = (sumKpi -  sumKpiBaseline)/sumKpiBaseline*100;
     NSString* summaryPassFail = (failCount == 0) ? @"PASS" : @"FAIL";
-    NSString* baselineComparePassFail = (diffPercent > 10 || diffPercent < -10) ? @"FAIL" : @"PASS";
+    NSString* baselineComparePassFail = (diffPercent > 10) ? @"FAIL" : @"PASS";
     
-    [self logSummary:[NSString stringWithFormat:@"\nSummary: %@.  %d sub-tests ran.  %d sub-tests fail (result > kpiTotalTime || diffBaseline > 10 || diffBaseline < -10) ",summaryPassFail, testCount, failCount]];
+    [self logSummary:[NSString stringWithFormat:@"\nSummary: %@.  %d sub-tests ran.  %d sub-tests fail (result > kpiTotalTime || diffBaseline > 10 ) ",summaryPassFail, testCount, failCount]];
     
-    [self logSummary:[NSString stringWithFormat:@"\nBaseline compare %@: sumKpi:\t%.02f \tbaseline:%.02f difference:%.02f%%", baselineComparePassFail, sumKpi, SumKpiBaseline, diffPercent]];
+    [self logSummary:[NSString stringWithFormat:@"\nBaseline compare %@: sumKpi:\t%.02f \tbaseline:%.02f difference:%.02f%%", baselineComparePassFail, sumKpi, sumKpiBaseline, diffPercent]];
 
 
     NSMutableString *columHeader = [NSMutableString string];
@@ -190,12 +192,20 @@ NSString* const summaryFileName = @"Bee_csv.txt";
 
     [self logSummary:[NSString stringWithFormat:@"\n--- Percentage of deviation from baselines"]];
     [self logSummary:[NSString stringWithFormat:@"\n%@", columHeader]];
+//    for (NSMutableArray* row in diffBaselinesNumberofDocuments) {
+//        NSMutableString *str = [NSMutableString string];
+//        for (NSNumber* num in row) {
+//            [str appendString:[NSString stringWithFormat:@"%.02f%; ",[num doubleValue]]];
+//        }
+//        [self logSummary:[NSString stringWithFormat:@"\n%@", str]];
+//    }
     for (NSMutableArray* row in diffBaselinesNumberofDocuments) {
         NSMutableString *str = [NSMutableString string];
-        for (NSNumber* num in row) {
-            [str appendString:[NSString stringWithFormat:@"%.02f; ",[num doubleValue]]];
+        [str appendString:[NSString stringWithFormat:@"%@ docs; ",[row objectAtIndex:0]]];
+        for (int i = 1; i < [row count]; i++) {
+            [str appendString:[NSString stringWithFormat:@"%.02f%%; ",[[row objectAtIndex:i] doubleValue]]];
         }
-        [self logSummary:[NSString stringWithFormat:@"\n%@", str]];
+        [self logSummary:[NSString stringWithFormat:@"\n%@;", str]];
     }
 
     self.running = NO;

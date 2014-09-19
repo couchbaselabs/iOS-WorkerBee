@@ -1,5 +1,5 @@
 //
-//  Test25_PullReplication.m
+//  Test94_PullReplication.m
 //  Worker Bee
 //
 //  Created by Li Yang on 7/23/14.
@@ -7,21 +7,19 @@
 //
 
 #import <malloc/malloc.h>
-#import "Test25_PullReplication.h"
+#import "Test94_PullReplication.h"
 #import <CouchbaseLite/CouchbaseLite.h>
 
-// Before running this test, start walrus by the following:
-// cd /opt/couchbase-sync-gateway/bin
-// ./sync_gateway -interface=':4984' config.json
+//To run this test, start a fresh sync_gateway and change sync_gateway_ip in config.json
 
-@implementation Test25_PullReplication
+@implementation Test94_PullReplication
 {
     bool pushReplicationRunning, pullReplicationRunning;
 }
 
 - (void) pushReplicationChanged: (NSNotificationCenter*)n {
     // Uncomment the following line to see the progress of push replication
-    [self logFormat: @"Push: completed %d Out of total %d",self.push.completedChangesCount,self.push.changesCount];
+    //[self logFormat: @"Push: completed %d Out of total %d",self.push.completedChangesCount,self.push.changesCount];
     if (self.push.status == kCBLReplicationStopped) {
         if (self.push.lastError)
         [self logSummary:[NSString stringWithFormat:
@@ -47,7 +45,7 @@
     NSString* syncGatewayDb = [environmentConfig  objectForKey:@"sync_gateway_db"];
     NSString* syncGatewayUrl = [NSString  stringWithFormat:@"http://%@:%@/%@",
                                 syncGatewayIp, syncGatewayPort, syncGatewayDb];
-    [self logFormat: @"Starting Test %@ - Sync_gateway %@", [self class], syncGatewayUrl];
+    [self logFormat: @"Starting Test %@ - Sync_gateway %@, kNumberOfDocuments %i, kSizeofDocument %i", [self class], syncGatewayUrl, kNumberOfDocuments, kSizeofDocument];
     
     @autoreleasepool {
         NSMutableData* utf8 = [NSMutableData dataWithLength: kSizeofDocument];

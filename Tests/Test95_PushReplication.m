@@ -1,5 +1,5 @@
 //
-//  Test24_PushReplication.m
+//  Test95_PushReplication.m
 //  Worker Bee
 //
 //  Created by Li Yang on 7/23/14.
@@ -7,11 +7,11 @@
 //
 
 #import <malloc/malloc.h>
-#import "Test24_PushReplication.h"
+#import "Test95_PushReplication.h"
 #import <CouchbaseLite/CouchbaseLite.h>
 
-
-@implementation Test24_PushReplication
+//To run this test, start sync_gateway and change sync_gateway_ip in config.json
+@implementation Test95_PushReplication
 {
     bool replicationRunning;
 }
@@ -36,7 +36,7 @@
     NSString* syncGatewayDb = [environmentConfig  objectForKey:@"sync_gateway_db"];
     NSString* syncGatewayUrl = [NSString  stringWithFormat:@"http://%@:%@/%@",
                       syncGatewayIp, syncGatewayPort, syncGatewayDb];
-    [self logFormat: @"Starting Test %@ - Sync_gateway %@", [self class], syncGatewayUrl];
+    [self logFormat: @"Starting Test %@ - Sync_gateway %@, kNumberOfDocuments %i, kSizeofDocument %i", [self class], syncGatewayUrl, kNumberOfDocuments, kSizeofDocument];
     
     @autoreleasepool {
         NSMutableData* utf8 = [NSMutableData dataWithLength: kSizeofDocument];
