@@ -1,4 +1,5 @@
 {
+
     "Test1_CreateDocs": {
         "numbers_of_documents":[10, 100, 1000, 10000, 100000],
         "sizes_of_document":   [500, 1000, 10000, 100000, 1000000, 10000000, 50000000],
@@ -95,14 +96,14 @@
     "Test21_Index": {
         "numbers_of_documents":[10, 100, 1000, 50000, 100000],
         "sizes_of_document":   [0],
-        "kpi": [[50], [50], [300], [-13000], [-30000]],
+        "kpi": [[50], [50], [300], [13000], [30000]],
         "baseline": [[18.34],
                      [35.57],
                      [234.13],
                      [-1.00],
                      [-1.00]],
         "kpi_is_total": true,
-        "repeat_count": 2,
+        "repeat_count": 1,
         "sum_kpi_baseline": 279.27
     },
 
@@ -115,7 +116,7 @@
                      [-1.00],
                      [-1.00]],
         "kpi_is_total": true,
-        "repeat_count": 5,
+        "repeat_count": 2,
         "sum_kpi_baseline": 72.24
     },
 
@@ -129,7 +130,7 @@
                      [-1.00],
                      [-1.00]],
         "kpi_is_total": true,
-        "repeat_count": 3,
+        "repeat_count": 2,
         "sum_kpi_baseline": 52.50
     },
 
@@ -222,7 +223,7 @@
 
 
     "environment": {
-   		"sync_gateway_ip":"10.17.55.46",
+   		"sync_gateway_ip":"10.17.58.191",
    		"sync_gateway_port":"4984",
         "sync_gateway_db":"db"
     }
