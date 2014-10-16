@@ -43,8 +43,7 @@
     }
     
     @autoreleasepool {
-        NSDate *start = [NSDate date];
-        
+
         CBLView* view = [self.database viewNamed: @"vacant"];
         
         [view setMapBlock: MAPBLOCK({
@@ -53,6 +52,8 @@
             if (v && name) emit(name, v);
         }) reduceBlock: REDUCEBLOCK({return @(values.count);})
                   version: @"3"];
+
+        NSDate *start = [NSDate date];
         
         [view updateIndex];
         
