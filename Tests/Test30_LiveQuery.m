@@ -54,7 +54,7 @@
             [view setMapBlock: MAPBLOCK({
                 id apt = [doc objectForKey: @"apt"];
                 id name = [doc objectForKey: @"name"];
-                if (apt && name) emit(apt, name);
+                if (apt && name) emit(name, apt);
             }) reduceBlock: REDUCEBLOCK({
                 return @([values count]);
             }) version: @"3"];
@@ -76,11 +76,10 @@
                 for (int i = 0; i < kNumberOfDocuments; i++) {
                     @autoreleasepool {
                         NSUInteger r = arc4random_uniform(kNumberOfDocuments-1) + 1;
-                        NSString* name = [NSString stringWithFormat:@"%@%@", str, @(r)];
+                        NSString* name = [NSString stringWithFormat:@"%@%@", @"n", @(r)];
                         bool vacant = (i+2) % 2 ? 1 : 0;
                         NSDictionary* props = @{@"name":name,
-                                                @"apt": @(i),
-                                                @"phone":@(408100000+i),
+                                                @"apt": [NSString stringWithFormat:@"%@%@", str, @(i)],
                                                 @"vacant":@(vacant)};
                         CBLDocument* doc = [self.database createDocument];
                         NSError* error;

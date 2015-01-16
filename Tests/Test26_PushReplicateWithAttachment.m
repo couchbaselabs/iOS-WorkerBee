@@ -96,14 +96,15 @@
         NSURL *syncGateway  = [NSURL URLWithString:syncGatewayUrl];
         self.push = [self.database createPushReplication: syncGateway];
         [self logFormat: @"Starting Push Replication"];
-        
-        // Start measuring time from here
-        NSDate* start = [NSDate date];
-        [self.push start];
+
         NSNotificationCenter* nctr = [NSNotificationCenter defaultCenter];
         [nctr addObserver: self selector: @selector(pushReplicationChanged:)
                      name: kCBLReplicationChangeNotification object: self.push];
-        
+
+        // Start measuring time from here
+        NSDate* start = [NSDate date];
+        [self.push start];
+
         replicationRunning = YES;
         while (replicationRunning) {
             [[NSRunLoop currentRunLoop] runMode: NSDefaultRunLoopMode
@@ -113,7 +114,12 @@
         NSDate *methodFinish = [NSDate date];
         [self logFormat: @"Push Replication Stopped"];
         NSTimeInterval executionTime = [methodFinish timeIntervalSinceDate:start] * 1000;
+
+        [nctr removeObserver:self name:kCBLReplicationChangeNotification object:self.push];
+        self.push = nil;
+
         [self deleteDatabase];
+
         sleep(20);
         return executionTime;
     }

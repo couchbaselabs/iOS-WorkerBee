@@ -74,7 +74,8 @@
         // Shutdown database
         [self.mymanager close];
         self.mymanager = nil;
-        
+        //NSDate *start2 = [NSDate date];
+
         // Recreate database
         CBLDatabase* db = [self mydatabase];
         if (!db) {
@@ -82,6 +83,10 @@
         }
 
         NSDate *methodFinish = [NSDate date];
+
+        //NSTimeInterval shutdownTime = [start2 timeIntervalSinceDate:start] * 1000;
+        //NSTimeInterval recreateTime = [methodFinish timeIntervalSinceDate:start2] * 1000;
+        //[self logFormat: @"Shutdown %.02f, recreate %.02f ", shutdownTime,recreateTime];
         NSTimeInterval executionTime = [methodFinish timeIntervalSinceDate:start] * 1000;
         return executionTime;
     }

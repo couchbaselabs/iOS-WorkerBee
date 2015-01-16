@@ -19,21 +19,19 @@
         NSString *value = [[NSString alloc] init];
         NSDate *start = [NSDate date];
         NSTimeInterval executionTimeTotal;
-        NSMutableData* utf8 = [NSMutableData dataWithLength: kSizeofDocument];
-        memset(utf8.mutableBytes, '1', utf8.length);
-        NSString* str = [[NSString alloc] initWithData: utf8 encoding: NSUTF8StringEncoding];
-
 
         // Create docs
-        [self.database inTransaction:^BOOL{
+        // The kSizeofDocument affect overall size of doc, but not key size
+        NSMutableData* utf8 = [NSMutableData dataWithLength: kSizeofDocument];
+        memset(utf8.mutableBytes, '1', utf8.length);
+        NSString* str = [[NSString alloc] initWithData: utf8 encoding: NSUTF8StringEncoding];        [self.database inTransaction:^BOOL{
             for (int i = 0; i < kNumberOfDocuments; i++) {
                 @autoreleasepool {
                     NSUInteger r = arc4random_uniform(kNumberOfDocuments-1) + 1;
                     NSString* name = [NSString stringWithFormat:@"%@%@", str, @(r)];
                     bool vacant = (i+2) % 2 ? 1 : 0;
                     NSDictionary* props = @{@"name":name,
-                                            @"apt": @(i),
-                                            @"phone":@(408100000+i),
+                                            @"apt": [NSString stringWithFormat:@"%@%@", str, @(i)],
                                             @"vacant":@(vacant)};
                     CBLDocument* doc = [self.database createDocument];
                     [self.docs addObject:doc];
@@ -72,7 +70,7 @@
         NSDate* methodFinish = [NSDate date];
         executionTimeTotal = [methodFinish timeIntervalSinceDate:start] * 1000;
 
-        [self logFormat: @"Query result count - %u",(unsigned int)rowEnum.count];
+        //[self logFormat: @"Query result count - %u",(unsigned int)rowEnum.count];
 
         return executionTimeTotal;
     }

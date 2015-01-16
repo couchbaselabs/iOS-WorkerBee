@@ -28,14 +28,18 @@
 
 - (double) runOne:(int)kNumberOfDocuments sizeOfDocuments:(int)kSizeofDocument {
     @autoreleasepool {
+        // The kSizeofDocument affect overall size of doc, but not key size
+        NSMutableData* utf8 = [NSMutableData dataWithLength: kSizeofDocument];
+        memset(utf8.mutableBytes, '1', utf8.length);
+        NSString* str = [[NSString alloc] initWithData: utf8 encoding: NSUTF8StringEncoding];
+
         [self.database inTransaction:^BOOL{
             for (int i = 0; i < kNumberOfDocuments; i++) {
                 @autoreleasepool {
                     NSString* name = [NSString stringWithFormat:@"%@%@", @"n", @(i)];
                     bool vacant = (i+2) % 2 ? 1 : 0;
                     NSDictionary* props = @{@"name":name,
-                                            @"apt": @(i),
-                                            @"phone":@(408100000+i),
+                                            @"apt": [NSString stringWithFormat:@"%@%@", str, @(i)],
                                             @"vacant":@(vacant)};
                     CBLDocument* doc = [self.database createDocument];
                     NSError* error;

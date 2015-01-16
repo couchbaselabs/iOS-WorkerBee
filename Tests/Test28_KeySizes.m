@@ -25,6 +25,7 @@
         NSDate *start;
         NSTimeInterval executionTimeTotal;
         NSDate* methodFinish;
+        // The kSizeofDocument affect key size
         NSMutableData* utf8 = [NSMutableData dataWithLength: kSizeofDocument];
         memset(utf8.mutableBytes, '1', utf8.length);
         NSString* str = [[NSString alloc] initWithData: utf8 encoding: NSUTF8StringEncoding];
@@ -41,7 +42,6 @@
                         bool vacant = (i+2) % 2 ? 1 : 0;
                         NSDictionary* props = @{@"name":name,
                                                 @"apt": @(i),
-                                                @"phone":@(408100000+i),
                                                 @"vacant":@(vacant)};
                         CBLDocument* doc = [self.database createDocument];
                         NSError* error;
@@ -61,9 +61,9 @@
                 id apt = [doc objectForKey: @"apt"];
                 id name = [doc objectForKey: @"name"];
                 //large key, small value
-                //if (apt && name) emit(name, apt);
+                if (apt && name) emit(name, apt);
                 //small key, large value
-                if (apt && name) emit(apt, name);
+                //if (apt && name) emit(apt, name);
             }) reduceBlock: REDUCEBLOCK({
                 return @([values count]);
             }) version: @"3"];
@@ -73,9 +73,9 @@
             // query
             CBLQuery* query = [[self.database viewNamed: @"vacant"] createQuery];
             query.mapOnly = YES;
-//            query.descending = NO;
-//            query.startKey = @0;
-//            query.endKey = [NSNumber numberWithInt:kNumberOfDocuments];
+//          query.descending = NO;
+//          query.startKey = @0;
+//          query.endKey = [NSNumber numberWithInt:kNumberOfDocuments];
             CBLQueryEnumerator* rowEnum = [query run: &error];
             for (CBLQueryRow* row in rowEnum) {
                 @autoreleasepool {
@@ -86,15 +86,15 @@
             }
 
             // Reduce query
-//            CBLQuery* query = [[self.database viewNamed: @"vacant"] createQuery];
-//            query.mapOnly = NO;
-//            CBLQueryEnumerator* rowEnum = [query run: &error];
-//            CBLQueryRow *row = [rowEnum nextRow];
+//          CBLQuery* query = [[self.database viewNamed: @"vacant"] createQuery];
+//          query.mapOnly = NO;
+//          CBLQueryEnumerator* rowEnum = [query run: &error];
+//          CBLQueryRow *row = [rowEnum nextRow];
 
             methodFinish = [NSDate date];
             executionTimeTotal = [methodFinish timeIntervalSinceDate:start] * 1000;
 
-           [self logFormat: @"--- Query return %d records", rowEnum.count];
+           //[self logFormat: @"--- Query return %d records", rowEnum.count];
         }
         return executionTimeTotal;
     }
