@@ -33,6 +33,11 @@
     return self;
 }
 
+- (void)didReceiveMemoryWarning {
+    NSLog(@"Receving a memory warning");
+    [super didReceiveMemoryWarning];
+}
+
 - (void)dealloc {
     [_test removeObserver: self forKeyPath: @"status"];
     [_test removeObserver: self forKeyPath: @"error"];
