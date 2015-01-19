@@ -4,4 +4,4 @@
 *.mode1v3
 xcuserdata/
 build/
-Frameworks/*.framework
+Frameworks*/*.framework
