@@ -28,6 +28,20 @@
 		0A123268198AB539003262ED /* Test11_DeleteDocs.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A123255198AB539003262ED /* Test11_DeleteDocs.m */; };
 		0A123269198AB539003262ED /* Test11_DeleteDocs.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A123255198AB539003262ED /* Test11_DeleteDocs.m */; };
 		0A123D4A19788E7F00FDE0C3 /* BeeCouchMultipleTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A123D4919788E7F00FDE0C3 /* BeeCouchMultipleTest.m */; };
+		0A43D48A1A38BB8200DBDAAC /* Test24_PullReplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A43D47F1A38BB8200DBDAAC /* Test24_PullReplication.m */; };
+		0A43D48B1A38BB8200DBDAAC /* Test24_PullReplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A43D47F1A38BB8200DBDAAC /* Test24_PullReplication.m */; };
+		0A43D48C1A38BB8200DBDAAC /* Test25_PushReplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A43D4811A38BB8200DBDAAC /* Test25_PushReplication.m */; };
+		0A43D48D1A38BB8200DBDAAC /* Test25_PushReplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A43D4811A38BB8200DBDAAC /* Test25_PushReplication.m */; };
+		0A43D48E1A38BB8200DBDAAC /* Test26_PushReplicateWithAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A43D4831A38BB8200DBDAAC /* Test26_PushReplicateWithAttachment.m */; };
+		0A43D48F1A38BB8200DBDAAC /* Test26_PushReplicateWithAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A43D4831A38BB8200DBDAAC /* Test26_PushReplicateWithAttachment.m */; };
+		0A43D4901A38BB8200DBDAAC /* Test28_KeySizes.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A43D4851A38BB8200DBDAAC /* Test28_KeySizes.m */; };
+		0A43D4911A38BB8200DBDAAC /* Test28_KeySizes.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A43D4851A38BB8200DBDAAC /* Test28_KeySizes.m */; };
+		0A43D4921A38BB8200DBDAAC /* Test29_AllDocQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A43D4871A38BB8200DBDAAC /* Test29_AllDocQuery.m */; };
+		0A43D4931A38BB8200DBDAAC /* Test29_AllDocQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A43D4871A38BB8200DBDAAC /* Test29_AllDocQuery.m */; };
+		0A43D4941A38BB8200DBDAAC /* Test30_LiveQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A43D4891A38BB8200DBDAAC /* Test30_LiveQuery.m */; };
+		0A43D4951A38BB8200DBDAAC /* Test30_LiveQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A43D4891A38BB8200DBDAAC /* Test30_LiveQuery.m */; };
+		0A4D99241A65F1510067C09D /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A4D99231A65F1510067C09D /* libc++.dylib */; };
+		0A4D99251A65F1590067C09D /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A4D99231A65F1510067C09D /* libc++.dylib */; };
 		270BC8DA18D76B6A005EF242 /* CouchbaseLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270BC8D818D76B6A005EF242 /* CouchbaseLite.framework */; };
 		270BC8DB18D76B6A005EF242 /* CouchbaseLiteListener.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270BC8D918D76B6A005EF242 /* CouchbaseLiteListener.framework */; };
 		270EA1ED1443C1AD0000AEA9 /* SavedTestRun.m in Sources */ = {isa = PBXBuildFile; fileRef = 270EA1EC1443C1AD0000AEA9 /* SavedTestRun.m */; };
@@ -111,6 +125,19 @@
 		0A123255198AB539003262ED /* Test11_DeleteDocs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test11_DeleteDocs.m; sourceTree = "<group>"; };
 		0A123D4819788E7F00FDE0C3 /* BeeCouchMultipleTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeeCouchMultipleTest.h; sourceTree = "<group>"; };
 		0A123D4919788E7F00FDE0C3 /* BeeCouchMultipleTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeeCouchMultipleTest.m; sourceTree = "<group>"; };
+		0A43D47E1A38BB8200DBDAAC /* Test24_PullReplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test24_PullReplication.h; sourceTree = "<group>"; };
+		0A43D47F1A38BB8200DBDAAC /* Test24_PullReplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test24_PullReplication.m; sourceTree = "<group>"; };
+		0A43D4801A38BB8200DBDAAC /* Test25_PushReplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test25_PushReplication.h; sourceTree = "<group>"; };
+		0A43D4811A38BB8200DBDAAC /* Test25_PushReplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test25_PushReplication.m; sourceTree = "<group>"; };
+		0A43D4821A38BB8200DBDAAC /* Test26_PushReplicateWithAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test26_PushReplicateWithAttachment.h; sourceTree = "<group>"; };
+		0A43D4831A38BB8200DBDAAC /* Test26_PushReplicateWithAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test26_PushReplicateWithAttachment.m; sourceTree = "<group>"; };
+		0A43D4841A38BB8200DBDAAC /* Test28_KeySizes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test28_KeySizes.h; sourceTree = "<group>"; };
+		0A43D4851A38BB8200DBDAAC /* Test28_KeySizes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test28_KeySizes.m; sourceTree = "<group>"; };
+		0A43D4861A38BB8200DBDAAC /* Test29_AllDocQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test29_AllDocQuery.h; sourceTree = "<group>"; };
+		0A43D4871A38BB8200DBDAAC /* Test29_AllDocQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test29_AllDocQuery.m; sourceTree = "<group>"; };
+		0A43D4881A38BB8200DBDAAC /* Test30_LiveQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test30_LiveQuery.h; sourceTree = "<group>"; };
+		0A43D4891A38BB8200DBDAAC /* Test30_LiveQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test30_LiveQuery.m; sourceTree = "<group>"; };
+		0A4D99231A65F1510067C09D /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 		270BC8D818D76B6A005EF242 /* CouchbaseLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CouchbaseLite.framework; path = Frameworks/CouchbaseLite.framework; sourceTree = "<group>"; };
 		270BC8D918D76B6A005EF242 /* CouchbaseLiteListener.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CouchbaseLiteListener.framework; path = Frameworks/CouchbaseLiteListener.framework; sourceTree = "<group>"; };
 		270EA1EB1443C1AD0000AEA9 /* SavedTestRun.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavedTestRun.h; sourceTree = "<group>"; };
@@ -169,6 +196,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A4D99241A65F1510067C09D /* libc++.dylib in Frameworks */,
 				277730891953A5E6006BB191 /* CFNetwork.framework in Frameworks */,
 				2777308A1953A5E6006BB191 /* SystemConfiguration.framework in Frameworks */,
 				2777308B1953A5E6006BB191 /* libsqlite3.dylib in Frameworks */,
@@ -186,6 +214,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A4D99251A65F1590067C09D /* libc++.dylib in Frameworks */,
 				2728F63617B3045400E929FD /* CFNetwork.framework in Frameworks */,
 				279B52FA159D367E003C95F9 /* SystemConfiguration.framework in Frameworks */,
 				279B52F8159D3675003C95F9 /* libsqlite3.dylib in Frameworks */,
@@ -240,6 +269,7 @@
 		27B28FA414314FB800B86F18 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0A4D99231A65F1510067C09D /* libc++.dylib */,
 				270BC8D818D76B6A005EF242 /* CouchbaseLite.framework */,
 				270BC8D918D76B6A005EF242 /* CouchbaseLiteListener.framework */,
 				2728F63517B3045400E929FD /* CFNetwork.framework */,
@@ -299,6 +329,18 @@
 		27CB656E143B9EC500EEA1F2 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				0A43D47E1A38BB8200DBDAAC /* Test24_PullReplication.h */,
+				0A43D47F1A38BB8200DBDAAC /* Test24_PullReplication.m */,
+				0A43D4801A38BB8200DBDAAC /* Test25_PushReplication.h */,
+				0A43D4811A38BB8200DBDAAC /* Test25_PushReplication.m */,
+				0A43D4821A38BB8200DBDAAC /* Test26_PushReplicateWithAttachment.h */,
+				0A43D4831A38BB8200DBDAAC /* Test26_PushReplicateWithAttachment.m */,
+				0A43D4841A38BB8200DBDAAC /* Test28_KeySizes.h */,
+				0A43D4851A38BB8200DBDAAC /* Test28_KeySizes.m */,
+				0A43D4861A38BB8200DBDAAC /* Test29_AllDocQuery.h */,
+				0A43D4871A38BB8200DBDAAC /* Test29_AllDocQuery.m */,
+				0A43D4881A38BB8200DBDAAC /* Test30_LiveQuery.h */,
+				0A43D4891A38BB8200DBDAAC /* Test30_LiveQuery.m */,
 				0A123248198AB539003262ED /* Test1_CreateDocs.h */,
 				0A123249198AB539003262ED /* Test1_CreateDocs.m */,
 				0A12324A198AB539003262ED /* Test2_CreateDocsUnoptimizedWay.h */,
@@ -375,6 +417,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Couchbase, Inc.";
 				TargetAttributes = {
+					277730721953A5E6006BB191 = {
+						DevelopmentTeam = N2Q372V7W2;
+					};
 					27B28FA014314FB800B86F18 = {
 						DevelopmentTeam = N2Q372V7W2;
 					};
@@ -446,8 +491,10 @@
 			files = (
 				0A12325D198AB539003262ED /* Test1_CreateDocs.m in Sources */,
 				27E940471953A74000A9732E /* HeadlessBeeAppDelegate.m in Sources */,
+				0A43D4931A38BB8200DBDAAC /* Test29_AllDocQuery.m in Sources */,
 				0A123245198AB524003262ED /* Test22_Query.m in Sources */,
 				277730781953A5E6006BB191 /* BeeTest.m in Sources */,
+				0A43D4911A38BB8200DBDAAC /* Test28_KeySizes.m in Sources */,
 				0A123263198AB539003262ED /* Test8_DocRevisions.m in Sources */,
 				277730811953A5E6006BB191 /* BeeCouchTest.m in Sources */,
 				27E9404A1953A79E00A9732E /* SavedTestRun.m in Sources */,
@@ -456,9 +503,13 @@
 				0A123D4A19788E7F00FDE0C3 /* BeeCouchMultipleTest.m in Sources */,
 				0A123269198AB539003262ED /* Test11_DeleteDocs.m in Sources */,
 				0A123261198AB539003262ED /* Test3_CreateDocsWithAttachments.m in Sources */,
+				0A43D48F1A38BB8200DBDAAC /* Test26_PushReplicateWithAttachment.m in Sources */,
+				0A43D4951A38BB8200DBDAAC /* Test30_LiveQuery.m in Sources */,
 				0A123265198AB539003262ED /* Test9_LoadDB.m in Sources */,
 				0A12325F198AB539003262ED /* Test2_CreateDocsUnoptimizedWay.m in Sources */,
 				0A123247198AB524003262ED /* Test23_ReduceQuery.m in Sources */,
+				0A43D48B1A38BB8200DBDAAC /* Test24_PullReplication.m in Sources */,
+				0A43D48D1A38BB8200DBDAAC /* Test25_PushReplication.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -470,16 +521,22 @@
 				27B28FB614314FB800B86F18 /* AppDelegate.m in Sources */,
 				0A123260198AB539003262ED /* Test3_CreateDocsWithAttachments.m in Sources */,
 				27CB6566143B997A00EEA1F2 /* TestListController.m in Sources */,
+				0A43D4901A38BB8200DBDAAC /* Test28_KeySizes.m in Sources */,
+				0A43D48A1A38BB8200DBDAAC /* Test24_PullReplication.m in Sources */,
 				0A12325E198AB539003262ED /* Test2_CreateDocsUnoptimizedWay.m in Sources */,
 				0A123268198AB539003262ED /* Test11_DeleteDocs.m in Sources */,
 				27CB656A143B9B7E00EEA1F2 /* BeeTest.m in Sources */,
 				0A1232301982F263003262ED /* Test21_Index.m in Sources */,
 				0A123262198AB539003262ED /* Test8_DocRevisions.m in Sources */,
 				27CB656D143B9EB900EEA1F2 /* CountTest.m in Sources */,
+				0A43D4921A38BB8200DBDAAC /* Test29_AllDocQuery.m in Sources */,
 				0A123246198AB524003262ED /* Test23_ReduceQuery.m in Sources */,
 				0A123264198AB539003262ED /* Test9_LoadDB.m in Sources */,
 				27CB6576143BAA2F00EEA1F2 /* BeeTestController.m in Sources */,
+				0A43D48E1A38BB8200DBDAAC /* Test26_PushReplicateWithAttachment.m in Sources */,
 				0A123266198AB539003262ED /* Test10_DeleteDB.m in Sources */,
+				0A43D48C1A38BB8200DBDAAC /* Test25_PushReplication.m in Sources */,
+				0A43D4941A38BB8200DBDAAC /* Test30_LiveQuery.m in Sources */,
 				27A07488143CCDCD0043BEB6 /* BeeCouchTest.m in Sources */,
 				0A12325C198AB539003262ED /* Test1_CreateDocs.m in Sources */,
 				27A0748C143CDE6B0043BEB6 /* CreateDocsTest.m in Sources */,
