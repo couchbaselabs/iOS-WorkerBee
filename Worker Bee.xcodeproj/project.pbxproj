@@ -21,8 +21,6 @@
 		0A123261198AB539003262ED /* Test3_CreateDocsWithAttachments.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A12324D198AB539003262ED /* Test3_CreateDocsWithAttachments.m */; };
 		0A123262198AB539003262ED /* Test8_DocRevisions.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A12324F198AB539003262ED /* Test8_DocRevisions.m */; };
 		0A123263198AB539003262ED /* Test8_DocRevisions.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A12324F198AB539003262ED /* Test8_DocRevisions.m */; };
-		0A123264198AB539003262ED /* Test9_LoadDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A123251198AB539003262ED /* Test9_LoadDB.m */; };
-		0A123265198AB539003262ED /* Test9_LoadDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A123251198AB539003262ED /* Test9_LoadDB.m */; };
 		0A123266198AB539003262ED /* Test10_DeleteDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A123253198AB539003262ED /* Test10_DeleteDB.m */; };
 		0A123267198AB539003262ED /* Test10_DeleteDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A123253198AB539003262ED /* Test10_DeleteDB.m */; };
 		0A123268198AB539003262ED /* Test11_DeleteDocs.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A123255198AB539003262ED /* Test11_DeleteDocs.m */; };
@@ -117,8 +115,6 @@
 		0A12324D198AB539003262ED /* Test3_CreateDocsWithAttachments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test3_CreateDocsWithAttachments.m; sourceTree = "<group>"; };
 		0A12324E198AB539003262ED /* Test8_DocRevisions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test8_DocRevisions.h; sourceTree = "<group>"; };
 		0A12324F198AB539003262ED /* Test8_DocRevisions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test8_DocRevisions.m; sourceTree = "<group>"; };
-		0A123250198AB539003262ED /* Test9_LoadDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test9_LoadDB.h; sourceTree = "<group>"; };
-		0A123251198AB539003262ED /* Test9_LoadDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test9_LoadDB.m; sourceTree = "<group>"; };
 		0A123252198AB539003262ED /* Test10_DeleteDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test10_DeleteDB.h; sourceTree = "<group>"; };
 		0A123253198AB539003262ED /* Test10_DeleteDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test10_DeleteDB.m; sourceTree = "<group>"; };
 		0A123254198AB539003262ED /* Test11_DeleteDocs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test11_DeleteDocs.h; sourceTree = "<group>"; };
@@ -349,8 +345,6 @@
 				0A12324D198AB539003262ED /* Test3_CreateDocsWithAttachments.m */,
 				0A12324E198AB539003262ED /* Test8_DocRevisions.h */,
 				0A12324F198AB539003262ED /* Test8_DocRevisions.m */,
-				0A123250198AB539003262ED /* Test9_LoadDB.h */,
-				0A123251198AB539003262ED /* Test9_LoadDB.m */,
 				0A123252198AB539003262ED /* Test10_DeleteDB.h */,
 				0A123253198AB539003262ED /* Test10_DeleteDB.m */,
 				0A123254198AB539003262ED /* Test11_DeleteDocs.h */,
@@ -505,7 +499,6 @@
 				0A123261198AB539003262ED /* Test3_CreateDocsWithAttachments.m in Sources */,
 				0A43D48F1A38BB8200DBDAAC /* Test26_PushReplicateWithAttachment.m in Sources */,
 				0A43D4951A38BB8200DBDAAC /* Test30_LiveQuery.m in Sources */,
-				0A123265198AB539003262ED /* Test9_LoadDB.m in Sources */,
 				0A12325F198AB539003262ED /* Test2_CreateDocsUnoptimizedWay.m in Sources */,
 				0A123247198AB524003262ED /* Test23_ReduceQuery.m in Sources */,
 				0A43D48B1A38BB8200DBDAAC /* Test24_PullReplication.m in Sources */,
@@ -531,7 +524,6 @@
 				27CB656D143B9EB900EEA1F2 /* CountTest.m in Sources */,
 				0A43D4921A38BB8200DBDAAC /* Test29_AllDocQuery.m in Sources */,
 				0A123246198AB524003262ED /* Test23_ReduceQuery.m in Sources */,
-				0A123264198AB539003262ED /* Test9_LoadDB.m in Sources */,
 				27CB6576143BAA2F00EEA1F2 /* BeeTestController.m in Sources */,
 				0A43D48E1A38BB8200DBDAAC /* Test26_PushReplicateWithAttachment.m in Sources */,
 				0A123266198AB539003262ED /* Test10_DeleteDB.m in Sources */,
