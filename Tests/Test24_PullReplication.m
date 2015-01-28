@@ -87,6 +87,10 @@
     }
     
     @autoreleasepool {
+        [self deleteDatabase];
+    }
+    
+    @autoreleasepool {
         self.pull = [self.database createPullReplication: syncGateway];
         [self logFormat: @"Starting Pull Replication"];
         
