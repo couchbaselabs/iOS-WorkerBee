@@ -277,9 +277,20 @@
         "sum_kpi_baseline": 9090.18
     },
 
-
+    "Test31_PullReplicationHighRevs": {
+        "numbers_of_documents":[10, 100],
+        "sizes_of_document":   [1024, 10240],
+        "kpi": [[10, 10],
+                [10, 10]],
+        "baseline": [[1500.00, 2000.00],
+                     [1500.00, 2000.00]],
+        "kpi_is_total": true,
+        "repeat_count": 1,
+        "sum_kpi_baseline": 0.0
+    },
+    
     "environment": {
-   		"sync_gateway_ip":"10.17.3.71",
+   		"sync_gateway_ip":"127.0.0.1",
    		"sync_gateway_ip_2":"192.168.0.16",
    		"sync_gateway_port":"4984",
         "sync_gateway_db":"db"

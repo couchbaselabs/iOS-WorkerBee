@@ -65,6 +65,46 @@
 }
 
 
+- (CBLDatabase*) createEmptyDatabaseNamed: (NSString*)name error: (NSError**)outError {
+    CBLDatabase* db = [self.manager existingDatabaseNamed: name error: outError];
+    if (db) {
+        if (![db deleteDatabase: outError])
+            return nil;
+    }
+    return [self.manager databaseNamed: name error: outError];
+}
+
+
+- (void) eraseRemoteDB: (NSURL*)dbURL {
+    [self logFormat: @"Deleting %@", dbURL];
+
+    __block NSError* error = nil;
+    __block BOOL finished = NO;
+
+    // Post to /db/_flush is supported by Sync Gateway 1.1, but not by CouchDB
+    NSURLComponents *comp = [NSURLComponents componentsWithURL: dbURL resolvingAgainstBaseURL: YES];
+    comp.port = @4985;
+    comp.path = [comp.path stringByAppendingPathComponent: @"_flush"];
+
+    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL: comp.URL
+                                                           cachePolicy: NSURLRequestUseProtocolCachePolicy
+                                                       timeoutInterval: 60.0];
+    [request setHTTPMethod:@"POST"];
+
+    NSURLSession* session = [NSURLSession sharedSession];
+    [[session dataTaskWithRequest: request completionHandler: ^(NSData *data, NSURLResponse *response, NSError *err) {
+        finished = YES;
+        error = err;
+    }] resume];
+
+    NSDate* timeout = [NSDate dateWithTimeIntervalSinceNow: 10];
+    while (!finished && [[NSRunLoop currentRunLoop] runMode: NSDefaultRunLoopMode
+                                                 beforeDate: timeout])
+        ;
+    NSAssert(error == nil, @"Couldn't delete remote: %@", error);
+}
+
+
 - (void) setUp {
     [super setUp];
     
