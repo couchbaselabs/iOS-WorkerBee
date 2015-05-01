@@ -10,29 +10,29 @@
 	<string>Worker Bee</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>4B47B4D0-8C06-4DB0-AD77-38F57FAF9EAD</key>
-		<string>https://github.com/couchbaselabs/iOS-WorkerBee/</string>
+		<key>D2739C1AC137D485E954EE62581494AF5B0D94B6</key>
+		<string>https://github.com/couchbaselabs/iOS-WorkerBee.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Worker Bee.xcodeproj/project.xcworkspace</string>
+	<string>Worker Bee.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>4B47B4D0-8C06-4DB0-AD77-38F57FAF9EAD</key>
+		<key>D2739C1AC137D485E954EE62581494AF5B0D94B6</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/couchbaselabs/iOS-WorkerBee/</string>
+	<string>https://github.com/couchbaselabs/iOS-WorkerBee.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>4B47B4D0-8C06-4DB0-AD77-38F57FAF9EAD</string>
+	<string>D2739C1AC137D485E954EE62581494AF5B0D94B6</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>4B47B4D0-8C06-4DB0-AD77-38F57FAF9EAD</string>
+			<string>D2739C1AC137D485E954EE62581494AF5B0D94B6</string>
 			<key>IDESourceControlWCCName</key>
 			<string>iOS-WorkerBee</string>
 		</dict>

@@ -33,4 +33,13 @@
     This is useful if you'd like to run several sub-tests, each starting with an empty database. */
 - (void) deleteDatabase;
 
+
+/** Create an empty database with name. If the database exists, the database will be deleted before
+ a new database with the specified name is created. */
+- (CBLDatabase*) createEmptyDatabaseNamed: (NSString*)name error: (NSError**)outError;
+
+/** Deletes a remote database. Works only with CouchDB, not Sync Gateway. */
+- (void) eraseRemoteDB: (NSURL*)dbURL;
+
+
 @end
