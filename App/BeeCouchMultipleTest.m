@@ -79,7 +79,7 @@ NSString* const summaryFileName = @"Bee_csv.txt";
 
     NSString *localDate = [NSDateFormatter localizedStringFromDate:[NSDate date] dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterShortStyle];
     [self logSummary:[NSString stringWithFormat:@"\n\n-------------------- %@ - %@", [self class], localDate]];
-    [self logToFile:[NSString stringWithFormat:@"\nParams: NumberOfDocuments=%d SizeofDocument=%d repeatCount=%d", [arrayNumberOfDocuments count], [arraySizeofDocuments count], repeatCount]];
+    [self logToFile:[NSString stringWithFormat:@"\nParams: NumberOfDocuments=%lu SizeofDocument=%lu repeatCount=%d", (unsigned long)[arrayNumberOfDocuments count], (unsigned long)[arraySizeofDocuments count], repeatCount]];
 
     NSMutableArray* resultNumberOfDocuments = [[NSMutableArray alloc] init];
     NSMutableArray* diffBaselinesNumberofDocuments = [[NSMutableArray alloc] init];

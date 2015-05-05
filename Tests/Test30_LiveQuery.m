@@ -30,9 +30,9 @@
 {
     if (object == liveQuery) {
         CBLQueryEnumerator* rowEnum = liveQuery.rows;
-        [self logFormat: @"LiveQuery observer got %d rows", rowEnum.count];
+        [self logFormat: @"LiveQuery observer got %lu rows", (unsigned long)rowEnum.count];
         if (rowEnum.count == expectedObserveCallCount) {
-            [self logFormat: @" LiveQuery observer got all %d rows", rowEnum.count];
+            [self logFormat: @" LiveQuery observer got all %lu rows", (unsigned long)rowEnum.count];
             liveQueryRunning = NO;
         }
     }

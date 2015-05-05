@@ -52,9 +52,9 @@ NSUInteger sCount;
 
 + (SavedTestRun*) forTest: (BeeTest*)test {
     // For 1.1.0 and forstdb
-    //SavedTestRun* instance = [SavedTestRun modelForNewDocumentInDatabase:[self database]];
+    SavedTestRun* instance = [SavedTestRun modelForNewDocumentInDatabase:[self database]];
     // For 1.0.4 and before
-    SavedTestRun* instance = [[self alloc] initWithNewDocumentInDatabase: [self database]];
+    //SavedTestRun* instance = [[self alloc] initWithNewDocumentInDatabase: [self database]];
 
     [instance recordTest: test];
     ++sCount;
