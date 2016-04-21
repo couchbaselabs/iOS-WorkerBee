@@ -16,7 +16,7 @@ Prerequisite: Xcode 4.3 or later with the SDK for iOS 6 or later.
 
 Clone the repo with git:
 
-    git clone git://github.com/couchbaselabs/WorkerBee.git
+    git clone git@github.com:couchbaselabs/iOS-WorkerBee.git
 
 ### Get the framework
 
