@@ -1,15 +1,14 @@
 //
-// Test10_DeleteDB.m
-// Worker Bee
+//  Test15_AllDocsQuery.m
+//  Worker Bee
 //
-// Created by Ashvinder Singh on 2/14/14.
-// Copyright (c) 2014 Couchbase, Inc. All rights reserved.
+//  Created by Pasin Suriyentrakorn on 7/8/16.
+//  Copyright © 2016 Couchbase, Inc. All rights reserved.
 //
 
-#import "Test10_DeleteDB.h"
+#import "Test15_AllDocsQuery.h"
 
-
-@implementation Test10_DeleteDB
+@implementation Test15_AllDocsQuery
 
 - (void) setUp {
     [super setUp];
@@ -43,7 +42,15 @@
         return;
     
     uint64_t t = dispatch_benchmark(1, ^{
-        [self deleteDatabase];
+        CBLQuery* query = [self.database createAllDocumentsQuery];
+        NSError* error;
+        CBLQueryEnumerator* rows = [query run: &error];
+        for (CBLQueryRow* row in rows) {
+            if (!row.documentID) {
+                [self logFormat: @"ERROR: Failed to enumerate the rows result"];
+                break;
+            }
+        }
     });
     
     [self logFormat: @"%@: finished in %f ms", self, (t/1000000.0)];

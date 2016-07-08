@@ -1,18 +1,18 @@
 //
-//  PerfTestScenario3.h
+//  Test02_CreateDocsNoTransaction.h
 //  Worker Bee
 //
 //  Created by Ashvinder Singh on 2/7/14.
 //  Copyright (c) 2014 Couchbase, Inc. All rights reserved.
 //
 
-#import "BeeCouchMultipleTest.h"
+#import "BeeCouchTest.h"
 
 /*
 Test Definition: Create documents using a non optimized way.
 No intransaction/Block code used for creating Bulk documents
 */
 
-@interface Test2_CreateDocsUnoptimizedWay : BeeCouchMultipleTest
+@interface Test02_CreateDocsNoTransaction : BeeCouchTest
 
 @end

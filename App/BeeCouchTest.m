@@ -9,7 +9,6 @@
 #import "BeeCouchTest.h"
 #import "AppDelegate.h"
 
-
 @implementation BeeCouchTest
 {
     CBLManager* _manager;
@@ -29,25 +28,37 @@
 
 
 - (CBLManager*) manager {
-    if (!_manager) {
-        //Uncomment the following 2 lines to run ForestDB
-        [[NSUserDefaults standardUserDefaults] setValue:@"ForestDB" forKey:@"CBLStorageType"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
+    if (!_manager)
         _manager = [[CBLManager alloc] init];
-    }
     return _manager;
+}
+
+
+- (CBLDatabaseOptions*) databaseOptionsWithCreateValue: (BOOL)create {
+    NSDictionary* config = [[[self class] config] objectForKey: @"database"];
+    CBLDatabaseOptions* option = [[CBLDatabaseOptions alloc] init];
+    NSString* storage = [config[@"storage"] lowercaseString];
+    if ([storage isEqualToString: [kCBLSQLiteStorage lowercaseString]]) {
+        option.storageType = kCBLSQLiteStorage;
+    } else if ([storage isEqualToString: [kCBLForestDBStorage lowercaseString]]) {
+        option.storageType = kCBLForestDBStorage;
+    }
+    option.encryptionKey = [config[@"encryption"] boolValue] ? config[@"encryptionKey"] : nil;
+    option.create = create;
+
+    return option;
 }
 
 
 - (CBLDatabase*) database {
     if (!_createdDatabase) {
         _createdDatabase = YES;
-        NSError* error = nil;
-        CBLDatabase* database = [self.manager existingDatabaseNamed: self.databaseName error: NULL];
-        if (database) {
-            [database deleteDatabase: &error];
-        }
-        _database = [_manager databaseNamed: self.databaseName error: &error];
+
+        NSError *error = nil;
+        _database = [self createEmptyDatabaseNamed: self.databaseName error: &error];
+
+        if (error)
+            [self logFormat: @"Error creating the database %@ : %@", self.databaseName, error];
     }
     return _database;
 }
@@ -64,14 +75,35 @@
     _database = nil;
 }
 
+- (BOOL) reopenDatabase: (NSError**)error {
+    if (_database) {
+        if (![_database close: error])
+            return NO;
+
+        CBLDatabaseOptions* option = [self databaseOptionsWithCreateValue: NO];
+        _database = [self.manager openDatabaseNamed: self.databaseName
+                                        withOptions: option error: error];
+        if (_database)
+            return YES;
+    } else
+        [self logFormat: @"WARNING: No database opened before"];
+
+    return NO;
+}
+
 
 - (CBLDatabase*) createEmptyDatabaseNamed: (NSString*)name error: (NSError**)outError {
-    CBLDatabase* db = [self.manager existingDatabaseNamed: name error: outError];
-    if (db) {
-        if (![db deleteDatabase: outError])
+    CBLDatabaseOptions* option = [self databaseOptionsWithCreateValue: NO];
+    CBLDatabase* database = [self.manager openDatabaseNamed: self.databaseName
+                                                withOptions: option error: NULL];
+    if (database) {
+        if (![database deleteDatabase: outError])
             return nil;
     }
-    return [self.manager databaseNamed: name error: outError];
+
+    option = [self databaseOptionsWithCreateValue: YES];
+    return [self.manager openDatabaseNamed: self.databaseName
+                               withOptions: option error: outError];
 }
 
 
@@ -105,13 +137,54 @@
 }
 
 
+- (NSDictionary*) classConfig {
+    return [[[self class] config] objectForKey: NSStringFromClass([self class])];
+}
+
+- (id) configForKey: (NSString *)key {
+    return [[self classConfig] objectForKey: key];
+}
+
+
+- (NSURL*) replicationUrl {
+    NSString* url = [[[self class] config] objectForKey: @"replicationUrl"];
+    return [NSURL URLWithString: url];
+}
+
+
+- (BOOL) wait: (NSTimeInterval)timeout for: (BOOL(^)())block {
+    CFAbsoluteTime startTime = CFAbsoluteTimeGetCurrent();
+    CFAbsoluteTime lastTime = startTime;
+    BOOL done = NO;
+    do {
+        if (![[NSRunLoop currentRunLoop] runMode: NSDefaultRunLoopMode
+                                      beforeDate: [NSDate dateWithTimeIntervalSinceNow: 0.1]])
+            break;
+        // Replication runs on a background thread, so the main runloop should not be blocked.
+        // Make sure it's spinning in a timely manner:
+        CFAbsoluteTime now = CFAbsoluteTimeGetCurrent();
+        if (now-lastTime > 0.25)
+            NSLog(@"Main runloop was blocked for %g sec", now-lastTime);
+        lastTime = now;
+        if (now-startTime > timeout)
+            break;
+        done = block();
+    } while (!done);
+    return done;
+}
+
+
 - (void) setUp {
     [super setUp];
     
     _createdDatabase = NO;
+
+    [self logFormat: @"%@: config: %@", self, [self classConfig]];
 }
 
 - (void) tearDown {
+    [self deleteDatabase];
+
     _database = nil;
     [_manager close];
     _manager = nil;

@@ -311,7 +311,7 @@ static NSDictionary* config;
         [_messages removeObjectAtIndex: 0];
     [self writeToOutput: message];
     [_delegate beeTest: self loggedMessage: message];
-    NSLog(@"logMessage: %@", message);
+    NSLog(@"Message: %@", message);
 }
 
 - (void) logFormat: (NSString*)format, ... {

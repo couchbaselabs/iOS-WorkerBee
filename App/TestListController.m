@@ -57,6 +57,12 @@ static UIColor* kBGColor;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    NSString* path = [[NSBundle mainBundle] pathForResource: @"config" ofType: @"json"];
+    NSDictionary* config =
+        [NSJSONSerialization JSONObjectWithData: [NSData dataWithContentsOfFile: path]
+                                        options: 0 error: NULL];
+    [BeeTest setConfig: config];
     
     if (!_testList) {
         _testList = [[BeeTest allTestClasses] copy];
@@ -201,6 +207,7 @@ static UIColor* kBGColor;
     BeeTest* test = [self testForClass: testClass];
     if (!test) {
         test = [[testClass alloc] init];
+
         if (test) {
             _activeTestByClass[[testClass testName]] = test;
             [test addObserver: self forKeyPath: @"running" options: 0 context: NULL];
