@@ -18,6 +18,7 @@
 - (void) run {
     NSInteger numDocs = [[self configForKey: @"numDocs"] integerValue];
     NSInteger docSize = [[self configForKey: @"docSize"] integerValue];
+    NSInteger numAtts = [[self configForKey: @"numAtts"] integerValue];
     NSInteger attSize = [[self configForKey: @"attSize"] integerValue];
     
     NSString* content;
@@ -29,7 +30,7 @@
     
     NSMutableData* attData;
     if (attSize > 0) {
-        [NSMutableData dataWithLength: attSize];
+        attData = [NSMutableData dataWithLength: attSize];
         memset(attData.mutableBytes, 'a', attData.length);
     }
     
@@ -43,12 +44,16 @@
             if (docSize > 0)
                 rev.userProperties =  @{@"content": content};
             
-            if (attSize > 0) {
-                NSData* prefix = [NSData dataWithBytes: &i length: sizeof(i)];
-                NSMutableData *att = [NSMutableData dataWithLength: prefix.length + attData.length];
-                [att appendData: prefix];
-                [att appendData: attData];
-                [rev setAttachmentNamed: @"attach" withContentType: @"text/plain" content: att];
+            if (numAtts > 0 && attSize > 0) {
+                for (int j = 0; j < numAtts; j++) {
+                    NSString *attachmentName = [NSString stringWithFormat:@"attach-%d", j];
+                    NSString *prefixStr = [NSString stringWithFormat:@"%d-%d", i, j];
+                    NSData *prefix = [prefixStr dataUsingEncoding:NSUTF8StringEncoding];
+                    NSMutableData *att = [NSMutableData dataWithLength: prefix.length + attData.length];
+                    [att appendData: prefix];
+                    [att appendData: attData];
+                    [rev setAttachmentNamed: attachmentName withContentType: @"text/plain" content: att];
+                }
             }
             
             if (![rev save: &error]) {

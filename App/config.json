@@ -8,40 +8,41 @@
     "replicationUrl": "http://10.17.2.133:4984/db",
     
     "Test01_CreateDocs": {
-        "docSize": 1000,
-        "numDocs": 1000
+        "numDocs": 1000,
+        "docSize": 1000
     },
     
     "Test02_CreateDocsNoTransaction": {
-        "docSize": 1000,
-        "numDocs": 1000
+        "numDocs": 1000,
+        "docSize": 1000
     },
     
     "Test03_ReadDocs": {
-        "docSize": 1000,
-        "numDocs": 1000
+        "numDocs": 1000,
+        "docSize": 1000
     },
     
     "Test04_CreateAttachments": {
-        "attSize": 500000,
-        "numDocs": 100
+        "numDocs": 100,
+        "attSize": 500000
     },
     
     "Test05_ReadAttachments": {
-        "attSize": 500000,
-        "numDocs": 100
+        "numDocs": 100,
+        "attSize": 500000
     },
     
     "Test06_PushReplication": {
+        "numDocs": 1000,
         "docSize": 1000,
-        "attSize": 0,
-        "numDocs": 1000
+        "attSize": 0
     },
     
     "Test07_PullReplication": {
+        "numDocs": 1000,
         "docSize": 1000,
+        "numAtts": 0,
         "attSize": 0,
-        "numDocs": 1000
     },
     
     "Test08_DocRevisions": {
@@ -50,19 +51,19 @@
     },
     
     "Test09_LoadDB": {
-        "docSize": 1000,
         "numDocs": 1000,
+        "docSize": 1000,
         "numRounds": 5
     },
     
     "Test10_DeleteDB": {
-        "docSize": 1000,
-        "numDocs": 1000
+        "numDocs": 1000,
+        "docSize": 1000
     },
     
     "Test11_DeleteDocs": {
-        "docSize": 1000,
-        "numDocs": 1000
+        "numDocs": 1000,
+        "docSize": 1000
     },
     
     "Test12_IndexView": {
@@ -78,15 +79,15 @@
     },
     
     "Test15_AllDocsQuery": {
-        "docSize": 1000,
-        "numDocs": 1000
+        "numDocs": 1000,
+        "docSize": 1000
     },
     
     "Test16_CompactDB": {
-        "docSize": 1000,
         "numDocs": 1000,
-        "attSize": 100000,
+        "docSize": 1000,
         "numAtts": 1,
+        "attSize": 100000,
         "deleteAtts": true,
         "numRevs": 25
     }
