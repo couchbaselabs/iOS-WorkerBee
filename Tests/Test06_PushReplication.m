@@ -29,7 +29,7 @@
     
     NSMutableData* attData;
     if (attSize > 0) {
-        [NSMutableData dataWithLength: attSize];
+        attData = [NSMutableData dataWithLength: attSize];
         memset(attData.mutableBytes, 'a', attData.length);
     }
     
