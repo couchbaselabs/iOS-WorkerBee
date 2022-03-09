@@ -1,3 +1,5 @@
+⚠️ This repo is obsolete.  It was used for Couchbase Lite 1.x testing.
+
 ## Couchbase Lite Workflow Test App
 
 This iOS app is a shell for long-running workflow tests of the [Couchbase Lite][1] framework.
